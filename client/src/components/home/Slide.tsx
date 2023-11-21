@@ -15,7 +15,7 @@ function Slide({ banner }: bannerProps) {
         direction={"vertical"}
         slidesPerView={1}
         spaceBetween={0}
-        speed={1000}
+        speed={500}
         mousewheel={true}
         pagination={{
           clickable: true,

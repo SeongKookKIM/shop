@@ -15,7 +15,12 @@ function Home() {
   return (
     <div className="home">
       <div className="home-nav"></div>
-      <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+      <Swiper
+        speed={2000}
+        navigation={true}
+        modules={[Navigation]}
+        className="mySwiper"
+      >
         {HomeBanner.map((it, i) => {
           return (
             <SwiperSlide key={i}>
