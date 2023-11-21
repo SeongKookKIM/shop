@@ -1,7 +1,7 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-const HomeAll = createSlice({
-  name: "HomeAll",
+const HomeBanner = createSlice({
+  name: "HomeBanner",
   initialState: [
     [
       "/assets/banner/1-best.jpg",
@@ -18,7 +18,7 @@ const HomeAll = createSlice({
       "/assets/banner/3-best.jpg",
       "/assets/banner/3-new.jpg",
       "/assets/banner/3-collection.jpg",
-      "/assets/banner/2-cardigan.jpg",
+      "/assets/banner/3-cardigan.jpg",
     ],
     [
       "/assets/banner/4-home01.jpg",
@@ -33,7 +33,7 @@ const HomeAll = createSlice({
 
 const store = configureStore({
   reducer: {
-    HomeAll: HomeAll.reducer,
+    HomeBanner: HomeBanner.reducer,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;

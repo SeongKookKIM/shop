@@ -11,11 +11,12 @@ import Slide from "../components/home/Slide";
 import { RootState } from "../Store";
 
 function Home() {
-  const homeAll = useSelector((state: RootState) => state.HomeAll);
+  const HomeBanner = useSelector((state: RootState) => state.HomeBanner);
   return (
     <div className="home">
+      <div className="home-nav"></div>
       <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-        {homeAll.map((it, i) => {
+        {HomeBanner.map((it, i) => {
           return (
             <SwiperSlide key={i}>
               <Slide banner={it} />
