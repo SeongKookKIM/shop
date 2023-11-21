@@ -1,15 +1,14 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useSelector } from "react-redux";
 
 import "swiper/css";
 
 import { Mousewheel } from "swiper/modules";
-import { RootState } from "../../Store";
 
-function Slide() {
-  const homeAll = useSelector((state: RootState) => state);
-  console.log(homeAll);
+interface bannerProps {
+  banner: string[];
+}
 
+function Slide({ banner }: bannerProps) {
   return (
     <>
       <Swiper
@@ -24,7 +23,7 @@ function Slide() {
         modules={[Mousewheel]}
         className="vertical-swiper"
       >
-        {homeAll.HomeAll.map((it, idx) => {
+        {banner.map((it, idx) => {
           return (
             <SwiperSlide key={idx}>
               <img src={it}></img>
