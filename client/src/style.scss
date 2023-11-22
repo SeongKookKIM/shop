@@ -222,5 +222,20 @@ li {
       color: #d3d3d3;
       transform: scale(0.4);
     }
+    .swiper-slide {
+      position: relative;
+      span {
+        position: absolute;
+        right: 50px;
+        bottom: 100px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        color: #333;
+      }
+      span.active {
+        color: white;
+      }
+    }
   }
 }

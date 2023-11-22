@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { LuAlignLeft, LuX } from "react-icons/lu";
 import { useSelector } from "react-redux";
-import { RootState, handlerSlideNum } from "../../Store";
+import { RootState, handlerMenu, handlerSlideNum } from "../../Store";
 import ActiveMenu from "./ActiveMenu";
 
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function Menu() {
   const [activeBar, setActiveBar] = useState<boolean>(false);
@@ -12,6 +13,7 @@ function Menu() {
   const menuClass = useSelector((state: RootState) => state.menuClass);
 
   let dispatch = useDispatch();
+  let navigate = useNavigate();
 
   return (
     <div className={menuClass.menuClass}>
@@ -36,7 +38,7 @@ function Menu() {
         ) : (
           <>
             {" "}
-            <h1>SHOP</h1>
+            <h1 onClick={() => navigate("/")}>SHOP</h1>
             <nav className="menu-list">
               <ul className="gnb">
                 <li>
@@ -86,7 +88,14 @@ function Menu() {
       <div className="client-menu">
         <ul>
           <li>
-            <span>로그인</span>
+            <span
+              onClick={() => {
+                navigate("/login");
+                dispatch(handlerMenu("menu"));
+              }}
+            >
+              로그인
+            </span>
           </li>
           <li>
             <span>도움말</span>

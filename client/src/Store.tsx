@@ -4,28 +4,60 @@ const HomeBanner = createSlice({
   name: "HomeBanner",
   initialState: [
     [
-      "/assets/banner/1-coat.jpg",
-      "/assets/banner/1-best.jpg",
-      "/assets/banner/1-new.jpg",
-      "/assets/banner/1-life.jpg",
+      { src: "/assets/banner/1-coat.jpg", title: "COAT | 코트", link: "/" },
+      { src: "/assets/banner/1-best.jpg", title: "BEST | 베스트", link: "/" },
+      { src: "/assets/banner/1-new.jpg", title: "NEW | 신상품", link: "/" },
+      { src: "/assets/banner/1-life.jpg", title: "LIFE | 데코", link: "/" },
     ],
     [
-      "/assets/banner/2-best.jpg",
-      "/assets/banner/2-new.jpg",
-      "/assets/banner/2-collection.jpg",
+      { src: "/assets/banner/2-best.jpg", title: "BEST | 베스트", link: "/" },
+      { src: "/assets/banner/2-new.jpg", title: "NEW | 신상품", link: "/" },
+      {
+        src: "/assets/banner/2-collection.jpg",
+        title: "COLLECTION | 콜렉션",
+        link: "/",
+      },
     ],
     [
-      "/assets/banner/3-best.jpg",
-      "/assets/banner/3-new.jpg",
-      "/assets/banner/3-collection.jpg",
-      "/assets/banner/3-cardigan.jpg",
+      { src: "/assets/banner/3-best.jpg", title: "BEST | 베스트", link: "/" },
+      { src: "/assets/banner/3-new.jpg", title: "NEW | 신상품", link: "/" },
+      {
+        src: "/assets/banner/3-collection.jpg",
+        title: "COLLECTION | 콜렉션",
+        link: "/",
+      },
+      {
+        src: "/assets/banner/3-cardigan.jpg",
+        title: "CARDIGAN | 가디건",
+        link: "/",
+      },
     ],
     [
-      "/assets/banner/4-home01.jpg",
-      "/assets/banner/4-home02.jpg",
-      "/assets/banner/4-home03.jpg",
-      "/assets/banner/4-home04.jpg",
-      "/assets/banner/4-home05.jpg",
+      {
+        src: "/assets/banner/4-home01.jpg",
+        title: "HOME | 크리스마스",
+        link: "/",
+      },
+      {
+        src: "/assets/banner/4-home02.jpg",
+        title: "HOME | 크리스마스",
+        link: "/",
+      },
+      {
+        src: "/assets/banner/4-home03.jpg",
+        title: "HOME | 크리스마스",
+        link: "/",
+      },
+      {
+        src: "/assets/banner/4-home04.jpg",
+        title: "HOME | 크리스마스",
+        link: "/",
+      },
+      {
+        src: "/assets/banner/4-home05.jpg",
+        title: "HOME | 크리스마스",
+        link: "/",
+      },
     ],
   ],
   reducers: {},
@@ -43,6 +75,19 @@ const menuClass = createSlice({
   },
 });
 export let { handlerMenu } = menuClass.actions;
+
+const swiperText = createSlice({
+  name: "swiperText",
+  initialState: {
+    textClass: "",
+  },
+  reducers: {
+    handlerSwiperText(state, action) {
+      state.textClass = action.payload;
+    },
+  },
+});
+export let { handlerSwiperText } = swiperText.actions;
 
 const slideNum = createSlice({
   name: "slideNum",
@@ -62,6 +107,7 @@ const store = configureStore({
     HomeBanner: HomeBanner.reducer,
     menuClass: menuClass.reducer,
     slideNum: slideNum.reducer,
+    swiperText: swiperText.reducer,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;
