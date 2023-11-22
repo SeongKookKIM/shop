@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 function ActiveMenu() {
   const [menuSelect, setMenuSelect] = useState<string>("ALL");
+  const [tab, setTab] = useState<number>(0);
 
   const handleMenuClick = (selectedMenu: string) => {
     setMenuSelect(selectedMenu);
@@ -14,7 +15,10 @@ function ActiveMenu() {
         <li>
           <p
             className={menuSelect === "ALL" ? "select" : ""}
-            onClick={() => handleMenuClick("ALL")}
+            onClick={() => {
+              handleMenuClick("ALL");
+              setTab(0);
+            }}
           >
             ALL
           </p>
@@ -22,7 +26,10 @@ function ActiveMenu() {
         <li>
           <p
             className={menuSelect === "MEN" ? "select" : ""}
-            onClick={() => handleMenuClick("MEN")}
+            onClick={() => {
+              handleMenuClick("MEN");
+              setTab(1);
+            }}
           >
             MEN
           </p>
@@ -30,7 +37,10 @@ function ActiveMenu() {
         <li>
           <p
             className={menuSelect === "WOMEN" ? "select" : ""}
-            onClick={() => handleMenuClick("WOMEN")}
+            onClick={() => {
+              handleMenuClick("WOMEN");
+              setTab(2);
+            }}
           >
             WOMEN
           </p>
@@ -38,29 +48,87 @@ function ActiveMenu() {
         <li>
           <p
             className={menuSelect === "HOME" ? "select" : ""}
-            onClick={() => handleMenuClick("HOME")}
+            onClick={() => {
+              handleMenuClick("HOME");
+              setTab(3);
+            }}
           >
             HOME
           </p>
         </li>
       </ul>
       <div className="sub-menu-list">
-        <ul>
-          <li>
-            <span>COAT</span>
-          </li>
-          <li>
-            <span>BEST</span>
-          </li>
-          <li>
-            <span>NEW</span>
-          </li>
-          <li>
-            <span>LIFE</span>
-          </li>
-        </ul>
+        <TabMenuList tab={tab} />
       </div>
     </div>
+  );
+}
+
+interface tabProps {
+  tab: number;
+}
+
+function TabMenuList({ tab }: tabProps) {
+  return (
+    <>
+      {
+        [
+          <ul>
+            <li>
+              <span>COAT</span>
+            </li>
+            <li>
+              <span>BEST</span>
+            </li>
+            <li>
+              <span>NEW</span>
+            </li>
+            <li>
+              <span>LIFE</span>
+            </li>
+          </ul>,
+          <ul>
+            <li>
+              <span>BEST</span>
+            </li>
+            <li>
+              <span>NEW</span>
+            </li>
+            <li>
+              <span>COLLECTION</span>
+            </li>
+          </ul>,
+          <ul>
+            <li>
+              <span>BEST</span>
+            </li>
+            <li>
+              <span>NEW</span>
+            </li>
+            <li>
+              <span>COLLECTION</span>
+            </li>
+            <li>
+              <span>CARDIGAN</span>
+            </li>
+          </ul>,
+          <ul>
+            <li>
+              <span>DECO1</span>
+            </li>
+            <li>
+              <span>DECO2</span>
+            </li>
+            <li>
+              <span>DECO3</span>
+            </li>
+            <li>
+              <span>DECO4</span>
+            </li>
+          </ul>,
+        ][tab]
+      }
+    </>
   );
 }
 
