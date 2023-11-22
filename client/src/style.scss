@@ -12,7 +12,13 @@ $font: "S-CoreDream-3Light";
   justify-content: center;
   align-items: center;
 }
-p {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   padding: 0;
   margin: 0;
 }
@@ -48,6 +54,7 @@ li {
     .menu-bar {
       color: #333;
       cursor: pointer;
+      font-size: 25px;
     }
     .main-menu {
       margin-left: 100px;
@@ -56,6 +63,7 @@ li {
         font-size: 86px;
         font-weight: 800;
         cursor: pointer;
+        padding: 0 0 0px 10px;
       }
       .menu-list {
         width: 100%;
@@ -63,13 +71,66 @@ li {
         .gnb {
           width: 100%;
           display: flex;
-          justify-content: space-between;
+          justify-content: flex-start;
           align-items: center;
+          gap: 30px;
+          margin-left: 20px;
           li {
             p {
               font-size: 14px;
               font-weight: 700;
               cursor: pointer;
+            }
+          }
+        }
+      }
+      .show-menu {
+        background-color: white;
+        border: 1px solid #333;
+        padding-bottom: 80px;
+        h1 {
+          color: black;
+          padding: 0 120px 40px 10px;
+          border-bottom: 1px solid #333;
+        }
+        .show-menu-list {
+          display: flex;
+          justify-content: flex-end;
+          padding: 15px 10px;
+          align-items: center;
+          gap: 20px;
+          li {
+            p {
+              font-size: 14px;
+              font-weight: 400;
+              color: #333;
+              cursor: pointer;
+            }
+            p.select {
+              color: black;
+              font-weight: 700;
+            }
+          }
+        }
+      }
+      .sub-menu-list {
+        width: 100%;
+
+        ul {
+          padding: 15px 10px;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          gap: 10px;
+          li {
+            border: 1px solid black;
+            padding: 2px 5px;
+            cursor: pointer;
+            span {
+              font-size: 10px;
+              font-weight: 300;
+              letter-spacing: 2px;
+              @include flexCenter();
             }
           }
         }

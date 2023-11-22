@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore from "swiper";
 
 import { useSelector } from "react-redux";
 
@@ -12,18 +13,28 @@ import { RootState } from "../Store";
 
 function Home() {
   const [slideNum, setSlideNum] = useState<number>(0);
+  const [swiper, setSwiper] = useState<SwiperCore>();
 
   const HomeBanner = useSelector((state: RootState) => state.HomeBanner);
+  const swiperNum = useSelector((state: RootState) => state.slideNum);
 
   const handleSlideChange = (swiper: any) => {
     setSlideNum(swiper.realIndex);
   };
+
+  useEffect(() => {
+    if (swiper) {
+      swiper.slideTo(swiperNum);
+    }
+  }, [swiperNum]);
+
   return (
     <div className="home">
       <Swiper
         speed={2000}
         navigation={true}
         onSlideChange={handleSlideChange}
+        onSwiper={setSwiper}
         modules={[Navigation]}
         className="mySwiper"
       >

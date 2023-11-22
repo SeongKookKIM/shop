@@ -44,10 +44,24 @@ const menuClass = createSlice({
 });
 export let { handlerMenu } = menuClass.actions;
 
+const slideNum = createSlice({
+  name: "slideNum",
+  initialState: 0,
+  reducers: {
+    handlerSlideNum(state, action) {
+      state = action.payload;
+
+      return state;
+    },
+  },
+});
+export let { handlerSlideNum } = slideNum.actions;
+
 const store = configureStore({
   reducer: {
     HomeBanner: HomeBanner.reducer,
     menuClass: menuClass.reducer,
+    slideNum: slideNum.reducer,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;
