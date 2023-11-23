@@ -43,7 +43,8 @@ li {
   position: relative;
   // MENU-NAV
   .menu,
-  .menu-active {
+  .menu-active,
+  .menu-subpage {
     width: 100%;
     position: fixed;
     top: 0;
@@ -207,6 +208,14 @@ li {
       }
     }
   }
+  // subpage-menu
+  .menu-subpage {
+    .main-menu {
+      .menu-list {
+        display: none;
+      }
+    }
+  }
 }
 
 // LANDING-BANNER-SWIPER
@@ -249,15 +258,80 @@ li {
   width: 100%;
   @include flexCenter();
   justify-content: flex-start;
-  padding-top: 230px;
+  padding-top: 200px;
   .login-wrapper {
     width: 100%;
     max-width: 1240px;
     margin-left: 169px;
     span {
-      font-size: 20px;
-      font-weight: 700;
+      font-size: 15px;
+      font-weight: 500;
       color: #333;
+      pointer-events: none;
+    }
+    form {
+      margin-top: 50px;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      div {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        label {
+          font-size: 12px;
+          color: #999;
+        }
+        input {
+          width: 100%;
+          padding: 5px 3px;
+          border: none;
+          outline: none;
+          border-bottom: 1px solid black;
+          font-family: $font;
+          font-weight: 700;
+          font-size: 13px;
+          letter-spacing: 1px;
+        }
+        span {
+          position: absolute;
+          top: 110%;
+          font-size: 11px;
+          color: red;
+        }
+        span.email-active {
+          color: black;
+        }
+      }
+    }
+    button {
+      width: 100%;
+      font-size: 14px;
+      border: 1px solid black;
+      margin-top: 20px;
+      padding: 7px 0;
+      font-family: $font;
+      font-weight: 700;
+      color: black;
+      background-color: white;
+      cursor: pointer;
+      &:hover {
+        color: #999;
+      }
+    }
+    .find-account {
+      max-width: 400px;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      p {
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+      }
     }
   }
 }

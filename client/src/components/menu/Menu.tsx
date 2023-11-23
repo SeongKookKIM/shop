@@ -91,7 +91,7 @@ function Menu() {
             <span
               onClick={() => {
                 navigate("/login");
-                dispatch(handlerMenu("menu"));
+                dispatch(handlerMenu("menu-subpage"));
               }}
             >
               로그인
