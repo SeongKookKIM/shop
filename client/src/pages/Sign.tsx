@@ -10,6 +10,12 @@ function Sign() {
   const [signadress, setSignAdress] = useState<string>("");
   const [signadressDetail, setSignAdressDetail] = useState<string>("");
 
+  //   FormEmty
+  const [emtyEmail, setEmtyEmail] = useState<boolean>(false);
+  const [emtyPassword, setEmtyPassword] = useState<boolean>(false);
+  const [emtyPasswordConfirm, setEmtyPasswordConfirm] =
+    useState<boolean>(false);
+  const [emtyPhone, setEmtyPhone] = useState<boolean>(false);
   //   ALERT
   const [emailAlert, setEmailAlert] = useState<string>("");
   const [passwordAlert, setPasswordAlert] = useState<string>(
@@ -22,7 +28,6 @@ function Sign() {
   const emailRegEx =
     /^[A-Za-z0-9]*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
   const passwordReg = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
-  const phoneReg = /^[0-9\b -]{0,13}$/;
 
   //   핸들러
   const handlerEmail = (emailChecked: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,6 +38,7 @@ function Sign() {
         setEmailAlert("이메일 형식이 아닙니다.");
       } else {
         setEmailAlert("");
+        setEmtyEmail(true);
       }
     }
   };
@@ -48,6 +54,7 @@ function Sign() {
         setPasswordAlert("비밀번호 형식이 아닙니다.");
       } else {
         setPasswordAlert("");
+        setEmtyPassword(true);
       }
     }
   };
@@ -56,6 +63,7 @@ function Sign() {
   ) => {
     if (signPassword === confirm.target.value) {
       setPasswordConfirmAlert("");
+      setEmtyPasswordConfirm(true);
     } else {
       setPasswordConfirmAlert("* 비밀번호가 일치하지 않습니다.");
     }
@@ -65,6 +73,7 @@ function Sign() {
       setPhoneAlert("* 핸드폰 번호를 입력해주세요.");
     } else {
       setPhoneAlert("");
+      setEmtyPhone(true);
     }
   };
 
@@ -90,6 +99,7 @@ function Sign() {
 
     setSignAdress(fullAddress);
   };
+
   const handlerFindAdress = () => {
     let popupWidth = 500;
     let popupHeight = 600;
@@ -104,12 +114,41 @@ function Sign() {
     });
   };
 
+  //   Submit
+  const hanldlerSignSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formElement = e.target as HTMLFormElement;
+
+    if (signName === "") {
+      window.alert("이름을 적어주세요.");
+    } else if (!emtyEmail) {
+      window.alert("이메일을 입력해주세요");
+    } else if (!emtyPassword) {
+      window.alert("비밀번호를 입력해주세요");
+    } else if (!emtyPasswordConfirm) {
+      window.alert("비밀번호 확인을 확인해주세요.");
+    } else if (!emtyPhone) {
+      window.alert("핸드폰 번호를 확인해주세요.");
+    } else if (signadress === "") {
+      window.alert("주소를 확인해주세요.");
+    } else {
+      formElement.submit();
+    }
+  };
+
   return (
     <div className="sign">
       <div className="sign-wrapper">
         <span>회원가입</span>
         <span className="alert">*모든 항목은 필수 입력란입니다.</span>
-        <form>
+        <form
+          action="http://localhost:8080/sign"
+          method="POST"
+          onSubmit={(e) => {
+            hanldlerSignSubmit(e);
+          }}
+        >
           <div className="sign-name">
             <label>이름</label>
             <input
@@ -126,6 +165,7 @@ function Sign() {
             <label>이메일</label>
             <input
               type="text"
+              name="email"
               autoComplete="off"
               onChange={(e) => {
                 setSignEmail(e.target.value);
@@ -153,7 +193,6 @@ function Sign() {
             <label>비밀번호 확인</label>
             <input
               type="password"
-              name="confirm"
               autoComplete="off"
               onChange={(e) => {
                 setPasswordConfirm(e.target.value);
@@ -189,6 +228,7 @@ function Sign() {
                 name="adress"
                 defaultValue={signadress}
                 autoComplete="off"
+                style={{ pointerEvents: "none" }}
               />
               <button
                 type="button"
