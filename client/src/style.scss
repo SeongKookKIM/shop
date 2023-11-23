@@ -254,12 +254,14 @@ li {
 }
 
 // LOGIN
-.login {
+.login,
+.sign {
   width: 100%;
   @include flexCenter();
   justify-content: flex-start;
   padding-top: 200px;
-  .login-wrapper {
+  .login-wrapper,
+  .sign-wrapper {
     width: 100%;
     max-width: 1240px;
     margin-left: 169px;
@@ -331,6 +333,69 @@ li {
         font-size: 14px;
         font-weight: 500;
         cursor: pointer;
+      }
+    }
+  }
+}
+
+// SIGN
+.sign {
+  width: 100%;
+  @include flexCenter();
+  justify-content: flex-start;
+  padding-top: 200px;
+  padding-bottom: 200px;
+  .sign-wrapper {
+    width: 100%;
+    max-width: 1240px;
+    margin-left: 169px;
+    span {
+      font-size: 15px;
+      font-weight: 500;
+      color: #333;
+      pointer-events: none;
+    }
+    .alert {
+      font-size: 11px;
+      color: red;
+    }
+    form {
+      input {
+        border-radius: 0;
+        &:focus {
+          outline: none;
+        }
+      }
+      /* Chrome, Safari, Edge, Opera */
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      /* Firefox  */
+      input[type="number"] {
+        -moz-appearance: textfield;
+      }
+      .adress-wrapper {
+        position: relative;
+        .find-adress {
+          position: absolute;
+          width: 100px;
+          font-size: 12px;
+          padding: 0;
+          left: 50px;
+          top: -23px;
+          margin: 0;
+        }
+      }
+      .adressdetail {
+        margin-top: 10px;
+        &::placeholder {
+          font-size: 12px;
+          color: #999;
+          font-weight: 500;
+        }
       }
     }
   }

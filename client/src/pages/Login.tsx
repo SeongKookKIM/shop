@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [emailAlert, setEmailAlert] = useState<string>("");
   const [emailFocus, setEmailFocus] = useState<string>("필수 입력란입니다");
   const [emailChange, setEmailChange] = useState<string>("");
+
+  let navigate = useNavigate();
 
   const [passwordFocus, setPasswordFocus] =
     useState<string>("* 필수 입력란입니다");
@@ -77,7 +80,7 @@ function Login() {
 
         <div className="find-account">
           <p>비밀번호 찾기</p>
-          <p>회원가입</p>
+          <p onClick={() => navigate("/sign")}>회원가입</p>
         </div>
       </div>
     </div>
