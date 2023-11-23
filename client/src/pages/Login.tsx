@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -39,11 +40,35 @@ function Login() {
     }
   };
 
+  // Submit
+  const handlerSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    axios
+      .post("http://localhost:8080/login", {
+        email: emailChange,
+        password: passwordChange,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          localStorage.setItem("user", JSON.stringify(res.data));
+          navigate("/");
+        }
+      })
+      .catch((err) => {
+        alert("로그인에 실패하셨습니다.");
+      });
+  };
+
   return (
     <div className="login">
       <div className="login-wrapper">
         <span>고객님의 계정에 액세스하세요.</span>
-        <form>
+        <form
+          onSubmit={(e) => {
+            handlerSubmit(e);
+          }}
+        >
           <div className="login-email">
             <label htmlFor="email-account">이메일</label>
             <input
