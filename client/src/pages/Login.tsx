@@ -53,6 +53,7 @@ function Login() {
         if (res.status === 200) {
           localStorage.setItem("user", JSON.stringify(res.data));
           navigate("/");
+          window.location.reload();
         }
       })
       .catch((err) => {
