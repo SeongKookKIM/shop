@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LuAlignLeft, LuX } from "react-icons/lu";
 import { useSelector } from "react-redux";
 import { RootState, handlerMenu, handlerSlideNum } from "../../Store";
@@ -7,13 +7,32 @@ import ActiveMenu from "./ActiveMenu";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+interface userType {
+  adress: string;
+  adressdetail: string;
+  email: string;
+  name: string;
+  password: string;
+  phone: string;
+  _id: string;
+}
+
 function Menu() {
   const [activeBar, setActiveBar] = useState<boolean>(false);
+  const [userLogin, setUserLogin] = useState<userType>();
 
   const menuClass = useSelector((state: RootState) => state.menuClass);
 
   let dispatch = useDispatch();
   let navigate = useNavigate();
+
+  useEffect(() => {
+    const localUser = localStorage.getItem("user");
+
+    if (localUser) {
+      setUserLogin(JSON.parse(localUser));
+    }
+  }, []);
 
   return (
     <div className={menuClass.menuClass}>
@@ -88,14 +107,18 @@ function Menu() {
       <div className="client-menu">
         <ul>
           <li>
-            <span
-              onClick={() => {
-                navigate("/login");
-                dispatch(handlerMenu("menu-subpage"));
-              }}
-            >
-              로그인
-            </span>
+            {userLogin ? (
+              <span>{userLogin.name}</span>
+            ) : (
+              <span
+                onClick={() => {
+                  navigate("/login");
+                  dispatch(handlerMenu("menu-subpage"));
+                }}
+              >
+                로그인
+              </span>
+            )}
           </li>
           <li>
             <span>도움말</span>

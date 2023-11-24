@@ -116,15 +116,6 @@ function TabMenuList({ tab }: tabProps) {
             <li>
               <span>DECO1</span>
             </li>
-            <li>
-              <span>DECO2</span>
-            </li>
-            <li>
-              <span>DECO3</span>
-            </li>
-            <li>
-              <span>DECO4</span>
-            </li>
           </ul>,
         ][tab]
       }
