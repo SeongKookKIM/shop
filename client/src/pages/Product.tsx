@@ -1,7 +1,39 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+
+type ProductType = {
+  color: string[];
+  description: string;
+  mainCategory: string;
+  name: string;
+  price: string;
+  size: string[];
+  src: string[];
+  subCategory: string;
+  thumbnail: string;
+  _id: string;
+};
 
 function Product() {
   const [itemLayout, setItemLayout] = useState<string>("big");
+  const [itemList, setItemList] = useState<ProductType[] | undefined>();
+
+  let { category, item } = useParams();
+
+  useEffect(() => {
+    axios
+      .post("http://localhost:8080/product", {
+        mainCategory: category,
+        subCategory: item,
+      })
+      .then((res) => {
+        setItemList(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [category, item]);
 
   return (
     <div className="product">
@@ -23,186 +55,94 @@ function Product() {
             onClick={() => setItemLayout("small")}
           />
         </div>
-        {itemLayout === "big" && <BigProduct />}
-        {itemLayout === "mid" && <MidProduct />}
-        {itemLayout === "small" && <SmallProduct />}
+        {itemLayout === "big" && <BigProduct itemList={itemList} />}
+        {itemLayout === "mid" && <MidProduct itemList={itemList} />}
+        {itemLayout === "small" && <SmallProduct itemList={itemList} />}
       </div>
     </div>
   );
 }
 
-function BigProduct() {
+function BigProduct({ itemList }: any) {
   return (
     <>
-      <div className="first-item-wrapper">
-        <div className="item">
-          <img src="/assets/product/all/best01/best01.jpg" />
-          <div className="item-detail">
-            <p>best01</p>
-            <span>1,000원</span>
+      <div className="item-wrapper">
+        {itemList ? (
+          <>
+            {itemList.map((it: ProductType, i: number) => {
+              return (
+                <div className="item" key={i}>
+                  <img src={it.thumbnail} />
+                  <div className="item-detail">
+                    <p>{it.name}</p>
+                    <span>
+                      {it.price
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                      원
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </>
+        ) : (
+          <div className="item-none">
+            <p>상품준비중입니다.</p>
           </div>
-        </div>
-      </div>
-      <div className="second-item-wrapper">
-        <div className="item">
-          <img src="/assets/product/all/best02/best01.jpg" />
-          <div className="item-detail">
-            <p>best02</p>
-            <span>1,000원</span>
-          </div>
-        </div>
-        <div className="item">
-          <img src="/assets/product/all/best03/best01.jpg" />
-          <div className="item-detail">
-            <p>best03</p>
-            <span>1,000원</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="first-item-wrapper">
-        <div className="item">
-          <img src="/assets/product/all/new01/new01.jpg" />
-          <div className="item-detail">
-            <p>new01</p>
-            <span>1,000원</span>
-          </div>
-        </div>
-      </div>
-      <div className="second-item-wrapper">
-        <div className="item">
-          <img src="/assets/product/all/new02/new01.jpg" />
-          <div className="item-detail">
-            <p>new02</p>
-            <span>1,000원</span>
-          </div>
-        </div>
-        <div className="item">
-          <img src="/assets/product/all/new03/new01.jpg" />
-          <div className="item-detail">
-            <p>new03</p>
-            <span>1,000원</span>
-          </div>
-        </div>
+        )}
       </div>
     </>
   );
 }
 
-function MidProduct() {
+function MidProduct({ itemList }: any) {
   return (
     <div className="item-mid">
-      <div className="item">
-        <img src="/assets/product/all/best01/best01.jpg" />
-        <div className="item-detail">
-          <p>best01</p>
-          <span>1,000원</span>
+      {itemList ? (
+        <>
+          {itemList.map((it: ProductType, i: number) => {
+            return (
+              <div className="item" key={i}>
+                <img src={it.thumbnail} />
+                <div className="item-detail">
+                  <p>{it.name}</p>
+                  <span>
+                    {it.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                    원
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </>
+      ) : (
+        <div className="item-none">
+          <p>상품준비중입니다.</p>
         </div>
-      </div>
-      <div className="item">
-        <img src="/assets/product/all/best02/best01.jpg" />
-        <div className="item-detail">
-          <p>best01</p>
-          <span>1,000원</span>
-        </div>
-      </div>
-      <div className="item">
-        <img src="/assets/product/all/best03/best01.jpg" />
-        <div className="item-detail">
-          <p>best01</p>
-          <span>1,000원</span>
-        </div>
-      </div>
-      <div className="item">
-        <img src="/assets/product/all/new01/new01.jpg" />
-        <div className="item-detail">
-          <p>best01</p>
-          <span>1,000원</span>
-        </div>
-      </div>
-      <div className="item">
-        <img src="/assets/product/all/new02/new01.jpg" />
-        <div className="item-detail">
-          <p>best01</p>
-          <span>1,000원</span>
-        </div>
-      </div>
-      <div className="item">
-        <img src="/assets/product/all/new03/new01.jpg" />
-        <div className="item-detail">
-          <p>best01</p>
-          <span>1,000원</span>
-        </div>
-      </div>
-      <div className="item">
-        <img src="/assets/product/all/new03/new01.jpg" />
-        <div className="item-detail">
-          <p>best01</p>
-          <span>1,000원</span>
-        </div>
-      </div>
-      <div className="item">
-        <img src="/assets/product/all/new03/new01.jpg" />
-        <div className="item-detail">
-          <p>best01</p>
-          <span>1,000원</span>
-        </div>
-      </div>
+      )}
     </div>
   );
 }
 
-function SmallProduct() {
+function SmallProduct({ itemList }: any) {
   return (
     <div className="item-small">
-      <div className="item">
-        <img src="/assets/product/all/best01/best01.jpg" />
-      </div>
-      <div className="item">
-        <img src="/assets/product/all/best02/best01.jpg" />
-      </div>
-      <div className="item">
-        <img src="/assets/product/all/best03/best01.jpg" />
-      </div>
-      <div className="item">
-        <img src="/assets/product/all/new01/new01.jpg" />
-      </div>
-      <div className="item">
-        <img src="/assets/product/all/new02/new01.jpg" />
-      </div>
-      <div className="item">
-        <img src="/assets/product/all/new03/new01.jpg" />
-      </div>
-      <div className="item">
-        <img src="/assets/product/all/new03/new01.jpg" />
-      </div>
-      <div className="item">
-        <img src="/assets/product/all/new03/new01.jpg" />
-      </div>
-      <div className="item">
-        <img src="/assets/product/all/new03/new01.jpg" />
-      </div>
-      <div className="item">
-        <img src="/assets/product/all/new03/new01.jpg" />
-      </div>
-      <div className="item">
-        <img src="/assets/product/all/new03/new01.jpg" />
-      </div>
-      <div className="item">
-        <img src="/assets/product/all/new03/new01.jpg" />
-      </div>
-      <div className="item">
-        <img src="/assets/product/all/new03/new01.jpg" />
-      </div>
-      <div className="item">
-        <img src="/assets/product/all/new03/new01.jpg" />
-      </div>
-      <div className="item">
-        <img src="/assets/product/all/new03/new01.jpg" />
-      </div>
-      <div className="item">
-        <img src="/assets/product/all/new03/new01.jpg" />
-      </div>
+      {itemList ? (
+        <>
+          {itemList.map((it: ProductType, i: number) => {
+            return (
+              <div className="item" key={i}>
+                <img src={it.thumbnail} />
+              </div>
+            );
+          })}
+        </>
+      ) : (
+        <div className="item-none">
+          <p>상품준비중입니다.</p>
+        </div>
+      )}
     </div>
   );
 }

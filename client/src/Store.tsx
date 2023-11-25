@@ -4,10 +4,26 @@ const HomeBanner = createSlice({
   name: "HomeBanner",
   initialState: [
     [
-      { src: "/assets/banner/1-coat.jpg", title: "COAT | 코트", link: "/" },
-      { src: "/assets/banner/1-best.jpg", title: "BEST | 베스트", link: "/" },
-      { src: "/assets/banner/1-new.jpg", title: "NEW | 신상품", link: "/" },
-      { src: "/assets/banner/1-life.jpg", title: "LIFE | 데코", link: "/" },
+      {
+        src: "/assets/banner/1-coat.jpg",
+        title: "COAT | 코트",
+        link: "/product/all/coat",
+      },
+      {
+        src: "/assets/banner/1-best.jpg",
+        title: "BEST | 베스트",
+        link: "/product/all/best",
+      },
+      {
+        src: "/assets/banner/1-new.jpg",
+        title: "NEW | 신상품",
+        link: "/product/all/new",
+      },
+      {
+        src: "/assets/banner/1-life.jpg",
+        title: "LIFE | 데코",
+        link: "/product/all/deco",
+      },
     ],
     [
       { src: "/assets/banner/2-best.jpg", title: "BEST | 베스트", link: "/" },

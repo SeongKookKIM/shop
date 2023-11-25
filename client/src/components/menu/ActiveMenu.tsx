@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { useDispatch } from "react-redux";
+import { handlerMenu } from "../../Store";
 
 function ActiveMenu() {
   const [menuSelect, setMenuSelect] = useState<string>("ALL");
@@ -69,22 +73,57 @@ interface tabProps {
 }
 
 function TabMenuList({ tab }: tabProps) {
+  let navigate = useNavigate();
+  let dispatch = useDispatch();
+
   return (
     <>
       {
         [
           <ul>
             <li>
-              <span>COAT</span>
+              <span
+                onClick={() => {
+                  navigate("/product/all/coat");
+                  dispatch(handlerMenu("menu-subpage"));
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+              >
+                COAT
+              </span>
             </li>
             <li>
-              <span>BEST</span>
+              <span
+                onClick={() => {
+                  navigate("/product/all/best");
+                  dispatch(handlerMenu("menu-subpage"));
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+              >
+                BEST
+              </span>
             </li>
             <li>
-              <span>NEW</span>
+              <span
+                onClick={() => {
+                  navigate("/product/all/new");
+                  dispatch(handlerMenu("menu-subpage"));
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+              >
+                NEW
+              </span>
             </li>
             <li>
-              <span>LIFE</span>
+              <span
+                onClick={() => {
+                  navigate("/product/all/deco");
+                  dispatch(handlerMenu("menu-subpage"));
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+              >
+                LIFE
+              </span>
             </li>
           </ul>,
           <ul>

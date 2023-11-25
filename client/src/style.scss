@@ -435,6 +435,7 @@ li {
         padding: 5px 0;
         display: flex;
         flex-direction: column;
+        gap: 3px;
         p {
           font-size: 12px;
           font-weight: 700;
@@ -446,15 +447,17 @@ li {
       }
     }
     // Big-Product
-    .first-item-wrapper {
-      width: 100%;
+    .item-wrapper {
+      width: 80%;
+
+      margin: 0 auto;
       @include flexCenter();
-      padding: 48px 0;
-    }
-    .second-item-wrapper {
-      width: 100%;
-      @include flexCenter();
-      gap: 30px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 48px 0 0;
+      .item {
+        margin-bottom: 50px;
+      }
     }
 
     // Mid-Product

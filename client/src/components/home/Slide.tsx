@@ -7,6 +7,7 @@ import { Mousewheel } from "swiper/modules";
 
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, handlerMenu, handlerSwiperText } from "../../Store";
+import { useNavigate } from "react-router-dom";
 
 type BannerItem = {
   src: string;
@@ -28,6 +29,7 @@ function Slide({ banner, num }: bannerProps) {
   };
 
   let dispatch = useDispatch();
+  let navigate = useNavigate();
 
   useEffect(() => {
     if (num === 0 && slideNum === 2) {
@@ -82,7 +84,15 @@ function Slide({ banner, num }: bannerProps) {
           return (
             <SwiperSlide key={idx}>
               <img src={it.src} alt={`Slide ${idx + 1}`}></img>
-              <span className={`${swiperText.textClass}`}>{it.title}</span>
+              <span
+                className={`${swiperText.textClass}`}
+                onClick={() => {
+                  navigate(`${it.link}`);
+                  dispatch(handlerMenu("menu-subpage"));
+                }}
+              >
+                {it.title}
+              </span>
             </SwiperSlide>
           );
         })}

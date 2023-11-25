@@ -41,6 +41,7 @@ app.get("/", function (req, res) {
 // Server Route
 app.use("/sign", require("./routes/sign/Sign"));
 app.use("/login", require("./routes/login/Login"));
+app.use("/product", require("./routes/product/ItemList"));
 
 app.get("*", function (req, res) {
   응답.sendFile(path.join(__dirname, "client/build/index.html"));
