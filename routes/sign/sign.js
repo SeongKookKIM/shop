@@ -33,6 +33,7 @@ router.post("/", (req, res) => {
         phone: req.body.phone,
         adress: req.body.adress,
         adressdetail: req.body.adressdetail,
+        date: req.body.date,
       };
 
       db.collection("user").insertOne(sign, (err, result) => {

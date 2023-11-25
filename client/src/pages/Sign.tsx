@@ -249,6 +249,14 @@ function Sign() {
               />
             </div>
           </div>
+          <input
+            type="text"
+            name="date"
+            defaultValue={`${new Date().getFullYear()}-${
+              new Date().getMonth() + 1
+            }-${new Date().getDate()}`}
+            style={{ display: "none" }}
+          />
           <button type="submit" className="submit-btn">
             가입
           </button>
