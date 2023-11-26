@@ -18,6 +18,7 @@ type ProductType = {
 function Product() {
   const [itemLayout, setItemLayout] = useState<string>("big");
   const [itemList, setItemList] = useState<ProductType[] | undefined>();
+  console.log("merge !!");
 
   let { category, item } = useParams();
 
