@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 type ProductType = {
   color: string[];
@@ -18,7 +18,6 @@ type ProductType = {
 function Product() {
   const [itemLayout, setItemLayout] = useState<string>("big");
   const [itemList, setItemList] = useState<ProductType[] | undefined>();
-  console.log("머지 충돌");
 
   let { category, item } = useParams();
 
@@ -65,6 +64,8 @@ function Product() {
 }
 
 function BigProduct({ itemList }: any) {
+  let navigate = useNavigate();
+
   return (
     <>
       <div className="item-wrapper">
@@ -73,7 +74,14 @@ function BigProduct({ itemList }: any) {
             {itemList.map((it: ProductType, i: number) => {
               return (
                 <div className="item" key={i}>
-                  <img src={it.thumbnail} />
+                  <img
+                    src={it.thumbnail}
+                    alt="item"
+                    onClick={() => {
+                      navigate(`/detail/${it._id}`, { state: { it } });
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }}
+                  />
                   <div className="item-detail">
                     <p>{it.name}</p>
                     <span>

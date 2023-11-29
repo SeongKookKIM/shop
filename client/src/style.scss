@@ -452,7 +452,7 @@ li {
 
       margin: 0 auto;
       @include flexCenter();
-      justify-content: space-between;
+      gap: 50px;
       flex-wrap: wrap;
       padding: 48px 0 0;
       .item {
