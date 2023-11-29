@@ -106,6 +106,8 @@ function BigProduct({ itemList }: any) {
 }
 
 function MidProduct({ itemList }: any) {
+  let navigate = useNavigate();
+
   return (
     <div className="item-mid">
       {itemList ? (
@@ -113,7 +115,13 @@ function MidProduct({ itemList }: any) {
           {itemList.map((it: ProductType, i: number) => {
             return (
               <div className="item" key={i}>
-                <img src={it.thumbnail} />
+                <img
+                  src={it.thumbnail}
+                  onClick={() => {
+                    navigate(`/detail/${it._id}`, { state: { it } });
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                />
                 <div className="item-detail">
                   <p>{it.name}</p>
                   <span>
@@ -135,6 +143,7 @@ function MidProduct({ itemList }: any) {
 }
 
 function SmallProduct({ itemList }: any) {
+  let navigate = useNavigate();
   return (
     <div className="item-small">
       {itemList ? (
@@ -142,7 +151,13 @@ function SmallProduct({ itemList }: any) {
           {itemList.map((it: ProductType, i: number) => {
             return (
               <div className="item" key={i}>
-                <img src={it.thumbnail} />
+                <img
+                  src={it.thumbnail}
+                  onClick={() => {
+                    navigate(`/detail/${it._id}`, { state: { it } });
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                />
               </div>
             );
           })}
