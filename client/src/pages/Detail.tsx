@@ -9,7 +9,7 @@ type ProductType = {
   description: string;
   mainCategory: string;
   name: string;
-  price: string;
+  price: number;
   size: string[];
   src: string[];
   subCategory: string;

@@ -131,6 +131,19 @@ const slideNum = createSlice({
 });
 export let { handlerSlideNum } = slideNum.actions;
 
+const showCartPage = createSlice({
+  name: "showCartPage",
+  initialState: {
+    show: false,
+  },
+  reducers: {
+    handlerCartShow(state, action) {
+      state.show = action.payload;
+    },
+  },
+});
+export let { handlerCartShow } = showCartPage.actions;
+
 const store = configureStore({
   reducer: {
     HomeBanner: HomeBanner.reducer,
@@ -138,6 +151,7 @@ const store = configureStore({
     menuActive: menuActive.reducer,
     slideNum: slideNum.reducer,
     swiperText: swiperText.reducer,
+    showCartPage: showCartPage.reducer,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;

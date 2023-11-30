@@ -3,6 +3,7 @@ import { LuAlignLeft, LuX } from "react-icons/lu";
 import { useSelector } from "react-redux";
 import {
   RootState,
+  handlerCartShow,
   handlerMenu,
   handlerMenuActive,
   handlerSlideNum,
@@ -12,8 +13,9 @@ import ActiveMenu from "./ActiveMenu";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Cart from "../cart/Cart";
 
-interface userType {
+type userType = {
   adress: string;
   adressdetail: string;
   email: string;
@@ -21,7 +23,7 @@ interface userType {
   password: string;
   phone: string;
   _id: string;
-}
+};
 
 function Menu() {
   const [userLogin, setUserLogin] = useState<userType>();
@@ -51,6 +53,11 @@ function Menu() {
         .catch((err) => console.log(err));
     }
   }, [userLogin]);
+
+  const handlerCartBody = () => {
+    dispatch(handlerCartShow(true));
+    document.querySelector("body")?.classList.add("active");
+  };
 
   return (
     <div className={menuClass.menuClass}>
@@ -142,7 +149,8 @@ function Menu() {
             <span>도움말</span>
           </li>
           <li>
-            <span>장바구니({userCartNum})</span>
+            <span onClick={handlerCartBody}>장바구니({userCartNum})</span>
+            <Cart user={userLogin} />
           </li>
         </ul>
       </div>
