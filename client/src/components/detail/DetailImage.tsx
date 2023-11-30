@@ -30,7 +30,6 @@ interface itemType {
 function DetailImage({ detailItem }: itemType) {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore>();
 
-  console.log(detailItem);
   return (
     <div className="item-detail-image ">
       <Swiper

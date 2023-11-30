@@ -17,28 +17,15 @@ MongoClient.connect(
   }
 );
 
-// 상품리스트목록
 router.post("/", (req, res) => {
-  let findItem = {
-    mainCategory: req.body.mainCategory,
-    subCategory: req.body.subCategory,
-  };
-  db.collection("product")
-    .find(findItem)
-    .toArray((err, result) => {
+  db.collection("cart").countDocuments(
+    { user: req.body._id },
+    (err, result) => {
       if (err) console.log(err);
 
       return res.status(200).json(result);
-    });
-});
-
-// 상품추가
-router.post("/add", (req, res) => {
-  db.collection("cart").insertOne(req.body, (err, restul) => {
-    if (err) console.log(err);
-
-    return res.status(200).send("cart저장완료");
-  });
+    }
+  );
 });
 
 module.exports = router;
