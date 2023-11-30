@@ -92,6 +92,19 @@ const menuClass = createSlice({
 });
 export let { handlerMenu } = menuClass.actions;
 
+const menuActive = createSlice({
+  name: "menuActive",
+  initialState: {
+    active: false,
+  },
+  reducers: {
+    handlerMenuActive(state, action) {
+      state.active = action.payload;
+    },
+  },
+});
+export let { handlerMenuActive } = menuActive.actions;
+
 const swiperText = createSlice({
   name: "swiperText",
   initialState: {
@@ -122,6 +135,7 @@ const store = configureStore({
   reducer: {
     HomeBanner: HomeBanner.reducer,
     menuClass: menuClass.reducer,
+    menuActive: menuActive.reducer,
     slideNum: slideNum.reducer,
     swiperText: swiperText.reducer,
   },
