@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./style.scss";
 import store from "./Store";
+import ScrollTop from "./ScrollTop";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -16,6 +17,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <Provider store={store}>
     <BrowserRouter>
+      <ScrollTop />
       <App />
     </BrowserRouter>
   </Provider>
