@@ -406,8 +406,7 @@ li {
   width: 100%;
   @include flexCenter();
   justify-content: flex-start;
-  padding-top: 200px;
-  padding-bottom: 200px;
+  padding: 200px 0;
   .product-wrapper {
     width: 100%;
     .product-layout {
@@ -503,6 +502,224 @@ li {
         img {
           width: 100%;
           object-fit: cover;
+        }
+      }
+    }
+  }
+}
+
+// Detail
+.detail {
+  width: 100%;
+  padding: 200px 0;
+  .detail-inner {
+    width: 100%;
+    max-width: 80%;
+    margin: 0 auto;
+    height: calc(100vh - 200px);
+    min-height: 700px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 40px;
+    // Info
+    .detail-info.active {
+      height: 100%;
+    }
+    .detail-info {
+      width: 300px;
+      height: 300px;
+      border: 1px solid black;
+      padding: 0 10px 20px 20px;
+      position: relative;
+      .detail-info-inner {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 30px 20px 10px 0;
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+          width: 1px;
+        }
+        &::-webkit-scrollbar-thumb {
+          height: 2%;
+          background: black;
+        }
+        &::-webkit-scrollbar-track {
+          background: rgba(0, 0, 0, 0.2);
+        }
+        span {
+          font-size: 12px;
+          cursor: default;
+          line-height: 20px;
+        }
+        .item-management {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+        }
+      }
+      .show-hide {
+        position: absolute;
+        bottom: -30px;
+        span {
+          font-size: 12px;
+          line-height: 20px;
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+    }
+    // Slide
+    .item-detail-image {
+      width: 650px;
+      height: 100%;
+      overflow: hidden;
+      padding-left: 50px;
+      @include flexCenter();
+      .mySwiper2 {
+        width: 490px;
+        height: 100%;
+        overflow: visible;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .swiper-scrollbar {
+          right: -10px;
+          width: 2px;
+          .swiper-scrollbar-drag {
+            background-color: black;
+          }
+        }
+      }
+      .mySwiper {
+        height: 100%;
+        padding: 0 23px;
+        .swiper-wrapper {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          align-items: center;
+          .swiper-slide {
+            width: 30px !important;
+            min-width: 40px;
+            height: 50px;
+            opacity: 0.5;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              cursor: pointer;
+            }
+          }
+          .swiper-slide-thumb-active {
+            opacity: 1;
+          }
+        }
+      }
+    }
+    .item-order {
+      width: 25%;
+      height: 100%;
+      .item-order-inner {
+        width: 100%;
+        border: 1px solid black;
+        .item-info {
+          padding: 30px;
+          border-bottom: 1px solid black;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          p,
+          span {
+            margin: 0;
+            padding: 0;
+            font-size: 12px;
+            cursor: default;
+          }
+          .name-price {
+            p {
+              font-weight: 600;
+            }
+          }
+          .description {
+            .item-description {
+              display: block;
+              line-height: 18px;
+            }
+          }
+          .delivery {
+            span {
+              font-size: 10px;
+              font-weight: 700;
+              cursor: pointer;
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+        .selected {
+          width: 100%;
+          padding: 30px;
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
+          border-bottom: 1px solid black;
+          .color {
+            width: 100%;
+            display: flex;
+            gap: 10px;
+            span {
+              display: block;
+              font-size: 12px;
+              font-weight: 600;
+              border: 1px solid black;
+              padding: 4px 16px;
+              cursor: pointer;
+            }
+            span.select {
+              background-color: black;
+              color: white;
+            }
+          }
+          .size {
+            width: 100%;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            span {
+              display: block;
+              font-size: 12px;
+              font-weight: 600;
+              border: 1px solid black;
+              padding: 4px 16px;
+              cursor: pointer;
+            }
+            span.select {
+              background-color: black;
+              color: white;
+            }
+          }
+        }
+        .item-btn {
+          width: 100%;
+          span {
+            display: block;
+            width: 100%;
+            font-size: 14px;
+            font-weight: 700;
+            text-align: center;
+            padding: 10px 0;
+            cursor: pointer;
+          }
         }
       }
     }

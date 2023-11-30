@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import Info from "../components/detail/Info";
+import DetailImage from "../components/detail/DetailImage";
+import ItemOrder from "../components/detail/ItemOrder";
 
 type ProductType = {
   color: string[];
@@ -16,14 +19,21 @@ type ProductType = {
 
 function Detail() {
   const [item, setItem] = useState<ProductType>();
-  console.log(item);
 
   const itemLocation = useLocation();
   useEffect(() => {
     setItem(itemLocation.state.it);
   }, []);
 
-  return <div>Detail</div>;
+  return (
+    <div className="detail">
+      <div className="detail-inner">
+        <Info />
+        <DetailImage detailItem={item} />
+        <ItemOrder detailItem={item} />
+      </div>
+    </div>
+  );
 }
 
 export default Detail;
