@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
-import { handlerMenu } from "../../Store";
+import { handlerMenu, handlerMenuActive } from "../../Store";
 
 function ActiveMenu() {
   const [menuSelect, setMenuSelect] = useState<string>("ALL");
@@ -86,7 +86,7 @@ function TabMenuList({ tab }: tabProps) {
                 onClick={() => {
                   navigate("/product/all/coat");
                   dispatch(handlerMenu("menu-subpage"));
-                  window.scrollTo({ top: 0, behavior: "smooth" });
+                  dispatch(handlerMenuActive(false));
                 }}
               >
                 COAT
@@ -97,7 +97,7 @@ function TabMenuList({ tab }: tabProps) {
                 onClick={() => {
                   navigate("/product/all/best");
                   dispatch(handlerMenu("menu-subpage"));
-                  window.scrollTo({ top: 0, behavior: "smooth" });
+                  dispatch(handlerMenuActive(false));
                 }}
               >
                 BEST
@@ -108,7 +108,7 @@ function TabMenuList({ tab }: tabProps) {
                 onClick={() => {
                   navigate("/product/all/new");
                   dispatch(handlerMenu("menu-subpage"));
-                  window.scrollTo({ top: 0, behavior: "smooth" });
+                  dispatch(handlerMenuActive(false));
                 }}
               >
                 NEW
@@ -119,7 +119,7 @@ function TabMenuList({ tab }: tabProps) {
                 onClick={() => {
                   navigate("/product/all/deco");
                   dispatch(handlerMenu("menu-subpage"));
-                  window.scrollTo({ top: 0, behavior: "smooth" });
+                  dispatch(handlerMenuActive(false));
                 }}
               >
                 LIFE

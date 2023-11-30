@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { LuAlignLeft, LuX } from "react-icons/lu";
 import { useSelector } from "react-redux";
-import { RootState, handlerMenu, handlerSlideNum } from "../../Store";
+import {
+  RootState,
+  handlerMenu,
+  handlerMenuActive,
+  handlerSlideNum,
+} from "../../Store";
 import ActiveMenu from "./ActiveMenu";
 
 import { useDispatch } from "react-redux";
@@ -18,10 +23,10 @@ interface userType {
 }
 
 function Menu() {
-  const [activeBar, setActiveBar] = useState<boolean>(false);
   const [userLogin, setUserLogin] = useState<userType>();
 
   const menuClass = useSelector((state: RootState) => state.menuClass);
+  const menuAcitve = useSelector((state: RootState) => state.menuActive);
 
   let dispatch = useDispatch();
   let navigate = useNavigate();
@@ -36,23 +41,23 @@ function Menu() {
 
   return (
     <div className={menuClass.menuClass}>
-      {activeBar ? (
+      {menuAcitve.active ? (
         <LuX
           className="menu-bar"
           onClick={() => {
-            setActiveBar(false);
+            dispatch(handlerMenuActive(false));
           }}
         />
       ) : (
         <LuAlignLeft
           className="menu-bar"
           onClick={() => {
-            setActiveBar(true);
+            dispatch(handlerMenuActive(true));
           }}
         />
       )}
       <div className="main-menu">
-        {activeBar ? (
+        {menuAcitve.active ? (
           <ActiveMenu />
         ) : (
           <>
