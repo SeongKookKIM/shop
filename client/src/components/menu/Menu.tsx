@@ -11,6 +11,7 @@ import ActiveMenu from "./ActiveMenu";
 
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 interface userType {
   adress: string;
@@ -24,6 +25,7 @@ interface userType {
 
 function Menu() {
   const [userLogin, setUserLogin] = useState<userType>();
+  const [userCartNum, setUserCartNum] = useState<string>("0");
 
   const menuClass = useSelector((state: RootState) => state.menuClass);
   const menuAcitve = useSelector((state: RootState) => state.menuActive);
@@ -38,6 +40,17 @@ function Menu() {
       setUserLogin(JSON.parse(localUser));
     }
   }, []);
+
+  useEffect(() => {
+    if (userLogin) {
+      axios
+        .post("http://localhost:8080/cart", { _id: userLogin._id })
+        .then((res) => {
+          setUserCartNum(res.data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [userLogin]);
 
   return (
     <div className={menuClass.menuClass}>
@@ -129,7 +142,7 @@ function Menu() {
             <span>도움말</span>
           </li>
           <li>
-            <span>장바구니(0)</span>
+            <span>장바구니({userCartNum})</span>
           </li>
         </ul>
       </div>

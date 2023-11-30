@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 
 type ProductType = {
   color: string[];
@@ -13,6 +14,17 @@ type ProductType = {
   _id: string;
 };
 
+type UserType = {
+  name: string;
+  email: string;
+  phone: string;
+  password: string;
+  adress: string;
+  adressdetail?: string;
+  date: string;
+  _id: string;
+};
+
 interface itemType {
   detailItem: ProductType | undefined;
 }
@@ -20,6 +32,35 @@ interface itemType {
 function ItemOrder({ detailItem }: itemType) {
   const [selectColor, setSelectColor] = useState<string>("");
   const [selectSize, setSelectSize] = useState<string>("");
+  const [user, setUser] = useState<UserType | null>();
+
+  useEffect(() => {
+    const userLocal = localStorage.getItem("user");
+
+    if (userLocal !== null) {
+      setUser(JSON.parse(userLocal));
+    }
+  }, []);
+
+  const handlerAddItem = () => {
+    if (detailItem && user) {
+      let addPost = {
+        user: user._id,
+        name: detailItem.name,
+        price: detailItem.price,
+        image: detailItem.thumbnail,
+        color: selectColor,
+        size: selectSize,
+      };
+
+      axios
+        .post("http://localhost:8080/product/add", addPost)
+        .then((res) => {
+          window.location.reload();
+        })
+        .catch((err) => console.log(err));
+    }
+  };
 
   return (
     <div className="item-order">
@@ -78,7 +119,7 @@ function ItemOrder({ detailItem }: itemType) {
           </div>
           {/* 상품 추가하기버튼 */}
           <div className="item-btn">
-            <span>추가하기</span>
+            <span onClick={handlerAddItem}>추가하기</span>
           </div>
         </div>
       ) : (
