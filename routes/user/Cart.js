@@ -28,4 +28,14 @@ router.post("/", (req, res) => {
   );
 });
 
+router.post("/list", (req, res) => {
+  db.collection("cart")
+    .find({ user: req.body._id })
+    .toArray((err, restult) => {
+      if (err) console.log(err);
+
+      return res.status(200).json(restult);
+    });
+});
+
 module.exports = router;

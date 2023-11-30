@@ -6,7 +6,7 @@ type ProductType = {
   description: string;
   mainCategory: string;
   name: string;
-  price: string;
+  price: number;
   size: string[];
   src: string[];
   subCategory: string;
@@ -33,6 +33,7 @@ function ItemOrder({ detailItem }: itemType) {
   const [selectColor, setSelectColor] = useState<string>("");
   const [selectSize, setSelectSize] = useState<string>("");
   const [user, setUser] = useState<UserType | null>();
+  const [itemCount, setItemCount] = useState<number>(1);
 
   useEffect(() => {
     const userLocal = localStorage.getItem("user");
@@ -42,15 +43,21 @@ function ItemOrder({ detailItem }: itemType) {
     }
   }, []);
 
+  // 추가하기 버튼
   const handlerAddItem = () => {
-    if (detailItem && user) {
+    if (selectColor === "") {
+      alert("색상옵션을 선택해주세요");
+    } else if (selectSize === "") {
+      alert("사이즈옵션을 선택해주세요.");
+    } else if (detailItem && user) {
       let addPost = {
         user: user._id,
         name: detailItem.name,
-        price: detailItem.price,
+        price: detailItem.price * itemCount,
         image: detailItem.thumbnail,
         color: selectColor,
         size: selectSize,
+        count: itemCount,
       };
 
       axios
@@ -116,7 +123,13 @@ function ItemOrder({ detailItem }: itemType) {
                 );
               })}
             </div>
+            <div className="item-count">
+              <span onClick={() => setItemCount(itemCount - 1)}>-</span>
+              <span style={{ pointerEvents: "none" }}>{itemCount}</span>
+              <span onClick={() => setItemCount(itemCount + 1)}>+</span>
+            </div>
           </div>
+
           {/* 상품 추가하기버튼 */}
           <div className="item-btn">
             <span onClick={handlerAddItem}>추가하기</span>
