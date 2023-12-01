@@ -48,6 +48,32 @@ function Cart({ user }: userPropsType) {
     }
   }, [user]);
 
+  const handlerDeleteItem = (item: cartType) => {
+    if (window.confirm("해당 상품을 카트에서 삭제할까요?")) {
+      axios
+        .post("http://localhost:8080/cart/list/delete", item)
+        .then((res) => {
+          alert(res.data);
+
+          if (user) {
+            axios
+              .post("http://localhost:8080/cart/list", { _id: user._id })
+              .then((res) => {
+                setCartList(res.data);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          } else {
+            window.location.reload();
+          }
+        })
+        .catch((err) => console.log(err));
+    } else {
+      return;
+    }
+  };
+
   return (
     <>
       {showCartPage.show && (
@@ -73,6 +99,14 @@ function Cart({ user }: userPropsType) {
                           <img src={it.image} />
                         </div>
                         <div className="item-info">
+                          <span
+                            className="delete-btn"
+                            onClick={() => {
+                              handlerDeleteItem(it);
+                            }}
+                          >
+                            ✕
+                          </span>
                           <p className="name">{it.name}</p>
                           <span className="price">
                             {it.price

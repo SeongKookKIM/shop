@@ -800,6 +800,12 @@ body.active {
         }
         .item-info {
           padding: 8px;
+          position: relative;
+          .delete-btn {
+            position: absolute;
+            right: 8px;
+            font-size: 16px;
+          }
           .name {
             font-size: 14px;
             font-weight: 500;
