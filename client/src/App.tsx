@@ -7,6 +7,7 @@ import Sign from "./pages/Sign";
 import Product from "./pages/Product";
 import Detail from "./pages/Detail";
 import Cart from "./components/cart/Cart";
+import Pay from "./pages/Pay";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/sign" element={<Sign />} />
           <Route path="/product/:category/:item" element={<Product />} />
           <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/pay" element={<Pay />} />
         </Routes>
       </Suspense>
     </div>

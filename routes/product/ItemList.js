@@ -34,10 +34,32 @@ router.post("/", (req, res) => {
 
 // 상품추가
 router.post("/add", (req, res) => {
-  db.collection("cart").insertOne(req.body, (err, restul) => {
+  let findItem = {
+    user: req.body.user,
+    name: req.body.name,
+    color: req.body.color,
+    size: req.body.size,
+  };
+  db.collection("cart").findOne(findItem, (err, result) => {
     if (err) console.log(err);
 
-    return res.status(200).send("cart저장완료");
+    if (result) {
+      db.collection("cart").updateOne(
+        findItem,
+        { $inc: { count: req.body.count } },
+        (err, result) => {
+          if (err) console.log(err);
+
+          return res.status(200).send("cart저장완료");
+        }
+      );
+    } else {
+      db.collection("cart").insertOne(req.body, (err, restul) => {
+        if (err) console.log(err);
+
+        return res.status(200).send("cart저장완료");
+      });
+    }
   });
 });
 

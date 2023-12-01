@@ -38,4 +38,26 @@ router.post("/list", (req, res) => {
     });
 });
 
+router.post("/list/delete", (req, res) => {
+  let findItem = {
+    user: req.body.user,
+    name: req.body.name,
+    color: req.body.color,
+    size: req.body.size,
+  };
+  db.collection("cart").findOne(findItem, (err, result) => {
+    if (err) console.log(err);
+
+    if (result) {
+      db.collection("cart").deleteOne(findItem, (err, result) => {
+        if (err) console.log(err);
+
+        return res.status(200).send("카트에서 해당 상품을 삭제하셨습니다.");
+      });
+    } else {
+      return res.status(403).send("삭제에 실패하셨습니다.");
+    }
+  });
+});
+
 module.exports = router;

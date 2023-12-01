@@ -1,29 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-
-type ProductType = {
-  color: string[];
-  description: string;
-  mainCategory: string;
-  name: string;
-  price: number;
-  size: string[];
-  src: string[];
-  subCategory: string;
-  thumbnail: string;
-  _id: string;
-};
-
-type UserType = {
-  name: string;
-  email: string;
-  phone: string;
-  password: string;
-  adress: string;
-  adressdetail?: string;
-  date: string;
-  _id: string;
-};
+import { ProductType, userType } from "../../type/Type";
 
 interface itemType {
   detailItem: ProductType | undefined;
@@ -32,7 +9,7 @@ interface itemType {
 function ItemOrder({ detailItem }: itemType) {
   const [selectColor, setSelectColor] = useState<string>("");
   const [selectSize, setSelectSize] = useState<string>("");
-  const [user, setUser] = useState<UserType | null>();
+  const [user, setUser] = useState<userType | null>();
   const [itemCount, setItemCount] = useState<number>(1);
 
   useEffect(() => {
@@ -53,7 +30,7 @@ function ItemOrder({ detailItem }: itemType) {
       let addPost = {
         user: user._id,
         name: detailItem.name,
-        price: detailItem.price * itemCount,
+        price: detailItem.price,
         image: detailItem.thumbnail,
         color: selectColor,
         size: selectSize,

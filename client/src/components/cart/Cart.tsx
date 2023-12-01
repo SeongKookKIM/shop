@@ -2,27 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, handlerCartShow } from "../../Store";
 import axios from "axios";
-
-type userType = {
-  adress: string;
-  adressdetail: string;
-  email: string;
-  name: string;
-  password: string;
-  phone: string;
-  _id: string;
-};
-
-type cartType = {
-  color: string;
-  image: string;
-  name: string;
-  price: number;
-  size: string;
-  user: string;
-  _id: string;
-  count: number;
-};
+import { useNavigate } from "react-router-dom";
+import { cartType, userType } from "../../type/Type";
 
 interface userPropsType {
   user: userType | undefined;
@@ -30,10 +11,12 @@ interface userPropsType {
 
 function Cart({ user }: userPropsType) {
   const [cartList, setCartList] = useState<cartType[]>();
+  const [totalPrice, setTotalPrice] = useState<number>(0);
 
   const showCartPage = useSelector((state: RootState) => state.showCartPage);
 
   let dispatch = useDispatch();
+  let navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
@@ -41,12 +24,53 @@ function Cart({ user }: userPropsType) {
         .post("http://localhost:8080/cart/list", { _id: user._id })
         .then((res) => {
           setCartList(res.data);
+
+          // 가격 총합구하기
+          const itemTotalPrice = res.data.reduce(
+            (total: number, item: cartType) => total + item.price * item.count,
+            0
+          );
+          setTotalPrice(itemTotalPrice);
         })
         .catch((err) => {
           console.log(err);
         });
     }
   }, [user]);
+
+  const handlerDeleteItem = (item: cartType) => {
+    if (window.confirm("해당 상품을 카트에서 삭제할까요?")) {
+      axios
+        .post("http://localhost:8080/cart/list/delete", item)
+        .then((res) => {
+          alert(res.data);
+
+          if (user) {
+            axios
+              .post("http://localhost:8080/cart/list", { _id: user._id })
+              .then((res) => {
+                setCartList(res.data);
+
+                // 가격 총합구하기
+                const itemTotalPrice = res.data.reduce(
+                  (total: number, item: cartType) =>
+                    total + item.price * item.count,
+                  0
+                );
+                setTotalPrice(itemTotalPrice);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          } else {
+            window.location.reload();
+          }
+        })
+        .catch((err) => console.log(err));
+    } else {
+      return;
+    }
+  };
 
   return (
     <>
@@ -73,6 +97,14 @@ function Cart({ user }: userPropsType) {
                           <img src={it.image} />
                         </div>
                         <div className="item-info">
+                          <span
+                            className="delete-btn"
+                            onClick={() => {
+                              handlerDeleteItem(it);
+                            }}
+                          >
+                            ✕
+                          </span>
                           <p className="name">{it.name}</p>
                           <span className="price">
                             {it.price
@@ -100,6 +132,22 @@ function Cart({ user }: userPropsType) {
                 <div className="load">로딩중...</div>
               )}
             </div>
+          </div>
+          <div className="total">
+            <div className="total-price">
+              <span>합계:</span>
+              <span>
+                {totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
+              </span>
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                navigate("/pay", { state: { cartList, totalPrice } });
+              }}
+            >
+              계속하기
+            </button>
           </div>
         </div>
       )}

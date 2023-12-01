@@ -1,19 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
-type ProductType = {
-  color: string[];
-  description: string;
-  mainCategory: string;
-  name: string;
-  price: string;
-  size: string[];
-  src: string[];
-  subCategory: string;
-  thumbnail: string;
-  _id: string;
-};
+import { ProductType } from "../type/Type";
 
 function Product() {
   const [itemLayout, setItemLayout] = useState<string>("big");
