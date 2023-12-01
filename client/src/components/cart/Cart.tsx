@@ -86,6 +86,7 @@ function Cart({ user }: userPropsType) {
           let it = res.data;
           navigate(`/detail/${it._id}`, { state: { it } });
           dispatch(handlerCartShow(false));
+          document.querySelector("body")?.classList.remove("active");
         })
         .catch((err) => console.log(err));
     }
@@ -168,6 +169,8 @@ function Cart({ user }: userPropsType) {
               type="button"
               onClick={() => {
                 dispatch(handlerCartShow(false));
+                document.querySelector("body")?.classList.remove("active");
+
                 navigate("/pay", { state: { cartList, totalPrice } });
               }}
             >
