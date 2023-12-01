@@ -72,6 +72,25 @@ function Cart({ user }: userPropsType) {
     }
   };
 
+  const handlerLinkItem = (item: cartType) => {
+    let findLink = {
+      name: item.name,
+      price: item.price,
+      thumbnail: item.image,
+    };
+
+    if (item) {
+      axios
+        .post("http://localhost:8080/product/link", findLink)
+        .then((res) => {
+          let it = res.data;
+          navigate(`/detail/${it._id}`, { state: { it } });
+          dispatch(handlerCartShow(false));
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+
   return (
     <>
       {showCartPage.show && (
@@ -94,7 +113,12 @@ function Cart({ user }: userPropsType) {
                     return (
                       <div className="item" key={i}>
                         <div className="item-img">
-                          <img src={it.image} />
+                          <img
+                            src={it.image}
+                            onClick={() => {
+                              handlerLinkItem(it);
+                            }}
+                          />
                         </div>
                         <div className="item-info">
                           <span
@@ -143,6 +167,7 @@ function Cart({ user }: userPropsType) {
             <button
               type="button"
               onClick={() => {
+                dispatch(handlerCartShow(false));
                 navigate("/pay", { state: { cartList, totalPrice } });
               }}
             >

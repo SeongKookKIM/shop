@@ -11,7 +11,7 @@ function Detail() {
   const itemLocation = useLocation();
   useEffect(() => {
     setItem(itemLocation.state.it);
-  }, []);
+  }, [itemLocation]);
 
   return (
     <div className="detail">
