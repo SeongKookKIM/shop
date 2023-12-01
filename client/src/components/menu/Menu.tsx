@@ -14,16 +14,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cart from "../cart/Cart";
-
-type userType = {
-  adress: string;
-  adressdetail: string;
-  email: string;
-  name: string;
-  password: string;
-  phone: string;
-  _id: string;
-};
+import { userType } from "../../type/Type";
 
 function Menu() {
   const [userLogin, setUserLogin] = useState<userType>();
@@ -149,7 +140,7 @@ function Menu() {
             <span>도움말</span>
           </li>
           <li>
-            <span onClick={handlerCartBody}>장바구니({userCartNum})</span>
+            <span onClick={handlerCartBody}>바스켓백({userCartNum})</span>
             <Cart user={userLogin} />
           </li>
         </ul>

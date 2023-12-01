@@ -3,19 +3,7 @@ import { useLocation } from "react-router-dom";
 import Info from "../components/detail/Info";
 import DetailImage from "../components/detail/DetailImage";
 import ItemOrder from "../components/detail/ItemOrder";
-
-type ProductType = {
-  color: string[];
-  description: string;
-  mainCategory: string;
-  name: string;
-  price: number;
-  size: string[];
-  src: string[];
-  subCategory: string;
-  thumbnail: string;
-  _id: string;
-};
+import { ProductType } from "../type/Type";
 
 function Detail() {
   const [item, setItem] = useState<ProductType>();

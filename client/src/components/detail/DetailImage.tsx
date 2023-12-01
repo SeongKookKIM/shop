@@ -9,19 +9,7 @@ import "swiper/css/thumbs";
 import "swiper/css/scrollbar";
 
 import { FreeMode, Thumbs, Mousewheel, Scrollbar } from "swiper/modules";
-
-type ProductType = {
-  color: string[];
-  description: string;
-  mainCategory: string;
-  name: string;
-  price: number;
-  size: string[];
-  src: string[];
-  subCategory: string;
-  thumbnail: string;
-  _id: string;
-};
+import { ProductType } from "../../type/Type";
 
 interface itemType {
   detailItem: ProductType | undefined;
