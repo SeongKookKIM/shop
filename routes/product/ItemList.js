@@ -63,4 +63,12 @@ router.post("/add", (req, res) => {
   });
 });
 
+router.post("/link", (req, res) => {
+  db.collection("product").findOne(req.body, (err, result) => {
+    if (err) console.log(err);
+
+    return res.status(200).json(result);
+  });
+});
+
 module.exports = router;
