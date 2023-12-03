@@ -9,9 +9,9 @@ const MongoClient = require("mongodb").MongoClient;
 MongoClient.connect(
   process.env.MONGO,
   { useUnifiedTopology: true },
-  (에러, client) => {
-    if (에러) {
-      return console.log(에러);
+  (err, client) => {
+    if (err) {
+      return console.log(err);
     }
     db = client.db("shop");
   }
@@ -54,7 +54,7 @@ router.post("/add", (req, res) => {
         }
       );
     } else {
-      db.collection("cart").insertOne(req.body, (err, restul) => {
+      db.collection("cart").insertOne(req.body, (err, result) => {
         if (err) console.log(err);
 
         return res.status(200).send("cart저장완료");

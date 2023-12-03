@@ -12,9 +12,9 @@ const MongoClient = require("mongodb").MongoClient;
 MongoClient.connect(
   process.env.MONGO,
   { useUnifiedTopology: true },
-  (에러, client) => {
-    if (에러) {
-      return console.log(에러);
+  (err, client) => {
+    if (err) {
+      return console.log(err);
     }
     db = client.db("shop");
   }
@@ -31,8 +31,8 @@ router.post("/", (req, res) => {
         email: req.body.email,
         password: hash,
         phone: req.body.phone,
-        adress: req.body.adress,
-        adressdetail: req.body.adressdetail,
+        address: req.body.address,
+        addressdetail: req.body.addressdetail,
         date: req.body.date,
       };
 

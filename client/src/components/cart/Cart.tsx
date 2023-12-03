@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState, handlerCartShow } from "../../Store";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { cartType, userType } from "../../type/Type";
+import { CartType, UserType } from "../../type/Type";
 
 interface userPropsType {
-  user: userType | undefined;
+  user: UserType | undefined;
 }
 
 function Cart({ user }: userPropsType) {
-  const [cartList, setCartList] = useState<cartType[]>();
+  const [cartList, setCartList] = useState<CartType[]>();
   const [totalPrice, setTotalPrice] = useState<number>(0);
 
   const showCartPage = useSelector((state: RootState) => state.showCartPage);
@@ -27,7 +27,7 @@ function Cart({ user }: userPropsType) {
 
           // 가격 총합구하기
           const itemTotalPrice = res.data.reduce(
-            (total: number, item: cartType) => total + item.price * item.count,
+            (total: number, item: CartType) => total + item.price * item.count,
             0
           );
           setTotalPrice(itemTotalPrice);
@@ -38,7 +38,7 @@ function Cart({ user }: userPropsType) {
     }
   }, [user]);
 
-  const handlerDeleteItem = (item: cartType) => {
+  const handlerDeleteItem = (item: CartType) => {
     if (window.confirm("해당 상품을 카트에서 삭제할까요?")) {
       axios
         .post("http://localhost:8080/cart/list/delete", item)
@@ -53,7 +53,7 @@ function Cart({ user }: userPropsType) {
 
                 // 가격 총합구하기
                 const itemTotalPrice = res.data.reduce(
-                  (total: number, item: cartType) =>
+                  (total: number, item: CartType) =>
                     total + item.price * item.count,
                   0
                 );
@@ -72,7 +72,7 @@ function Cart({ user }: userPropsType) {
     }
   };
 
-  const handlerLinkItem = (item: cartType) => {
+  const handlerLinkItem = (item: CartType) => {
     let findLink = {
       name: item.name,
       price: item.price,
