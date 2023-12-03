@@ -55,6 +55,7 @@ function ItemOrder({ detailItem }: itemType) {
             <div className="name-price">
               <p>{detailItem.name}</p>
               <span>
+                {/* {detailItem.price.toLocaleString()}{" "} */}
                 {detailItem.price
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
