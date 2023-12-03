@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { cartType, userType } from "../type/Type";
+import { CartType, UserType } from "../type/Type";
 import { LuArrowLeft } from "react-icons/lu";
 
 function Pay() {
-  const [itemList, setItemList] = useState<cartType[]>();
+  const [itemList, setItemList] = useState<CartType[]>();
   const [itemLength, setItemLenght] = useState<number>(0);
   const [totalPrice, setTotalPrice] = useState<number>(0);
-  const [userInfo, setUserInfo] = useState<userType>();
+  const [userInfo, setUserInfo] = useState<UserType>();
   console.log(itemList);
   console.log(totalPrice);
   console.log(userInfo);
@@ -36,10 +36,10 @@ function Pay() {
           <LuArrowLeft onClick={() => navigate(-1)} />
         </div>
         <p className="delivery-title">물품을 배송 받을 장소</p>
-        <div className="delivery-adress">
-          <span style={{ pointerEvents: "none" }}>{userInfo?.adress}</span>
+        <div className="delivery-address">
+          <span style={{ pointerEvents: "none" }}>{userInfo?.address}</span>
           <span style={{ pointerEvents: "none" }}>
-            {userInfo?.adressdetail}
+            {userInfo?.addressdetail}
           </span>
           <span>편집</span>
         </div>

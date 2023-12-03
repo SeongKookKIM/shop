@@ -14,10 +14,10 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cart from "../cart/Cart";
-import { userType } from "../../type/Type";
+import { UserType } from "../../type/Type";
 
 function Menu() {
-  const [userLogin, setUserLogin] = useState<userType>();
+  const [userLogin, setUserLogin] = useState<UserType>();
   const [userCartNum, setUserCartNum] = useState<string>("0");
 
   const menuClass = useSelector((state: RootState) => state.menuClass);

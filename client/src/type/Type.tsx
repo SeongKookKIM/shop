@@ -1,6 +1,6 @@
-export type userType = {
-  adress: string;
-  adressdetail: string;
+export type UserType = {
+  address: string;
+  addressdetail: string;
   email: string;
   name: string;
   password: string;
@@ -8,7 +8,7 @@ export type userType = {
   _id: string;
 };
 
-export type cartType = {
+export type CartType = {
   color: string;
   image: string;
   name: string;

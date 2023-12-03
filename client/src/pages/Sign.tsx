@@ -7,8 +7,8 @@ function Sign() {
   const [signPassword, setSignPassword] = useState<string>("");
   const [passwordConfirm, setPasswordConfirm] = useState<string>("");
   const [signPhone, setSignPhone] = useState<string>("");
-  const [signadress, setSignAdress] = useState<string>("");
-  const [signadressDetail, setSignAdressDetail] = useState<string>("");
+  const [signAddress, setSignAddress] = useState<string>("");
+  const [signAddressDetail, setSignAddressDetail] = useState<string>("");
 
   //   FormEmty
   const [emtyEmail, setEmtyEmail] = useState<boolean>(false);
@@ -97,10 +97,10 @@ function Sign() {
       fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
 
-    setSignAdress(fullAddress);
+    setSignAddress(fullAddress);
   };
 
-  const handlerFindAdress = () => {
+  const handlerFindAddress = () => {
     let popupWidth = 500;
     let popupHeight = 600;
     let popupX = Math.round(window.screen.width / 2 - popupWidth / 2);
@@ -130,7 +130,7 @@ function Sign() {
       window.alert("비밀번호 확인을 확인해주세요.");
     } else if (!emtyPhone) {
       window.alert("핸드폰 번호를 확인해주세요.");
-    } else if (signadress === "") {
+    } else if (signAddress === "") {
       window.alert("주소를 확인해주세요.");
     } else {
       formElement.submit();
@@ -220,30 +220,30 @@ function Sign() {
             />
             <span>{phoneAlert}</span>
           </div>
-          <div className="sign-adress">
+          <div className="sign-address">
             <label>주소</label>
-            <div className="adress-wrapper">
+            <div className="address-wrapper">
               <input
                 type="text"
-                name="adress"
-                defaultValue={signadress}
+                name="address"
+                defaultValue={signAddress}
                 autoComplete="off"
                 style={{ pointerEvents: "none" }}
               />
               <button
                 type="button"
-                className="find-adress"
-                onClick={handlerFindAdress}
+                className="find-address"
+                onClick={handlerFindAddress}
               >
                 주소 찾기
               </button>
               <input
                 type="text"
-                name="adressdetail"
-                className="adressdetail"
+                name="addressdetail"
+                className="addressdetail"
                 autoComplete="off"
                 onChange={(e) => {
-                  setSignAdressDetail(e.target.value);
+                  setSignAddressDetail(e.target.value);
                 }}
                 placeholder="상세주소를 입력해주세요."
               />

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { ProductType, userType } from "../../type/Type";
+import { ProductType, UserType } from "../../type/Type";
 
 interface itemType {
   detailItem: ProductType | undefined;
@@ -9,7 +9,7 @@ interface itemType {
 function ItemOrder({ detailItem }: itemType) {
   const [selectColor, setSelectColor] = useState<string>("");
   const [selectSize, setSelectSize] = useState<string>("");
-  const [user, setUser] = useState<userType | null>();
+  const [user, setUser] = useState<UserType | null>();
   const [itemCount, setItemCount] = useState<number>(1);
 
   useEffect(() => {

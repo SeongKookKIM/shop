@@ -19,9 +19,9 @@ const MongoClient = require("mongodb").MongoClient;
 MongoClient.connect(
   process.env.MONGO,
   { useUnifiedTopology: true },
-  (에러, client) => {
-    if (에러) {
-      return console.log(에러);
+  (err, client) => {
+    if (err) {
+      return console.log(err);
     }
     db = client.db("shop");
     console.log("db연결");
