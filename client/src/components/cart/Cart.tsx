@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, handlerCartShow } from "../../Store";
+import { RootState, handlerCartShow, handlerChangeAddress } from "../../Store";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { CartType, UserType } from "../../type/Type";
@@ -20,6 +20,13 @@ function Cart({ user }: userPropsType) {
 
   useEffect(() => {
     if (user) {
+      dispatch(
+        handlerChangeAddress({
+          address: user.address,
+          addressDetail: user.addressdetail,
+        })
+      );
+
       axios
         .post("http://localhost:8080/cart/list", { _id: user._id })
         .then((res) => {
@@ -170,7 +177,6 @@ function Cart({ user }: userPropsType) {
               onClick={() => {
                 dispatch(handlerCartShow(false));
                 document.querySelector("body")?.classList.remove("active");
-
                 navigate("/pay", { state: { cartList, totalPrice } });
               }}
             >
