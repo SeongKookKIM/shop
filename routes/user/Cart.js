@@ -60,4 +60,12 @@ router.post("/list/delete", (req, res) => {
   });
 });
 
+router.post("/delete", (req, res) => {
+  db.collection("cart").deleteMany({ user: req.body.user }, (err, result) => {
+    if (err) console.log(err);
+
+    return res.status(200).send("해당 cart 삭제");
+  });
+});
+
 module.exports = router;

@@ -43,6 +43,7 @@ app.use("/sign", require("./routes/sign/Sign"));
 app.use("/login", require("./routes/login/Login"));
 app.use("/product", require("./routes/product/ItemList"));
 app.use("/cart", require("./routes/user/Cart"));
+app.use("/order", require("./routes/user/Order"));
 
 app.get("*", function (req, res) {
   응답.sendFile(path.join(__dirname, "client/build/index.html"));

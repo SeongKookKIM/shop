@@ -144,6 +144,21 @@ const showCartPage = createSlice({
 });
 export let { handlerCartShow } = showCartPage.actions;
 
+const payAddress = createSlice({
+  name: "payAddress",
+  initialState: {
+    address: "",
+    addressDetail: "",
+  },
+  reducers: {
+    handlerChangeAddress(state, action) {
+      state.address = action.payload.address;
+      state.addressDetail = action.payload.addressDetail;
+    },
+  },
+});
+export let { handlerChangeAddress } = payAddress.actions;
+
 const store = configureStore({
   reducer: {
     HomeBanner: HomeBanner.reducer,
@@ -152,6 +167,7 @@ const store = configureStore({
     slideNum: slideNum.reducer,
     swiperText: swiperText.reducer,
     showCartPage: showCartPage.reducer,
+    payAddress: payAddress.reducer,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;
