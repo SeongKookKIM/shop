@@ -8,6 +8,7 @@ import Product from "./pages/Product";
 import Detail from "./pages/Detail";
 import Cart from "./components/cart/Cart";
 import Pay from "./pages/Pay";
+import User from "./pages/User";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/product/:category/:item" element={<Product />} />
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/pay" element={<Pay />} />
+          <Route path="/user" element={<User />} />
         </Routes>
       </Suspense>
     </div>

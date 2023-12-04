@@ -264,12 +264,13 @@ body.active {
   width: 100%;
   @include flexCenter();
   justify-content: flex-start;
-  padding-top: 200px;
+  padding-top: 230px;
+  padding-left: 169px;
+
   .login-wrapper,
   .sign-wrapper {
     width: 100%;
-    max-width: 1240px;
-    margin-left: 169px;
+
     span {
       font-size: 15px;
       font-weight: 500;
@@ -348,12 +349,9 @@ body.active {
   width: 100%;
   @include flexCenter();
   justify-content: flex-start;
-  padding-top: 200px;
   padding-bottom: 200px;
   .sign-wrapper {
     width: 100%;
-    max-width: 1240px;
-    margin-left: 169px;
     span {
       font-size: 15px;
       font-weight: 500;
@@ -1100,6 +1098,67 @@ body.active {
         font-size: 14px;
         &:hover {
           text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+// User
+.user {
+  width: 100%;
+  padding-top: 230px;
+  padding-left: 169px;
+  .user-inner {
+    width: 100%;
+    .user-tab {
+      display: flex;
+      gap: 30px;
+      span {
+        display: block;
+        font-size: 14px;
+        font-weight: 500;
+        border: 1px solid black;
+        cursor: pointer;
+        padding: 6px 20px;
+      }
+    }
+    .profile {
+      width: 100%;
+      margin-top: 50px;
+
+      .profile-inner {
+        width: 602px;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        padding: 20px;
+        box-sizing: border-box;
+        div {
+          width: 100%;
+          p {
+            width: 100%;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            span {
+              font-size: 17px;
+              font-weight: 500;
+              color: black;
+            }
+          }
+          span {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            color: #999;
+            margin-top: 5px;
+            cursor: default;
+          }
         }
       }
     }
