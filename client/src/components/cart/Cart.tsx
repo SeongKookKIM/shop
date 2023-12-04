@@ -12,6 +12,7 @@ interface userPropsType {
 function Cart({ user }: userPropsType) {
   const [cartList, setCartList] = useState<CartType[]>();
   const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [cartListLength, setCartListLength] = useState<number>(0);
 
   const showCartPage = useSelector((state: RootState) => state.showCartPage);
 
@@ -31,6 +32,7 @@ function Cart({ user }: userPropsType) {
         .post("http://localhost:8080/cart/list", { _id: user._id })
         .then((res) => {
           setCartList(res.data);
+          setCartListLength(res.data.length);
 
           // 가격 총합구하기
           const itemTotalPrice = res.data.reduce(
@@ -65,6 +67,7 @@ function Cart({ user }: userPropsType) {
                   0
                 );
                 setTotalPrice(itemTotalPrice);
+                window.location.reload();
               })
               .catch((err) => {
                 console.log(err);
@@ -99,6 +102,16 @@ function Cart({ user }: userPropsType) {
     }
   };
 
+  const handlerContinue = () => {
+    if (cartListLength > 0) {
+      dispatch(handlerCartShow(false));
+      document.querySelector("body")?.classList.remove("active");
+      navigate("/pay", { state: { cartList, totalPrice } });
+    } else {
+      alert("상품이 존재하지 않습니다.");
+    }
+  };
+
   return (
     <>
       {showCartPage.show && (
@@ -115,7 +128,7 @@ function Cart({ user }: userPropsType) {
           </div>
           <div className="cart-inner">
             <div className="cart-list">
-              {cartList?.length !== undefined ? (
+              {cartList && cartListLength > 0 ? (
                 <>
                   {cartList.map((it, i) => {
                     return (
@@ -161,7 +174,18 @@ function Cart({ user }: userPropsType) {
                   })}
                 </>
               ) : (
-                <div className="load">로딩중...</div>
+                <div
+                  className="load"
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    pointerEvents: "none",
+                  }}
+                >
+                  cart에 상품이 존재하지 않습니다.
+                </div>
               )}
             </div>
           </div>
@@ -172,14 +196,7 @@ function Cart({ user }: userPropsType) {
                 {totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
               </span>
             </div>
-            <button
-              type="button"
-              onClick={() => {
-                dispatch(handlerCartShow(false));
-                document.querySelector("body")?.classList.remove("active");
-                navigate("/pay", { state: { cartList, totalPrice } });
-              }}
-            >
+            <button type="button" onClick={handlerContinue}>
               계속하기
             </button>
           </div>

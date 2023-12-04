@@ -45,9 +45,16 @@ function Menu() {
     }
   }, [userLogin]);
 
+  // 바스켓백
   const handlerCartBody = () => {
-    dispatch(handlerCartShow(true));
-    document.querySelector("body")?.classList.add("active");
+    if (userLogin) {
+      dispatch(handlerCartShow(true));
+      document.querySelector("body")?.classList.add("active");
+    } else {
+      alert("로그인 후 사용해주세요.");
+      dispatch(handlerMenu("menu-subpage"));
+      navigate("/login");
+    }
   };
 
   return (
@@ -124,7 +131,14 @@ function Menu() {
         <ul>
           <li>
             {userLogin ? (
-              <span>{userLogin.name}</span>
+              <span
+                onClick={() => {
+                  navigate("/user");
+                  dispatch(handlerMenu("menu-subpage"));
+                }}
+              >
+                {userLogin.name}
+              </span>
             ) : (
               <span
                 onClick={() => {
@@ -137,7 +151,7 @@ function Menu() {
             )}
           </li>
           <li>
-            <span>도움말</span>
+            <span>문의하기</span>
           </li>
           <li>
             <span onClick={handlerCartBody}>바스켓백({userCartNum})</span>
