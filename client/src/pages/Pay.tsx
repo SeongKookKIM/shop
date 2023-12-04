@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import PayDelivery from "../components/pay/PayDelivery";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, handlerChangeAddress } from "../Store";
+import { RootState } from "../Store";
 import axios from "axios";
 
 function Pay() {
@@ -19,7 +19,6 @@ function Pay() {
 
   let item = useLocation();
   let navigate = useNavigate();
-  let dispatch = useDispatch();
 
   const payAddress = useSelector((state: RootState) => state.payAddress);
 
@@ -33,14 +32,6 @@ function Pay() {
       setItemList(item.state.cartList);
       setTotalPrice(item.state.totalPrice);
       setItemLenght(item.state.cartList.length);
-    }
-    if (userInfo) {
-      dispatch(
-        handlerChangeAddress({
-          address: userInfo?.address,
-          addressDetail: userInfo?.addressdetail,
-        })
-      );
     }
   }, []);
 
@@ -78,6 +69,8 @@ function Pay() {
       userAddressDetail: payAddress.addressDetail,
       userMessage: message,
       totalPrice: totalPrice,
+      status: "상품준비중",
+      deliveryNumber: "",
       date: `${new Date().getFullYear()}-${
         new Date().getMonth() + 1
       }-${new Date().getDate()}`,
@@ -119,8 +112,8 @@ function Pay() {
           ></textarea>
         </div>
         <div className="delivery-address">
-          <span>{payAddress && payAddress.address}</span>
-          <span>{payAddress && payAddress.addressDetail}</span>
+          <span>{payAddress.address}</span>
+          <span>{payAddress.addressDetail}</span>
           <Button variant="primary" onClick={handleShow}>
             편집
           </Button>
