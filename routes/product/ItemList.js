@@ -92,39 +92,53 @@ router.post("/order/edit", (req, res) => {
     item: req.body.findItem,
   };
 
-  db.collection("order").updateOne(
-    find,
-    { $set: { item: req.body.orderItem, totalPrice: req.body.totalPrice } },
-    (err, result) => {
-      if (err) console.log(err);
+  let returnlist = {
+    user: req.body.return.user,
+    name: req.body.return.userName,
+    phone: req.body.return.userPhone,
+    email: req.body.return.userEmail,
+    order_id: req.body.return._id,
+    returnPrice:
+      Number(req.body.return.totalPrice) - Number(req.body.totalPrice),
+    status: "반품신청",
+    returnNumber: "",
+    address: req.body.return.userAddress,
+    adressDetail: req.body.return.userAddressDetail,
+    date: `${new Date().getFullYear()}-${
+      new Date().getMonth() + 1
+    }-${new Date().getDate()}`,
+    item: req.body.returnItem,
+  };
 
-      let returnlist = {
-        user: req.body.return.user,
-        name: req.body.return.userName,
-        phone: req.body.return.userPhone,
-        email: req.body.return.userEmail,
-        order_id: req.body.return._id,
-        returnPrice:
-          Number(req.body.return.totalPrice) - Number(req.body.totalPrice),
-        status: "반품신청",
-        returnNumber: "",
-        address: req.body.return.userAddress,
-        adressDetail: req.body.return.userAddressDetail,
-        date: `${new Date().getFullYear()}-${
-          new Date().getMonth() + 1
-        }-${new Date().getDate()}`,
-        item: req.body.returnItem,
-      };
+  if (req.body.orderItem.length === 0) {
+    db.collection("order").deleteOne(find, (err, result) => {
+      if (err) console.log(err);
 
       if (result) {
         db.collection("return").insertOne(returnlist, (err, result) => {
           if (err) console.log(err);
 
-          return res.status(200).send("반품신청완료");
+          return res.status(200).send("반품신청 완료하였습니다.");
         });
       }
-    }
-  );
+    });
+  } else {
+    db.collection("order").updateOne(
+      find,
+      { $set: { item: req.body.orderItem, totalPrice: req.body.totalPrice } },
+      (err, result) => {
+        if (err) console.log(err);
+
+        if (result) {
+          db.collection("return").insertOne(returnlist, (err, result) => {
+            if (err) console.log(err);
+
+            return res.status(200).send("반품신청 완료하였습니다.");
+          });
+        }
+      }
+    );
+  }
 });
 
 module.exports = router;
