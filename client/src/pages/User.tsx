@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { UserType } from "../type/Type";
 import Profile from "../components/user/Profile";
+import BuyList from "../components/user/buyList/BuyList";
 
 function User() {
   const [user, setuser] = useState<UserType | undefined>();
@@ -22,6 +23,7 @@ function User() {
           <span onClick={() => setTabStatus("userBuy")}>구매내역</span>
         </div>
         {tabStatus === "profile" && <Profile user={user} />}
+        {tabStatus === "userBuy" && <BuyList user={user} />}
       </div>
     </div>
   );

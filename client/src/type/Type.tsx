@@ -32,3 +32,28 @@ export type ProductType = {
   thumbnail: string;
   _id: string;
 };
+
+export type ProductBuyListType = {
+  date: string;
+  deliveryNumber: string;
+  item: {
+    color: string;
+    image: string;
+    name: string;
+    price: number;
+    size: string;
+    user: string;
+    _id: string;
+    count: number;
+  }[];
+  status: string;
+  totalPrice: number;
+  user: string;
+  userAddress: string;
+  userAddressDetail: string;
+  userEmail: string;
+  userMessage: string;
+  userName: string;
+  userPhone: string;
+  _id: string;
+};
