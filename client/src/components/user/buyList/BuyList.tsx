@@ -81,7 +81,7 @@ function BuyList({ user }: UserPropsType) {
 
   return (
     <div className="buy-list">
-      {buyList !== undefined ? (
+      {buyList && buyList.length > 0 ? (
         <>
           {buyList.map((list, idx) => {
             return (
@@ -152,7 +152,19 @@ function BuyList({ user }: UserPropsType) {
           })}
         </>
       ) : (
-        <div className="load">구매내역이 없습니다.</div>
+        <div
+          className="load"
+          style={{
+            width: "100%",
+            marginTop: "100px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            pointerEvents: "none",
+          }}
+        >
+          구매내역이 없습니다.
+        </div>
       )}
     </div>
   );
