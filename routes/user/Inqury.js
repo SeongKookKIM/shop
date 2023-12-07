@@ -39,8 +39,28 @@ const bucket = storage.bucket("sam-shop-image");
 const util = require("util");
 const format = util.format;
 
+// 문의하기 가져오기
+router.post("/", (req, res) => {
+  db.collection("contact")
+    .find({ user: req.body.user })
+    .toArray((err, result) => {
+      if (err) console.log(err);
+
+      return res.status(200).json(result);
+    });
+});
+
+// 문의하기 db저장
+router.post("/add", (req, res) => {
+  db.collection("contact").insertOne(req.body, (err, result) => {
+    if (err) console.log(err);
+
+    return res.status(200).send("빠른 시일 내에 답변드리도록 하겠습니다.");
+  });
+});
+
+// 이미지 버킷에 저장
 router.post("/image", upload.array("src"), (req, res) => {
-  console.log(req.files);
   //   const blob = bucket.file(req.file.originalname);
 
   //   const blobStream = blob.createWriteStream();

@@ -81,3 +81,12 @@ export type ReturnItemType = {
     count: number;
   }[];
 };
+
+export type InquryType = {
+  user: string;
+  title: string;
+  detail: string;
+  imageSrc: string[];
+  date: string;
+  _id: string;
+};
