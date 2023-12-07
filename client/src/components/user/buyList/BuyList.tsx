@@ -44,6 +44,7 @@ function BuyList({ user }: UserPropsType) {
     handlerEditOrderList(idx, updatedBuyItemList);
   };
 
+  // 반품신청
   const handlerEditOrderList = (
     idx: number,
     updatedBuyItemList: undefined | CartType[]
@@ -53,28 +54,31 @@ function BuyList({ user }: UserPropsType) {
         (acc, item) => acc + item.price * item.count,
         0
       );
-
-      if (window.confirm("반품을 신청하시겠습니까?")) {
-        if (buyList) {
-          axios
-            .post("http://localhost:8080/product/order/edit", {
-              user: user,
-              findItem: buyList[idx].item,
-              totalPrice: totalPrice,
-              orderItem: updatedBuyItemList,
-              returnItem: selectedItems,
-              return: buyList[idx],
-            })
-            .then((res) => {
-              alert(res.data);
-              window.location.reload();
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        }
+      if (updatedBuyItemList.length === 0) {
+        alert("반품하실 상품이 없습니다.");
       } else {
-        return;
+        if (window.confirm("반품을 신청하시겠습니까?")) {
+          if (buyList) {
+            axios
+              .post("http://localhost:8080/product/order/edit", {
+                user: user,
+                findItem: buyList[idx].item,
+                totalPrice: totalPrice,
+                orderItem: updatedBuyItemList,
+                returnItem: selectedItems,
+                return: buyList[idx],
+              })
+              .then((res) => {
+                alert(res.data);
+                window.location.reload();
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }
+        } else {
+          return;
+        }
       }
     }
   };

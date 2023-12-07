@@ -9,6 +9,8 @@ import Detail from "./pages/Detail";
 import Cart from "./components/cart/Cart";
 import Pay from "./pages/Pay";
 import User from "./pages/User";
+import Contact from "./pages/Contact";
+import Inqury from "./components/user/inqury/Inqury";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/pay" element={<Pay />} />
           <Route path="/user" element={<User />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/contact/inqury" element={<Inqury />} />
         </Routes>
       </Suspense>
     </div>

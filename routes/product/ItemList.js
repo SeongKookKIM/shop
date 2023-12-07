@@ -17,6 +17,8 @@ MongoClient.connect(
   }
 );
 
+const { ObjectId } = require("mongodb");
+
 // 상품리스트목록
 router.post("/", (req, res) => {
   let findItem = {
@@ -31,8 +33,6 @@ router.post("/", (req, res) => {
       return res.status(200).json(result);
     });
 });
-
-const { ObjectId } = require("mongodb");
 
 // 상품추가
 router.post("/add", (req, res) => {

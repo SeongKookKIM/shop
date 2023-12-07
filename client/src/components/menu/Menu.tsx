@@ -151,7 +151,14 @@ function Menu() {
             )}
           </li>
           <li>
-            <span>문의하기</span>
+            <span
+              onClick={() => {
+                navigate("/contact");
+                dispatch(handlerMenu("menu-subpage"));
+              }}
+            >
+              문의하기
+            </span>
           </li>
           <li>
             <span onClick={handlerCartBody}>바스켓백({userCartNum})</span>
