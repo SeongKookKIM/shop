@@ -6,7 +6,6 @@ function Inqury() {
   const [imageArray, setImageArray] = useState<string[]>([]);
 
   const [newFileArray, setNewFileArray] = useState<File[]>([]);
-  console.log(newFileArray);
 
   //   const [fileSrc, setFileSrc] = useState<any>(null);
 
