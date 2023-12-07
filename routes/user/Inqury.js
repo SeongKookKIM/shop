@@ -59,6 +59,34 @@ router.post("/image", upload.array("src"), (req, res) => {
   //   });
 
   //   blobStream.end(req.file.buffer);
+  let urls = [];
+
+  for (let i = 0; i < req.files.length; i++) {
+    const blob = bucket.file(req.files[i].originalname);
+    const blobStream = blob.createWriteStream();
+
+    blobStream.on("error", (err) => {
+      console.error(err);
+      res.status(500).send(err);
+      return;
+    });
+
+    blobStream.on("finish", () => {
+      const publicUrl = format(
+        `https://storage.googleapis.com/${bucket.name}/${blob.name}`
+      );
+
+      urls.push(publicUrl);
+
+      // If it was the last file then send response
+      if (i === req.files.length - 1) {
+        res.status(200).send(urls);
+        return;
+      }
+    });
+
+    blobStream.end(req.files[i].buffer);
+  }
 });
 
 module.exports = router;
