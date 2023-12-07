@@ -104,10 +104,12 @@ function ProfileAddress({ userInfo, setProfileEdit }: UserPropsType) {
       <input
         type="text"
         name="address"
+        autoComplete="off"
         value={addressEdit}
         onChange={(e) => {
           setAddressEdit(e.target.value);
         }}
+        required
       ></input>
       <input
         type="text"

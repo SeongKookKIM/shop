@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { UserType } from "../../type/Type";
 import axios from "axios";
 import { LuArrowLeft } from "react-icons/lu";
@@ -11,7 +11,7 @@ interface UserPropsType {
 function ProfilePassword({ userInfo, setProfileEdit }: UserPropsType) {
   const [passwordEdit, setPasswordEdit] = useState<string>("");
   const [newPassword, setNewPassword] = useState<string>("");
-  const [confirmPassword, setConfrimPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [psConfirm, setPsConfirm] = useState<Boolean>(false);
   const [paswwordAlert, setPasswordAlert] = useState<string>(
     "* 대문자+영문+숫자+특수문자를 포함한 8자이상 입력해주세요."
@@ -100,6 +100,7 @@ function ProfilePassword({ userInfo, setProfileEdit }: UserPropsType) {
             <input
               type="password"
               name="password"
+              autoComplete="new-password"
               value={newPassword}
               onChange={(e) => {
                 setNewPassword(e.target.value);
@@ -113,8 +114,10 @@ function ProfilePassword({ userInfo, setProfileEdit }: UserPropsType) {
             <input
               type="password"
               name="passwordConfirm"
+              autoComplete="new-password"
+              value={confirmPassword}
               onChange={(e) => {
-                setConfrimPassword(e.target.value);
+                setConfirmPassword(e.target.value);
               }}
               placeholder="비밀번호 확인"
             ></input>
@@ -136,6 +139,8 @@ function ProfilePassword({ userInfo, setProfileEdit }: UserPropsType) {
             <input
               type="password"
               name="password"
+              autoComplete="new-password"
+              value={passwordEdit}
               onChange={(e) => {
                 setPasswordEdit(e.target.value);
               }}
