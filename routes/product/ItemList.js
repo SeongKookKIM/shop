@@ -141,4 +141,15 @@ router.post("/order/edit", (req, res) => {
   }
 });
 
+// 반품리스트
+router.post("/return", (req, res) => {
+  db.collection("return")
+    .find({ user: req.body._id })
+    .toArray((err, result) => {
+      if (err) console.log(err);
+
+      return res.status(200).json(result);
+    });
+});
+
 module.exports = router;

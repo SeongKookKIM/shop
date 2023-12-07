@@ -64,6 +64,7 @@ function ProfilePhone({ userInfo, setProfileEdit }: UserPropsType) {
       <input
         type="text"
         name="phone"
+        autoComplete="off"
         value={phoneEdit}
         onChange={(e) => {
           setPhoneEdit(e.target.value);

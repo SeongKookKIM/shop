@@ -57,3 +57,27 @@ export type ProductBuyListType = {
   userPhone: string;
   _id: string;
 };
+
+export type ReturnItemType = {
+  user: string;
+  name: string;
+  phone: string;
+  email: string;
+  order_id: string;
+  returnPrice: number;
+  status: string;
+  returnNumber: string;
+  address: string;
+  adressDetail: string;
+  date: string;
+  item: {
+    color: string;
+    image: string;
+    name: string;
+    price: number;
+    size: string;
+    user: string;
+    _id: string;
+    count: number;
+  }[];
+};

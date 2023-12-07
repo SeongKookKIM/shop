@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { UserType } from "../type/Type";
 import Profile from "../components/user/Profile";
 import BuyList from "../components/user/buyList/BuyList";
+import ReturnList from "../components/user/return/ReturnList";
 
 function User() {
   const [user, setuser] = useState<UserType | undefined>();
@@ -21,9 +22,11 @@ function User() {
         <div className="user-tab">
           <span onClick={() => setTabStatus("profile")}>프로필</span>
           <span onClick={() => setTabStatus("userBuy")}>구매내역</span>
+          <span onClick={() => setTabStatus("return")}>반품내역</span>
         </div>
         {tabStatus === "profile" && <Profile user={user} />}
         {tabStatus === "userBuy" && <BuyList user={user} />}
+        {tabStatus === "return" && <ReturnList user={user} />}
       </div>
     </div>
   );

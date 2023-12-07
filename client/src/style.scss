@@ -1238,7 +1238,8 @@ body.active {
         }
       }
     }
-    .buy-list {
+    .buy-list,
+    .return-list {
       width: 100%;
       position: absolute;
       left: 0;
@@ -1352,5 +1353,6 @@ body.active {
         }
       }
     }
+    //
   }
 }

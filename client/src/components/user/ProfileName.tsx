@@ -64,10 +64,12 @@ function ProfileName({ userInfo, setProfileEdit }: UserPropsType) {
       <input
         type="text"
         name="name"
+        autoComplete="off"
         value={nameEdit}
         onChange={(e) => {
           setNameEdit(e.target.value);
         }}
+        required
       ></input>
       <div className="change-btn">
         <span onClick={handlerNameEdit}>변경하기</span>
