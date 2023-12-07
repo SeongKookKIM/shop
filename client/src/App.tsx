@@ -6,11 +6,11 @@ import Login from "./pages/Login";
 import Sign from "./pages/Sign";
 import Product from "./pages/Product";
 import Detail from "./pages/Detail";
-import Cart from "./components/cart/Cart";
 import Pay from "./pages/Pay";
 import User from "./pages/User";
 import Contact from "./pages/Contact";
 import Inqury from "./components/user/inqury/Inqury";
+import InquryDetail from "./components/user/inqury/InquryDetail";
 
 function App() {
   return (
@@ -27,6 +27,7 @@ function App() {
           <Route path="/user" element={<User />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/contact/inqury" element={<Inqury />} />
+          <Route path="/contact/:id" element={<InquryDetail />} />
         </Routes>
       </Suspense>
     </div>
