@@ -69,7 +69,6 @@ function BigProduct({ itemList }: any) {
                     alt="item"
                     onClick={() => {
                       navigate(`/detail/${it._id}`, { state: { it } });
-                      window.scrollTo({ top: 0, behavior: "smooth" });
                     }}
                   />
                   <div className="item-detail">

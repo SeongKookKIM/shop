@@ -48,6 +48,7 @@ body.active {
   position: relative;
   .sub-menu {
     background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(3px);
   }
   // MENU-NAV
   .menu,
@@ -1638,6 +1639,89 @@ body.active {
     cursor: pointer;
     &:hover {
       text-decoration: underline;
+    }
+  }
+}
+
+// Search
+.search {
+  width: 100%;
+  padding: 230px 0 169px;
+  .search-box {
+    width: 100%;
+    padding: 20px 0;
+    @include flexCenter();
+    border: 1px solid black;
+    border-left: none;
+    border-right: none;
+    input {
+      width: 90%;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      font-size: 14px;
+      color: black;
+      font-family: $font;
+      font-weight: 500;
+      &::placeholder {
+        font-size: 14px;
+        font-family: $font;
+        color: #999;
+        font-weight: 500;
+      }
+    }
+  }
+  .search-item-list {
+    width: 100%;
+    margin-top: 100px;
+    ul {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      box-sizing: border-box;
+      li {
+        width: calc(100% / 6);
+        overflow: hidden;
+        box-sizing: border-box;
+        cursor: pointer;
+        border: 1px solid black;
+        border-left: none;
+        border-top: none;
+        @for $i from 1 through 6 {
+          &:nth-child(#{$i}) {
+            border-top: 1px solid black;
+          }
+        }
+        &:nth-child(6) {
+          border-right: none;
+        }
+
+        .item-image {
+          width: 100%;
+          overflow: hidden;
+          border-bottom: 1px solid black;
+          img {
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+        .item-info {
+          padding: 8px 8px 24px;
+          p {
+            width: 100%;
+            font-size: clamp(12px, 1.4vw, 18px);
+            font-weight: 500;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            margin-bottom: 7px;
+          }
+          span {
+            font-size: clamp(12px, 1.4vw, 18px);
+            font-weight: 500;
+          }
+        }
+      }
     }
   }
 }

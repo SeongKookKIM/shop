@@ -46,6 +46,7 @@ app.use("/cart", require("./routes/user/Cart"));
 app.use("/order", require("./routes/user/Order"));
 app.use("/profile", require("./routes/user/Profile"));
 app.use("/inqury", require("./routes/user/Inqury"));
+app.use("/search", require("./routes/search/search"));
 
 app.get("*", function (req, res) {
   응답.sendFile(path.join(__dirname, "client/build/index.html"));
