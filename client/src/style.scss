@@ -929,6 +929,8 @@ body.active {
         border: 1px solid #999;
         outline: none;
         font-size: 12px;
+        font-family: $font;
+
         letter-spacing: 2px;
         padding: 0 15px;
         height: 80px;
@@ -1414,6 +1416,12 @@ body.active {
 .inqury {
   width: 100%;
   padding: 230px 0 200px 169px;
+  .back {
+    margin-bottom: 20px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
   form {
     width: 602px;
     border: 1px solid black;
@@ -1455,6 +1463,7 @@ body.active {
         border: 1px solid black;
         outline: none;
         font-size: 13px;
+        font-family: $font;
         letter-spacing: 2px;
         height: 130px;
         resize: none;
@@ -1531,3 +1540,96 @@ body.active {
 }
 
 // Inqury-detail
+.inqury-detail {
+  width: 100%;
+  padding: 230px 0 200px 169px;
+  .back {
+    margin-bottom: 20px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+  .detail-inner {
+    width: 602px;
+    border: 1px solid black;
+    overflow: hidden;
+    padding: 10px;
+    p.title {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 5px;
+      pointer-events: none;
+    }
+    span.date {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      pointer-events: none;
+    }
+    p.detail {
+      padding: 0;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 5px;
+      pointer-events: none;
+    }
+    textarea {
+      width: 100%;
+      border: 1px solid black;
+      outline: none;
+      font-family: $font;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      height: 130px;
+      resize: none;
+      padding: 3px;
+      margin-bottom: 10px;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+    p.image {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 5px;
+      pointer-events: none;
+    }
+    ul {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+      li {
+        width: 130px;
+        height: 80px;
+        overflow: hidden;
+        @include flexCenter();
+        img {
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+    .answer-box {
+      width: 100%;
+      p {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 5px;
+        pointer-events: none;
+      }
+    }
+  }
+  .inqury-delete {
+    display: block;
+    margin-top: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

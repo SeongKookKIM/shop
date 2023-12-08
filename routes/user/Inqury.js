@@ -16,6 +16,7 @@ MongoClient.connect(
     db = client.db("shop");
   }
 );
+const { ObjectId } = require("mongodb");
 
 // multer
 let multer = require("multer");
@@ -107,6 +108,15 @@ router.post("/image", upload.array("src"), (req, res) => {
 
     blobStream.end(req.files[i].buffer);
   }
+});
+
+// 문의하기 삭제
+router.post("/delete", (req, res) => {
+  db.collection("contact").deleteOne({ _id: ObjectId(req.body._id) }, (err) => {
+    if (err) console.log(err);
+
+    return res.status(200).send("해당 문의를 삭제하셨습니다.");
+  });
 });
 
 module.exports = router;
