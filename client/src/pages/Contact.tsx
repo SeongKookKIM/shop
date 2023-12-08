@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { InquryType, UserType } from "../type/Type";
 import axios from "axios";
+import SubMenu from "../components/menu/SubMenu";
 
 function Contact() {
   const [userInfo, setUserInfo] = useState<UserType>();
@@ -30,6 +31,7 @@ function Contact() {
 
   return (
     <div className="contact">
+      <SubMenu />
       <div className="contact-table">
         <p>궁금하신 점은 무엇이든 물어봐 주세요.</p>
         <ul>

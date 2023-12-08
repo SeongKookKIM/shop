@@ -4,6 +4,7 @@ import { LuArrowLeft } from "react-icons/lu";
 
 import { InquryType } from "../../../type/Type";
 import axios from "axios";
+import SubMenu from "../../menu/SubMenu";
 
 function InquryDetail() {
   const [inquryList, setInquryList] = useState<InquryType>();
@@ -32,6 +33,7 @@ function InquryDetail() {
 
   return (
     <div className="inqury-detail">
+      <SubMenu />
       <LuArrowLeft className="back" onClick={() => navigate(-1)} />
       {inquryList && (
         <div className="detail-inner">

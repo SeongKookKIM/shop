@@ -46,6 +46,9 @@ body.active {
   width: 100%;
   height: 100vh;
   position: relative;
+  .sub-menu {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
   // MENU-NAV
   .menu,
   .menu-active,
@@ -69,6 +72,7 @@ body.active {
         font-size: 86px;
         font-weight: 800;
         cursor: pointer;
+        color: black;
         padding: 0 0 0px 10px;
       }
       .menu-list {
@@ -143,11 +147,13 @@ body.active {
         }
       }
     }
-    .search {
+    .menu-search {
       position: absolute;
       right: 300px;
+      cursor: pointer;
+      background-color: white;
       input {
-        width: 250px;
+        width: 200px;
         border: 1px solid #333;
         outline: none;
         font-size: 15px;
@@ -155,6 +161,8 @@ body.active {
         font-weight: 700;
         padding: 3px 10px 3px 5px;
         cursor: pointer;
+        background-color: white;
+        pointer-events: none;
         &::placeholder {
           font-family: $font;
           font-size: 13px;

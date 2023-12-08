@@ -16,11 +16,10 @@ import axios from "axios";
 import Cart from "../cart/Cart";
 import { UserType } from "../../type/Type";
 
-function Menu() {
+function SubMenu() {
   const [userLogin, setUserLogin] = useState<UserType>();
   const [userCartNum, setUserCartNum] = useState<string>("0");
 
-  const menuClass = useSelector((state: RootState) => state.menuClass);
   const menuAcitve = useSelector((state: RootState) => state.menuActive);
 
   let dispatch = useDispatch();
@@ -58,7 +57,7 @@ function Menu() {
   };
 
   return (
-    <div className={menuClass.menuClass}>
+    <div className="menu sub-menu">
       {menuAcitve.active ? (
         <LuX
           className="menu-bar"
@@ -79,48 +78,7 @@ function Menu() {
           <ActiveMenu />
         ) : (
           <>
-            {" "}
             <h1 onClick={() => navigate("/")}>SHOP</h1>
-            <nav className="menu-list">
-              <ul className="gnb">
-                <li>
-                  <p
-                    onClick={() => {
-                      dispatch(handlerSlideNum(0));
-                    }}
-                  >
-                    ALL
-                  </p>
-                </li>
-                <li>
-                  <p
-                    onClick={() => {
-                      dispatch(handlerSlideNum(1));
-                    }}
-                  >
-                    MEN
-                  </p>
-                </li>
-                <li>
-                  <p
-                    onClick={() => {
-                      dispatch(handlerSlideNum(2));
-                    }}
-                  >
-                    WOMEN
-                  </p>
-                </li>
-                <li>
-                  <p
-                    onClick={() => {
-                      dispatch(handlerSlideNum(3));
-                    }}
-                  >
-                    HOME
-                  </p>
-                </li>
-              </ul>
-            </nav>
           </>
         )}
       </div>
@@ -134,7 +92,6 @@ function Menu() {
               <span
                 onClick={() => {
                   navigate("/user");
-                  dispatch(handlerMenu("menu-subpage"));
                 }}
               >
                 {userLogin.name}
@@ -143,7 +100,6 @@ function Menu() {
               <span
                 onClick={() => {
                   navigate("/login");
-                  dispatch(handlerMenu("menu-subpage"));
                 }}
               >
                 로그인
@@ -155,7 +111,6 @@ function Menu() {
               onClick={() => {
                 if (userLogin) {
                   navigate("/contact");
-                  dispatch(handlerMenu("menu-subpage"));
                 } else {
                   alert("로그인 후 사용해주세요.");
                   dispatch(handlerMenu("menu-subpage"));
@@ -176,4 +131,4 @@ function Menu() {
   );
 }
 
-export default Menu;
+export default SubMenu;

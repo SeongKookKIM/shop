@@ -1,7 +1,6 @@
 import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import Menu from "./components/menu/Menu";
 import Login from "./pages/Login";
 import Sign from "./pages/Sign";
 import Product from "./pages/Product";
@@ -11,12 +10,12 @@ import User from "./pages/User";
 import Contact from "./pages/Contact";
 import Inqury from "./components/user/inqury/Inqury";
 import InquryDetail from "./components/user/inqury/InquryDetail";
+import Search from "./pages/Search";
 
 function App() {
   return (
     <div className="App">
       <Suspense fallback={<div>LOADING...</div>}>
-        <Menu />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -28,6 +27,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/contact/inqury" element={<Inqury />} />
           <Route path="/contact/:id" element={<InquryDetail />} />
+          <Route path="/search" element={<Search />} />
         </Routes>
       </Suspense>
     </div>

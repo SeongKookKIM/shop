@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SubMenu from "../components/menu/SubMenu";
 
 function Login() {
   const [emailAlert, setEmailAlert] = useState<string>("");
@@ -63,6 +64,7 @@ function Login() {
 
   return (
     <div className="login">
+      <SubMenu />
       <div className="login-wrapper">
         <span>고객님의 계정에 액세스하세요.</span>
         <form

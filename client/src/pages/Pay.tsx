@@ -8,6 +8,7 @@ import PayDelivery from "../components/pay/PayDelivery";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../Store";
 import axios from "axios";
+import SubMenu from "../components/menu/SubMenu";
 
 function Pay() {
   const [itemList, setItemList] = useState<CartType[]>();
@@ -97,6 +98,7 @@ function Pay() {
 
   return (
     <div className="pay">
+      <SubMenu />
       <div className="pay-inner">
         <div className="back">
           <LuArrowLeft onClick={() => navigate(-1)} />

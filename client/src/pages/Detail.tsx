@@ -4,6 +4,7 @@ import Info from "../components/detail/Info";
 import DetailImage from "../components/detail/DetailImage";
 import ItemOrder from "../components/detail/ItemOrder";
 import { ProductType } from "../type/Type";
+import SubMenu from "../components/menu/SubMenu";
 
 function Detail() {
   const [item, setItem] = useState<ProductType>();
@@ -15,6 +16,7 @@ function Detail() {
 
   return (
     <div className="detail">
+      <SubMenu />
       <div className="detail-inner">
         <Info />
         <DetailImage detailItem={item} />

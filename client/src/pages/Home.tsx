@@ -10,6 +10,7 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import Slide from "../components/home/Slide";
 import { RootState } from "../Store";
+import Menu from "../components/menu/Menu";
 
 function Home() {
   const [slideNum, setSlideNum] = useState<number>(0);
@@ -30,9 +31,10 @@ function Home() {
 
   return (
     <div className="home">
+      <Menu />
       <Swiper
-        speed={2000}
         navigation={true}
+        speed={2000}
         onSlideChange={handleSlideChange}
         onSwiper={setSwiper}
         modules={[Navigation]}

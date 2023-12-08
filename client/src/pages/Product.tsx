@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ProductType } from "../type/Type";
+import SubMenu from "../components/menu/SubMenu";
 
 function Product() {
   const [itemLayout, setItemLayout] = useState<string>("big");
@@ -25,6 +26,7 @@ function Product() {
 
   return (
     <div className="product">
+      <SubMenu />
       <div className="product-wrapper">
         <div className="product-layout">
           <img

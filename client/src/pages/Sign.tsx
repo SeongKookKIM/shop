@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDaumPostcodePopup } from "react-daum-postcode";
+import SubMenu from "../components/menu/SubMenu";
 
 function Sign() {
   const [signName, setSignName] = useState<string>("");
@@ -139,6 +140,7 @@ function Sign() {
 
   return (
     <div className="sign">
+      <SubMenu />
       <div className="sign-wrapper">
         <span>회원가입</span>
         <span className="alert">*모든 항목은 필수 입력란입니다.</span>

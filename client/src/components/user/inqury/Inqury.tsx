@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { LuArrowLeft } from "react-icons/lu";
 
 import { UserType } from "../../../type/Type";
+import SubMenu from "../../menu/SubMenu";
 
 function Inqury() {
   const [userInfo, setUserInfo] = useState<UserType>();
@@ -99,6 +100,7 @@ function Inqury() {
 
   return (
     <div className="inqury">
+      <SubMenu />
       <LuArrowLeft className="back" onClick={() => navigate(-1)} />
       <form
         onSubmit={(e) => {

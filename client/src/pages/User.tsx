@@ -3,6 +3,7 @@ import { UserType } from "../type/Type";
 import Profile from "../components/user/Profile";
 import BuyList from "../components/user/buyList/BuyList";
 import ReturnList from "../components/user/return/ReturnList";
+import SubMenu from "../components/menu/SubMenu";
 
 function User() {
   const [user, setuser] = useState<UserType | undefined>();
@@ -18,6 +19,7 @@ function User() {
 
   return (
     <div className="user">
+      <SubMenu />
       <div className="user-inner">
         <div className="user-tab">
           <span onClick={() => setTabStatus("profile")}>프로필</span>
