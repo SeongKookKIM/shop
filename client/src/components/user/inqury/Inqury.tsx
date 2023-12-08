@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useRef, useState, ChangeEvent, useEffect } from "react";
 import { LuPlusCircle } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
+import { LuArrowLeft } from "react-icons/lu";
+
 import { UserType } from "../../../type/Type";
 
 function Inqury() {
@@ -97,6 +99,7 @@ function Inqury() {
 
   return (
     <div className="inqury">
+      <LuArrowLeft className="back" onClick={() => navigate(-1)} />
       <form
         onSubmit={(e) => {
           handlerInqury(e);

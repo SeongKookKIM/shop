@@ -88,5 +88,6 @@ export type InquryType = {
   detail: string;
   imageSrc: string[];
   date: string;
+  answer: string;
   _id: string;
 };

@@ -54,7 +54,10 @@ function Contact() {
               })}
             </>
           ) : (
-            <li>문의 내용이 없습니다.</li>
+            <li>
+              <span></span>
+              <span>문의 내용이 없습니다.</span>
+            </li>
           )}
         </ul>
       </div>
