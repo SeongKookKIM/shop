@@ -96,6 +96,31 @@ function Slide({ banner, num }: bannerProps) {
             </SwiperSlide>
           );
         })}
+        <SwiperSlide className="swiper-footer">
+          <div className="swiper-sns">
+            <p>SHOP 소식을 받아보세요.</p>
+            <ul>
+              <li>
+                <span>TIKTOK</span>
+              </li>
+              <li>
+                <span>INSTAGRAM</span>
+              </li>
+              <li>
+                <span>FACEBOOK</span>
+              </li>
+              <li>
+                <span>KAKAO</span>
+              </li>
+              <li>
+                <span>YOUTUBE</span>
+              </li>
+            </ul>
+          </div>
+          <footer className="footer">
+            <span>&copy; reserved by Sam</span>
+          </footer>
+        </SwiperSlide>
       </Swiper>
     </>
   );

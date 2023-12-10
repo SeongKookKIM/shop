@@ -264,6 +264,55 @@ body.active {
         color: white;
       }
     }
+    .swiper-slide.swiper-footer {
+      position: relative;
+      @include flexCenter();
+      .swiper-sns {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 50px;
+        p {
+          font-size: 25px;
+          font-weight: 500;
+        }
+        ul {
+          width: 100%;
+          @include flexCenter();
+          gap: 50px;
+          li {
+            span {
+              position: relative;
+              right: 0;
+              bottom: 0;
+              font-size: 16px;
+              font-weight: 500;
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+      .footer {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        @include flexCenter();
+        padding: 50px 0;
+        span {
+          position: relative;
+          right: 0;
+          bottom: 0;
+          font-size: 13px;
+          font-weight: 500;
+          color: #999;
+          pointer-events: none;
+        }
+      }
+    }
   }
 }
 
