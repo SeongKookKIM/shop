@@ -92,7 +92,11 @@ function Profile({ user }: userPropsType) {
             </div>
             <div className="logout">
               <span onClick={handlerAccountExit}>세션종료</span>
-              <span onClick={handelrAccountDelete}>계정삭제</span>
+              {userInfo?.role && userInfo.role ? (
+                ""
+              ) : (
+                <span onClick={handelrAccountDelete}>계정삭제</span>
+              )}
             </div>
           </>
         )}
@@ -115,6 +119,16 @@ function Profile({ user }: userPropsType) {
           />
         )}
       </div>
+      {userInfo?.role && userInfo.role === "admin" && (
+        <span
+          className="admin-login"
+          onClick={() => {
+            navigate("/admin/home");
+          }}
+        >
+          관리자 페이지 로그인
+        </span>
+      )}
       <Footer classPadding="active" />
     </div>
   );

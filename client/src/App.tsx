@@ -11,6 +11,7 @@ import Contact from "./pages/Contact";
 import Inqury from "./components/user/inqury/Inqury";
 import InquryDetail from "./components/user/inqury/InquryDetail";
 import Search from "./pages/Search";
+import AdminHome from "./pages/admin/AdminHome";
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
           <Route path="/contact/inqury" element={<Inqury />} />
           <Route path="/contact/:id" element={<InquryDetail />} />
           <Route path="/search" element={<Search />} />
+
+          {/* Admin */}
+          <Route path="/admin/home" element={<AdminHome />} />
         </Routes>
       </Suspense>
     </div>

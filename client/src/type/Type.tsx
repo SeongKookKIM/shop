@@ -7,6 +7,7 @@ export type UserType = {
   phone: string;
   _id: string;
   date: string;
+  role: string;
 };
 
 export type CartType = {
