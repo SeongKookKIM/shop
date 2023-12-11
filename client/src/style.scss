@@ -1863,3 +1863,96 @@ body.active {
     }
   }
 }
+
+// Admin-Pages
+
+.admin-home {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  .admin-nav {
+    width: 300px;
+    height: 100vh;
+    border-right: 1px solid black;
+    z-index: 10;
+    background-color: white;
+    h6 {
+      width: 100%;
+      font-size: 20px;
+      font-weight: 500;
+      color: black;
+      margin-bottom: 50px;
+      padding: 20px;
+      cursor: pointer;
+    }
+    .accordion-item {
+      .accordion-header {
+        --bs-accordion-active-color: none;
+        --bs-accordion-active-bg: none;
+        --bs-accordion-btn-focus-box-shadow: none;
+        --bs-accordion-inner-border-radius: none;
+        --bs-accordion-border-radius: none;
+        --bs-accordion-border-color: none;
+        button {
+          border-radius: 0;
+          font-size: 14px;
+          font-weight: 500;
+          font-family: $font;
+          &::after {
+            width: 15px;
+            height: 15px;
+            background-size: cover;
+          }
+        }
+      }
+      .accordion-body {
+        --bs-accordion-border-color: transparent;
+        ul {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          border: none;
+          li {
+            span {
+              font-size: 12px;
+              color: #999;
+              cursor: pointer;
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+    }
+    .shop-return {
+      margin-top: 50px;
+      padding: 20px;
+      p {
+        display: flex;
+        gap: 5px;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    }
+  }
+  .admin-landing {
+    width: calc(100% - 300px);
+    overflow-y: scroll;
+    @include flexCenter();
+    ul {
+      width: 100%;
+      border: 1px solid red;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      padding: 50px;
+      li {
+        border: 1px solid black;
+      }
+    }
+  }
+}

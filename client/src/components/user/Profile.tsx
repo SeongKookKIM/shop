@@ -126,7 +126,7 @@ function Profile({ user }: userPropsType) {
             navigate("/admin/home");
           }}
         >
-          관리자 페이지 로그인
+          관리자 페이지
         </span>
       )}
       <Footer classPadding="active" />
