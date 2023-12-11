@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ProductType } from "../type/Type";
 import SubMenu from "../components/menu/SubMenu";
+import Footer from "../components/footer/Footer";
 
 function Product() {
   const [itemLayout, setItemLayout] = useState<string>("big");
@@ -49,6 +50,7 @@ function Product() {
         {itemLayout === "mid" && <MidProduct itemList={itemList} />}
         {itemLayout === "small" && <SmallProduct itemList={itemList} />}
       </div>
+      <Footer classPadding={""} />
     </div>
   );
 }

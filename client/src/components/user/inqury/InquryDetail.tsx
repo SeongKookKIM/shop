@@ -5,6 +5,7 @@ import { LuArrowLeft } from "react-icons/lu";
 import { InquryType } from "../../../type/Type";
 import axios from "axios";
 import SubMenu from "../../menu/SubMenu";
+import Footer from "../../footer/Footer";
 
 function InquryDetail() {
   const [inquryList, setInquryList] = useState<InquryType>();
@@ -74,6 +75,7 @@ function InquryDetail() {
       <span className="inqury-delete" onClick={handlerInquryDelete}>
         삭제하기
       </span>
+      <Footer classPadding="active" />
     </div>
   );
 }

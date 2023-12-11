@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../Store";
 import axios from "axios";
 import SubMenu from "../components/menu/SubMenu";
+import Footer from "../components/footer/Footer";
 
 function Pay() {
   const [itemList, setItemList] = useState<CartType[]>();
@@ -171,6 +172,7 @@ function Pay() {
           결제하기
         </button>
       </div>
+      <Footer classPadding="" />
     </div>
   );
 }

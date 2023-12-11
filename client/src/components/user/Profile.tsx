@@ -7,6 +7,7 @@ import ProfileEmail from "./ProfileEmail";
 import ProfilePhone from "./ProfilePhone";
 import ProfilePassword from "./ProfilePassword";
 import { useNavigate } from "react-router-dom";
+import Footer from "../footer/Footer";
 
 interface userPropsType {
   user: UserType | undefined;
@@ -114,6 +115,7 @@ function Profile({ user }: userPropsType) {
           />
         )}
       </div>
+      <Footer classPadding="active" />
     </div>
   );
 }

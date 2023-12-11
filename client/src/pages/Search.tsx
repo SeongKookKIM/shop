@@ -3,6 +3,7 @@ import SubMenu from "../components/menu/SubMenu";
 import { ProductType } from "../type/Type";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/footer/Footer";
 
 function Search() {
   const [allItem, setAllItem] = useState<ProductType[]>();
@@ -94,6 +95,7 @@ function Search() {
           )}
         </ul>
       </div>
+      <Footer classPadding="" />
     </div>
   );
 }

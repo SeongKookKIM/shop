@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SubMenu from "../components/menu/SubMenu";
+import Footer from "../components/footer/Footer";
 
 function Login() {
   const [emailAlert, setEmailAlert] = useState<string>("");
@@ -107,10 +108,10 @@ function Login() {
         </form>
 
         <div className="find-account">
-          <p>비밀번호 찾기</p>
           <p onClick={() => navigate("/sign")}>회원가입</p>
         </div>
       </div>
+      <Footer classPadding={"active"} />
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { InquryType, UserType } from "../type/Type";
 import axios from "axios";
 import SubMenu from "../components/menu/SubMenu";
+import Footer from "../components/footer/Footer";
 
 function Contact() {
   const [userInfo, setUserInfo] = useState<UserType>();
@@ -72,6 +73,7 @@ function Contact() {
       >
         문의하기
       </span>
+      <Footer classPadding="active" />
     </div>
   );
 }

@@ -117,7 +117,7 @@ function Slide({ banner, num }: bannerProps) {
               </li>
             </ul>
           </div>
-          <footer className="footer">
+          <footer className="footer-copy">
             <span>&copy; reserved by Sam</span>
           </footer>
         </SwiperSlide>

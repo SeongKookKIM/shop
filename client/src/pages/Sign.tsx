@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDaumPostcodePopup } from "react-daum-postcode";
 import SubMenu from "../components/menu/SubMenu";
+import Footer from "../components/footer/Footer";
 
 function Sign() {
   const [signName, setSignName] = useState<string>("");
@@ -264,6 +265,7 @@ function Sign() {
           </button>
         </form>
       </div>
+      <Footer classPadding="active" />
     </div>
   );
 }

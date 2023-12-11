@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ReturnItemType, UserType } from "../../../type/Type";
 import axios from "axios";
+import Footer from "../../footer/Footer";
 
 interface UserPropsType {
   user: UserType | undefined;
@@ -85,6 +86,7 @@ function ReturnList({ user }: UserPropsType) {
           반품내역이 없습니다.
         </div>
       )}
+      <Footer classPadding="" />
     </div>
   );
 }

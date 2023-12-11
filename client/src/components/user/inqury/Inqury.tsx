@@ -6,6 +6,7 @@ import { LuArrowLeft } from "react-icons/lu";
 
 import { UserType } from "../../../type/Type";
 import SubMenu from "../../menu/SubMenu";
+import Footer from "../../footer/Footer";
 
 function Inqury() {
   const [userInfo, setUserInfo] = useState<UserType>();
@@ -160,6 +161,7 @@ function Inqury() {
         </div>
         <button type="submit">문의하기</button>
       </form>
+      <Footer classPadding="active" />
     </div>
   );
 }

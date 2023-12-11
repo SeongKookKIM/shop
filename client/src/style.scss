@@ -295,7 +295,7 @@ body.active {
           }
         }
       }
-      .footer {
+      .footer-copy {
         width: 100%;
         position: absolute;
         bottom: 0;
@@ -320,8 +320,6 @@ body.active {
 .login,
 .sign {
   width: 100%;
-  @include flexCenter();
-  justify-content: flex-start;
   padding-top: 230px;
   padding-left: 169px;
 
@@ -405,9 +403,7 @@ body.active {
 // SIGN
 .sign {
   width: 100%;
-  @include flexCenter();
-  justify-content: flex-start;
-  padding-bottom: 200px;
+
   .sign-wrapper {
     width: 100%;
     span {
@@ -465,9 +461,7 @@ body.active {
 // Product
 .product {
   width: 100%;
-  @include flexCenter();
-  justify-content: flex-start;
-  padding: 200px 0;
+  padding: 200px 0 0;
   .product-wrapper {
     width: 100%;
     .product-layout {
@@ -509,7 +503,6 @@ body.active {
     // Big-Product
     .item-wrapper {
       width: 80%;
-
       margin: 0 auto;
       @include flexCenter();
       gap: 50px;
@@ -557,6 +550,7 @@ body.active {
       padding: 30px 0 0;
       display: grid;
       grid-template-columns: repeat(12, 1fr);
+
       .item {
         width: 100%;
         cursor: pointer;
@@ -572,7 +566,7 @@ body.active {
 // Detail
 .detail {
   width: 100%;
-  padding: 200px 0;
+  padding: 200px 0 0;
   .detail-inner {
     width: 100%;
     max-width: 80%;
@@ -951,7 +945,7 @@ body.active {
 // Pay
 .pay {
   width: 100%;
-  padding: 230px 0 200px;
+  padding: 230px 0 80px;
   position: relative;
   .pay-inner {
     width: 100%;
@@ -1091,6 +1085,7 @@ body.active {
     gap: 50px;
     border-top: 1px solid black;
     background-color: white;
+    z-index: 10;
     span {
       display: block;
       font-size: 12px;
@@ -1169,7 +1164,6 @@ body.active {
   width: 100%;
   padding-top: 230px;
   padding-left: 169px;
-  padding-bottom: 100px;
   position: relative;
   .user-inner {
     width: 100%;
@@ -1303,7 +1297,6 @@ body.active {
       width: 100%;
       position: absolute;
       left: 0;
-      padding-bottom: 200px;
       .list-info {
         width: 100%;
         padding-top: 50px;
@@ -1420,7 +1413,7 @@ body.active {
 // Contact
 .contact {
   width: 100%;
-  padding: 230px 0 200px 169px;
+  padding: 230px 0 0px 169px;
   .contact-table {
     width: 602px;
     p {
@@ -1473,7 +1466,7 @@ body.active {
 // Inqury
 .inqury {
   width: 100%;
-  padding: 230px 0 200px 169px;
+  padding: 230px 0 0px 169px;
   .back {
     margin-bottom: 20px;
     width: 20px;
@@ -1600,7 +1593,7 @@ body.active {
 // Inqury-detail
 .inqury-detail {
   width: 100%;
-  padding: 230px 0 200px 169px;
+  padding: 230px 0 0px 169px;
   .back {
     margin-bottom: 20px;
     width: 20px;
@@ -1695,7 +1688,7 @@ body.active {
 // Search
 .search {
   width: 100%;
-  padding: 230px 0 169px;
+  padding: 230px 0 0px;
   .search-box {
     width: 100%;
     padding: 20px 0;
@@ -1771,6 +1764,96 @@ body.active {
           }
         }
       }
+    }
+  }
+}
+
+// Footer
+.footer.active {
+  padding: 150px 0 50px;
+  .copy {
+    position: relative;
+    padding: 0;
+    justify-content: flex-start;
+    margin-top: 50px;
+  }
+}
+.footer {
+  width: 100%;
+  padding: 150px 0 100px 169px;
+  position: relative;
+  .footer-sns {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    p {
+      font-size: 22px;
+      font-weight: 500;
+      color: black;
+      pointer-events: none;
+    }
+    ul {
+      width: 100%;
+      display: flex;
+      gap: 30px;
+      li {
+        span {
+          position: relative;
+          right: 0;
+          bottom: 0;
+          font-size: 14px;
+          font-weight: 500;
+          cursor: pointer;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+  .call {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    pointer-events: none;
+    p {
+      font-size: 22px;
+      font-weight: 500;
+      color: black;
+      pointer-events: none;
+      margin-bottom: 30px;
+    }
+    span {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+  }
+  .lang {
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    gap: 5px;
+    span {
+      font-size: 12px;
+      color: #999;
+      font-weight: 400;
+      cursor: default;
+    }
+  }
+  .copy {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    @include flexCenter();
+    padding: 20px 0;
+    span {
+      font-size: 13px;
+      color: black;
+      cursor: default;
     }
   }
 }

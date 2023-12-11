@@ -3,6 +3,7 @@ import { CartType, ProductBuyListType, UserType } from "../../../type/Type";
 import axios from "axios";
 
 import { LuCheck } from "react-icons/lu";
+import Footer from "../../footer/Footer";
 
 interface UserPropsType {
   user: UserType | undefined;
@@ -170,6 +171,7 @@ function BuyList({ user }: UserPropsType) {
           구매내역이 없습니다.
         </div>
       )}
+      <Footer classPadding="" />
     </div>
   );
 }
