@@ -159,6 +159,19 @@ const payAddress = createSlice({
 });
 export let { handlerChangeAddress } = payAddress.actions;
 
+const adminNav = createSlice({
+  name: "adminNav",
+  initialState: {
+    show: true,
+  },
+  reducers: {
+    handlerAdminMenu(state, action) {
+      state.show = action.payload;
+    },
+  },
+});
+export let { handlerAdminMenu } = adminNav.actions;
+
 const store = configureStore({
   reducer: {
     HomeBanner: HomeBanner.reducer,
@@ -168,6 +181,7 @@ const store = configureStore({
     swiperText: swiperText.reducer,
     showCartPage: showCartPage.reducer,
     payAddress: payAddress.reducer,
+    adminNav: adminNav.reducer,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;

@@ -1,13 +1,25 @@
 import React from "react";
 import Accordion from "react-bootstrap/Accordion";
-import { LuShoppingBag } from "react-icons/lu";
+import { LuShoppingBag, LuArrowLeft } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
+import { RootState, handlerAdminMenu } from "../../Store";
+import { useDispatch, useSelector } from "react-redux";
 
 function AdminNav() {
   let navigate = useNavigate();
+  let dispatch = useDispatch();
+  const adminNav = useSelector((state: RootState) => state.adminNav);
 
   return (
-    <div className="admin-nav">
+    <div className={adminNav.show ? "admin-nav" : "admin-nav hide"}>
+      <div className="nav-hide">
+        <LuArrowLeft
+          onClick={() => {
+            dispatch(handlerAdminMenu(false));
+          }}
+        />
+      </div>
+
       <h6>관리자 페이지</h6>
 
       <Accordion defaultActiveKey="0">
