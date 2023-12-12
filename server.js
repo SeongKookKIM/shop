@@ -48,6 +48,7 @@ app.use("/profile", require("./routes/user/Profile"));
 app.use("/inqury", require("./routes/user/Inqury"));
 app.use("/search", require("./routes/search/search"));
 app.use("/admin/home", require("./routes/admin/home/AdminHome"));
+app.use("/admin/user", require("./routes/admin/user/AdminUser"));
 
 app.get("*", function (req, res) {
   응답.sendFile(path.join(__dirname, "client/build/index.html"));

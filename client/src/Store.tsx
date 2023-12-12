@@ -1,5 +1,6 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
+// 배너 slide
 const HomeBanner = createSlice({
   name: "HomeBanner",
   initialState: [
@@ -79,32 +80,6 @@ const HomeBanner = createSlice({
   reducers: {},
 });
 
-const menuClass = createSlice({
-  name: "menuClass",
-  initialState: {
-    menuClass: "menu",
-  },
-  reducers: {
-    handlerMenu(state, action) {
-      state.menuClass = action.payload;
-    },
-  },
-});
-export let { handlerMenu } = menuClass.actions;
-
-const menuActive = createSlice({
-  name: "menuActive",
-  initialState: {
-    active: false,
-  },
-  reducers: {
-    handlerMenuActive(state, action) {
-      state.active = action.payload;
-    },
-  },
-});
-export let { handlerMenuActive } = menuActive.actions;
-
 const swiperText = createSlice({
   name: "swiperText",
   initialState: {
@@ -131,6 +106,34 @@ const slideNum = createSlice({
 });
 export let { handlerSlideNum } = slideNum.actions;
 
+// 메뉴
+const menuClass = createSlice({
+  name: "menuClass",
+  initialState: {
+    menuClass: "menu",
+  },
+  reducers: {
+    handlerMenu(state, action) {
+      state.menuClass = action.payload;
+    },
+  },
+});
+export let { handlerMenu } = menuClass.actions;
+
+const menuActive = createSlice({
+  name: "menuActive",
+  initialState: {
+    active: false,
+  },
+  reducers: {
+    handlerMenuActive(state, action) {
+      state.active = action.payload;
+    },
+  },
+});
+export let { handlerMenuActive } = menuActive.actions;
+
+// 바스킷벡
 const showCartPage = createSlice({
   name: "showCartPage",
   initialState: {
@@ -144,6 +147,7 @@ const showCartPage = createSlice({
 });
 export let { handlerCartShow } = showCartPage.actions;
 
+// 결제
 const payAddress = createSlice({
   name: "payAddress",
   initialState: {
@@ -159,6 +163,7 @@ const payAddress = createSlice({
 });
 export let { handlerChangeAddress } = payAddress.actions;
 
+// 관리자 페이지 메뉴
 const adminNav = createSlice({
   name: "adminNav",
   initialState: {
@@ -172,6 +177,33 @@ const adminNav = createSlice({
 });
 export let { handlerAdminMenu } = adminNav.actions;
 
+const adminPageChange = createSlice({
+  name: "adminPageChange",
+  initialState: {
+    pages: "",
+  },
+  reducers: {
+    handlerAdminPagesChange(state, action) {
+      state.pages = action.payload.pages;
+    },
+  },
+});
+
+export let { handlerAdminPagesChange } = adminPageChange.actions;
+
+const adminUserDetailId = createSlice({
+  name: "adminUserDetailId",
+  initialState: {
+    _id: "",
+  },
+  reducers: {
+    handlerUserClickId(state, action) {
+      state._id = action.payload._id;
+    },
+  },
+});
+export let { handlerUserClickId } = adminUserDetailId.actions;
+
 const store = configureStore({
   reducer: {
     HomeBanner: HomeBanner.reducer,
@@ -182,6 +214,8 @@ const store = configureStore({
     showCartPage: showCartPage.reducer,
     payAddress: payAddress.reducer,
     adminNav: adminNav.reducer,
+    adminPageChange: adminPageChange.reducer,
+    adminUserDetailId: adminUserDetailId.reducer,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;

@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { LuArrowRight } from "react-icons/lu";
-import { RootState, handlerAdminMenu } from "../../../Store";
+import {
+  RootState,
+  handlerAdminMenu,
+  handlerAdminPagesChange,
+} from "../../../Store";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
@@ -78,7 +82,17 @@ function AdminLanding() {
       </ul>
 
       <div className="summary-box">
-        <span>회원정보</span>
+        <span
+          onClick={() => {
+            dispatch(
+              handlerAdminPagesChange({
+                pages: "user",
+              })
+            );
+          }}
+        >
+          회원정보
+        </span>
         <span>상품정보</span>
         <span>주문정보</span>
         <span>고객문의</span>

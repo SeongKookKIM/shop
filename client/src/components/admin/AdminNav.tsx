@@ -2,7 +2,11 @@ import React from "react";
 import Accordion from "react-bootstrap/Accordion";
 import { LuShoppingBag, LuArrowLeft } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
-import { RootState, handlerAdminMenu } from "../../Store";
+import {
+  RootState,
+  handlerAdminMenu,
+  handlerAdminPagesChange,
+} from "../../Store";
 import { useDispatch, useSelector } from "react-redux";
 
 function AdminNav() {
@@ -20,7 +24,17 @@ function AdminNav() {
         />
       </div>
 
-      <h6>관리자 페이지</h6>
+      <h6
+        onClick={() => {
+          dispatch(
+            handlerAdminPagesChange({
+              pages: "",
+            })
+          );
+        }}
+      >
+        관리자 페이지
+      </h6>
 
       <Accordion defaultActiveKey="0">
         <Accordion.Item eventKey="1">
@@ -28,7 +42,17 @@ function AdminNav() {
           <Accordion.Body>
             <ul>
               <li>
-                <span>회원관리</span>
+                <span
+                  onClick={() => {
+                    dispatch(
+                      handlerAdminPagesChange({
+                        pages: "user",
+                      })
+                    );
+                  }}
+                >
+                  회원관리
+                </span>
               </li>
             </ul>
           </Accordion.Body>
@@ -41,7 +65,7 @@ function AdminNav() {
                 <span>상품등록</span>
               </li>
               <li>
-                <span>상품수정</span>
+                <span>상품수정 및 삭제</span>
               </li>
             </ul>
           </Accordion.Body>

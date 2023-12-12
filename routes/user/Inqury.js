@@ -62,24 +62,6 @@ router.post("/add", (req, res) => {
 
 // 이미지 버킷에 저장
 router.post("/image", upload.array("src"), (req, res) => {
-  //   const blob = bucket.file(req.file.originalname);
-
-  //   const blobStream = blob.createWriteStream();
-
-  //   blobStream.on("error", (err) => {
-  //     console.error(err);
-  //     res.status(500).send(err);
-  //   });
-
-  //   blobStream.on("finish", () => {
-  //     const publicUrl = format(
-  //       `https://storage.googleapis.com/${bucket.name}/${blob.name}`
-  //     );
-
-  //     res.status(200).send(publicUrl);
-  //   });
-
-  //   blobStream.end(req.file.buffer);
   let urls = [];
 
   for (let i = 0; i < req.files.length; i++) {

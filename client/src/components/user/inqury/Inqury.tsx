@@ -81,6 +81,7 @@ function Inqury() {
               imageSrc: res.data,
               answer: "",
             };
+            console.log(res.data);
 
             axios
               .post("http://localhost:8080/inqury/add", inquryData)

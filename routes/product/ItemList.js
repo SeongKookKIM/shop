@@ -17,8 +17,6 @@ MongoClient.connect(
   }
 );
 
-const { ObjectId } = require("mongodb");
-
 // 상품리스트목록
 router.post("/", (req, res) => {
   let findItem = {
