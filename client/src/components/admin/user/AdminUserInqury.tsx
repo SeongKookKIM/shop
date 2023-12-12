@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { InquryType } from "../../../type/Type";
-import { useDispatch } from "react-redux";
 
 interface IdPropsType {
   id: string;
@@ -14,8 +13,6 @@ function AdminUserInqury({ id }: IdPropsType) {
 
   const [inquryDetailShow, setInquryDetailShow] = useState<boolean>(false);
   const [inquryDetail, setInquryDetail] = useState<InquryType>();
-
-  let dispatch = useDispatch();
 
   useEffect(() => {
     axios
@@ -78,7 +75,7 @@ function AdminUserInqury({ id }: IdPropsType) {
             <textarea
               typeof="text"
               name="detail"
-              defaultValue={inquryDetail.detail}
+              value={inquryDetail.detail}
               disabled
             ></textarea>
             <p className="image">이미지</p>
@@ -98,7 +95,7 @@ function AdminUserInqury({ id }: IdPropsType) {
                 <textarea
                   typeof="text"
                   name="answer"
-                  defaultValue={inquryDetail.answer}
+                  value={inquryDetail.answer}
                   disabled
                 ></textarea>
               </div>
