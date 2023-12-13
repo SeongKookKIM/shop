@@ -2611,4 +2611,31 @@ body.active {
       }
     }
   }
+  // Product-Edit
+  .admin-product-edit.active {
+    width: 100%;
+    transition: 0.5s;
+  }
+  .admin-product-edit {
+    width: calc(100% - 300px);
+    overflow-y: scroll;
+    transition: 0.5s;
+    padding: 20px;
+    padding-bottom: 100px;
+    .nav-show {
+      width: 100%;
+      margin-bottom: 50px;
+      svg {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+      }
+    }
+    h6 {
+      font-size: 21px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      pointer-events: none;
+    }
+  }
 }

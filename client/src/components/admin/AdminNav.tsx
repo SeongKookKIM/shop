@@ -75,7 +75,17 @@ function AdminNav() {
                 </span>
               </li>
               <li>
-                <span>상품수정 및 삭제</span>
+                <span
+                  onClick={() => {
+                    dispatch(
+                      handlerAdminPagesChange({
+                        pages: "productEdit",
+                      })
+                    );
+                  }}
+                >
+                  상품수정 및 삭제
+                </span>
               </li>
             </ul>
           </Accordion.Body>
