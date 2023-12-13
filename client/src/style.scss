@@ -507,6 +507,10 @@ body.active {
       .item {
         margin-bottom: 50px;
       }
+      .item-none {
+        width: 100%;
+        @include flexCenter();
+      }
     }
 
     // Mid-Product
@@ -539,6 +543,10 @@ body.active {
           }
         }
       }
+      .item-none {
+        width: 100%;
+        @include flexCenter();
+      }
     }
     // Small-Product
     .item-small {
@@ -554,6 +562,10 @@ body.active {
           width: 100%;
           object-fit: cover;
         }
+      }
+      .item-none {
+        width: 100%;
+        @include flexCenter();
       }
     }
   }

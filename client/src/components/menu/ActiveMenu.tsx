@@ -114,7 +114,7 @@ function TabMenuList({ tab }: tabProps) {
             <li>
               <span
                 onClick={() => {
-                  navigate("/product/all/deco");
+                  navigate("/product/all/life");
                   dispatch(handlerMenuActive(false));
                 }}
               >

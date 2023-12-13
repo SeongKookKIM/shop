@@ -61,7 +61,7 @@ function BigProduct({ itemList }: any) {
   return (
     <>
       <div className="item-wrapper">
-        {itemList ? (
+        {itemList && itemList.length > 0 ? (
           <>
             {itemList.map((it: ProductType, i: number) => {
               return (
@@ -101,7 +101,7 @@ function MidProduct({ itemList }: any) {
 
   return (
     <div className="item-mid">
-      {itemList ? (
+      {itemList && itemList.length > 0 ? (
         <>
           {itemList.map((it: ProductType, i: number) => {
             return (
@@ -137,7 +137,7 @@ function SmallProduct({ itemList }: any) {
   let navigate = useNavigate();
   return (
     <div className="item-small">
-      {itemList ? (
+      {itemList && itemList.length > 0 ? (
         <>
           {itemList.map((it: ProductType, i: number) => {
             return (

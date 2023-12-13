@@ -41,7 +41,6 @@ router.post("/item", (req, res) => {
             "price",
             "color",
             "size",
-            "itemSearch",
             "mainCategory",
             "subCategory",
           ],

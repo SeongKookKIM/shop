@@ -23,7 +23,7 @@ const HomeBanner = createSlice({
       {
         src: "/assets/banner/1-life.jpg",
         title: "LIFE | 데코",
-        link: "/product/all/deco",
+        link: "/product/all/life",
       },
     ],
     [

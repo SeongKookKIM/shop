@@ -320,9 +320,7 @@ function AdminProductAdd() {
                 setSubCateroty(e.target.value);
               }}
             >
-              <option value="" disabled>
-                카테고리를 선택해주세요.
-              </option>
+              <option value="">카테고리를 선택해주세요.</option>
               {mainCategory === "all" && (
                 <>
                   <option value="coat">coat</option>
@@ -335,14 +333,14 @@ function AdminProductAdd() {
                 <>
                   <option value="best">best</option>
                   <option value="new">new</option>
-                  <option value="colllection">colllection</option>
+                  <option value="collection">collection</option>
                 </>
               )}
               {mainCategory === "women" && (
                 <>
                   <option value="best">best</option>
                   <option value="new">new</option>
-                  <option value="colllection">colllection</option>
+                  <option value="collection">collection</option>
                 </>
               )}
               {mainCategory === "home" && (
