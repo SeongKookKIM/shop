@@ -62,7 +62,17 @@ function AdminNav() {
           <Accordion.Body>
             <ul>
               <li>
-                <span>상품등록</span>
+                <span
+                  onClick={() => {
+                    dispatch(
+                      handlerAdminPagesChange({
+                        pages: "productAdd",
+                      })
+                    );
+                  }}
+                >
+                  상품등록
+                </span>
               </li>
               <li>
                 <span>상품수정 및 삭제</span>

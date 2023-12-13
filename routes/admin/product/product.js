@@ -40,32 +40,48 @@ const bucket = storage.bucket("sam-shop-image");
 const util = require("util");
 const format = util.format;
 
-// 문의하기 가져오기
-router.post("/", (req, res) => {
-  db.collection("contact")
-    .find({ user: req.body.user })
-    .toArray((err, result) => {
-      if (err) console.log(err);
-
-      return res.status(200).json(result);
-    });
-});
-
-// 문의하기 db저장
+// 상품추가
 router.post("/add", (req, res) => {
-  db.collection("contact").insertOne(req.body, (err, result) => {
+  db.collection("product").insertOne(req.body, (err, result) => {
     if (err) console.log(err);
 
-    return res.status(200).send("빠른 시일 내에 답변드리도록 하겠습니다.");
+    return res.status(200).send("상품을 등록하셨습니다.");
   });
 });
 
-// 이미지 버킷에 저장
-router.post("/image", upload.array("src"), async (req, res) => {
+// thumbnail
+router.post("/thumbnail", upload.single("thumbnail"), (req, res) => {
+  if (!req.file) {
+    res.status(200).send("No file uploaded.");
+    return;
+  }
+
+  const blob = bucket.file(`thumbnail/${req.file.originalname}`);
+
+  const blobStream = blob.createWriteStream();
+
+  blobStream.on("error", (err) => {
+    console.error(err);
+    res.status(500).send(err);
+  });
+
+  blobStream.on("finish", () => {
+    const publicUrl = format(
+      `https://storage.googleapis.com/${bucket.name}/${blob.name}`
+    );
+
+    res.status(200).send(publicUrl);
+  });
+
+  blobStream.end(req.file.buffer);
+});
+
+// Src
+router.post("/src", upload.array("src"), async (req, res) => {
   let urls = [];
 
   for (const file of req.files) {
-    const blob = bucket.file(`inqury/${file.originalname}`);
+    const blob = bucket.file(`src/${file.originalname}`);
     const blobStream = blob.createWriteStream();
 
     await new Promise((resolve, reject) => {
@@ -89,15 +105,6 @@ router.post("/image", upload.array("src"), async (req, res) => {
   }
 
   res.status(200).send(urls);
-});
-
-// 문의하기 삭제
-router.post("/delete", (req, res) => {
-  db.collection("contact").deleteOne({ _id: ObjectId(req.body._id) }, (err) => {
-    if (err) console.log(err);
-
-    return res.status(200).send("해당 문의를 삭제하셨습니다.");
-  });
 });
 
 module.exports = router;

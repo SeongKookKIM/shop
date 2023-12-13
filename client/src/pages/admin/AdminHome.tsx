@@ -5,6 +5,7 @@ import { RootState } from "../../Store";
 import { useSelector } from "react-redux";
 import AdminUser from "../../components/admin/user/AdminUser";
 import AdminUserDetail from "../../components/admin/user/AdminUserDetail";
+import AdminProductAdd from "../../components/admin/product/AdminProductAdd";
 
 function AdminHome() {
   const adminPage = useSelector((state: RootState) => state.adminPageChange);
@@ -15,6 +16,7 @@ function AdminHome() {
       {adminPage.pages === "" && <AdminLanding />}
       {adminPage.pages === "user" && <AdminUser />}
       {adminPage.pages === "userDetail" && <AdminUserDetail />}
+      {adminPage.pages === "productAdd" && <AdminProductAdd />}
     </div>
   );
 }

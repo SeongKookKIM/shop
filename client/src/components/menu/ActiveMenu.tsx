@@ -85,7 +85,6 @@ function TabMenuList({ tab }: tabProps) {
               <span
                 onClick={() => {
                   navigate("/product/all/coat");
-                  dispatch(handlerMenu("menu-subpage"));
                   dispatch(handlerMenuActive(false));
                 }}
               >
@@ -96,7 +95,6 @@ function TabMenuList({ tab }: tabProps) {
               <span
                 onClick={() => {
                   navigate("/product/all/best");
-                  dispatch(handlerMenu("menu-subpage"));
                   dispatch(handlerMenuActive(false));
                 }}
               >
@@ -107,7 +105,6 @@ function TabMenuList({ tab }: tabProps) {
               <span
                 onClick={() => {
                   navigate("/product/all/new");
-                  dispatch(handlerMenu("menu-subpage"));
                   dispatch(handlerMenuActive(false));
                 }}
               >
@@ -118,7 +115,6 @@ function TabMenuList({ tab }: tabProps) {
               <span
                 onClick={() => {
                   navigate("/product/all/deco");
-                  dispatch(handlerMenu("menu-subpage"));
                   dispatch(handlerMenuActive(false));
                 }}
               >
@@ -128,32 +124,78 @@ function TabMenuList({ tab }: tabProps) {
           </ul>,
           <ul>
             <li>
-              <span>BEST</span>
+              <span
+                onClick={() => {
+                  navigate("/product/men/best");
+                  dispatch(handlerMenuActive(false));
+                }}
+              >
+                BEST
+              </span>
             </li>
             <li>
-              <span>NEW</span>
+              <span
+                onClick={() => {
+                  navigate("/product/men/new");
+                  dispatch(handlerMenuActive(false));
+                }}
+              >
+                NEW
+              </span>
             </li>
             <li>
-              <span>COLLECTION</span>
+              <span
+                onClick={() => {
+                  navigate("/product/men/collection");
+                  dispatch(handlerMenuActive(false));
+                }}
+              >
+                COLLECTION
+              </span>
             </li>
           </ul>,
           <ul>
             <li>
-              <span>BEST</span>
+              <span
+                onClick={() => {
+                  navigate("/product/women/best");
+                  dispatch(handlerMenuActive(false));
+                }}
+              >
+                BEST
+              </span>
             </li>
             <li>
-              <span>NEW</span>
+              <span
+                onClick={() => {
+                  navigate("/product/women/new");
+                  dispatch(handlerMenuActive(false));
+                }}
+              >
+                NEW
+              </span>
             </li>
             <li>
-              <span>COLLECTION</span>
-            </li>
-            <li>
-              <span>CARDIGAN</span>
+              <span
+                onClick={() => {
+                  navigate("/product/women/collection");
+                  dispatch(handlerMenuActive(false));
+                }}
+              >
+                COLLECTION
+              </span>
             </li>
           </ul>,
           <ul>
             <li>
-              <span>DECO1</span>
+              <span
+                onClick={() => {
+                  navigate("/product/home/deco");
+                  dispatch(handlerMenuActive(false));
+                }}
+              >
+                DECO
+              </span>
             </li>
           </ul>,
         ][tab]
