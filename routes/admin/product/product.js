@@ -136,4 +136,34 @@ router.post("/list", (req, res) => {
   }
 });
 
+// 상품삭제하기
+router.post("/delete", (req, res) => {
+  db.collection("product").deleteOne(
+    { _id: ObjectId(req.body._id) },
+    (err, result) => {
+      if (err) console.log(err);
+      return res.status(200).send("해당 상품을 삭제하셨습니다.");
+    }
+  );
+});
+
+// 상품수정하기
+router.post("/edit", (req, res) => {
+  db.collection("product").updateOne(
+    { _id: ObjectId(req.body._id) },
+    {
+      $set: {
+        name: req.body.name,
+        price: req.body.price,
+        description: req.body.description,
+      },
+    },
+    (err, result) => {
+      if (err) console.log(err);
+
+      return res.status(200).send("상품 정보를 수정하셨습니다.");
+    }
+  );
+});
+
 module.exports = router;

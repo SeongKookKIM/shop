@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import { ProductType } from "../../../type/Type";
 import axios from "axios";
 
-function AdminProductList() {
+interface ProductStatusType {
+  setProductStatus: React.Dispatch<React.SetStateAction<boolean>>;
+  setItem: React.Dispatch<React.SetStateAction<ProductType | undefined>>;
+}
+
+function AdminProductList({ setProductStatus, setItem }: ProductStatusType) {
   const [itemMainSort, setItemMainSort] = useState<string>("");
   const [itemSubSort, setItemSubSort] = useState<string>("");
   const [itemList, setItmeList] = useState<ProductType[]>([]);
@@ -18,6 +23,20 @@ function AdminProductList() {
       })
       .catch((err) => console.log(err));
   }, [itemMainSort, itemSubSort]);
+
+  const handelrAdminProductDelete = (item: ProductType) => {
+    if (window.confirm("해당 상품을 삭제하시겠습니까?")) {
+      axios
+        .post("http://localhost:8080/admin/product/delete", item)
+        .then((res) => {
+          alert(res.data);
+          window.location.reload();
+        })
+        .catch((err) => console.log(err));
+    } else {
+      return;
+    }
+  };
 
   return (
     <div className="admin-product-list">
@@ -82,8 +101,17 @@ function AdminProductList() {
                   <div className="product-info">
                     <p>{item.name}</p>
                     <div className="info-btn">
-                      <span>수정하기</span>
-                      <span>삭제하기</span>
+                      <span
+                        onClick={() => {
+                          setProductStatus(true);
+                          setItem(item);
+                        }}
+                      >
+                        수정하기
+                      </span>
+                      <span onClick={() => handelrAdminProductDelete(item)}>
+                        삭제하기
+                      </span>
                     </div>
                   </div>
                 </li>
