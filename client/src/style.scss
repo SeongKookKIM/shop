@@ -2637,5 +2637,74 @@ body.active {
       margin-bottom: 20px;
       pointer-events: none;
     }
+    .admin-product-list {
+      width: 100%;
+      margin-top: 50px;
+      .product-sort-box {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        .sort-main,
+        .sort-sub {
+          width: 100%;
+          display: flex;
+          gap: 10px;
+          span {
+            font-size: 13px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+      ul {
+        width: 100%;
+        margin-top: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        li {
+          width: 20%;
+          border: 1px solid black;
+          .product-image {
+            width: 100%;
+            @include flexCenter();
+            border-bottom: 1px solid black;
+            img {
+              width: 100%;
+              object-fit: cover;
+            }
+          }
+          .product-info {
+            padding: 10px;
+            p {
+              width: 100%;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              font-size: 13px;
+              font-weight: 700;
+              cursor: default;
+            }
+            .info-btn {
+              width: 100%;
+              margin-top: 10px;
+              display: flex;
+              gap: 5px;
+              span {
+                font-size: 12px;
+                cursor: pointer;
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

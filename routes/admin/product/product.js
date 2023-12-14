@@ -107,4 +107,33 @@ router.post("/src", upload.array("src"), async (req, res) => {
   res.status(200).send(urls);
 });
 
+// 상품리스트
+router.post("/list", (req, res) => {
+  if (req.body.main === "" && req.body.sub === "") {
+    db.collection("product")
+      .find()
+      .toArray((err, result) => {
+        if (err) console.log(err);
+
+        return res.status(200).json(result);
+      });
+  } else if (req.body.main !== "" && req.body.sub === "") {
+    db.collection("product")
+      .find({ mainCategory: req.body.main })
+      .toArray((err, result) => {
+        if (err) console.log(err);
+
+        return res.status(200).json(result);
+      });
+  } else {
+    db.collection("product")
+      .find({ mainCategory: req.body.main, subCategory: req.body.sub })
+      .toArray((err, result) => {
+        if (err) console.log(err);
+
+        return res.status(200).json(result);
+      });
+  }
+});
+
 module.exports = router;
