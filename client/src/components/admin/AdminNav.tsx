@@ -95,7 +95,17 @@ function AdminNav() {
           <Accordion.Body>
             <ul>
               <li>
-                <span>배송정보</span>
+                <span
+                  onClick={() => {
+                    dispatch(
+                      handlerAdminPagesChange({
+                        pages: "productOrder",
+                      })
+                    );
+                  }}
+                >
+                  배송정보
+                </span>
               </li>
               <li>
                 <span>반품정보</span>
