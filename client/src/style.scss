@@ -2637,6 +2637,7 @@ body.active {
       margin-bottom: 20px;
       pointer-events: none;
     }
+
     .admin-product-list {
       width: 100%;
       margin-top: 50px;
@@ -2806,6 +2807,161 @@ body.active {
       font-weight: 500;
       margin-bottom: 20px;
       pointer-events: none;
+    }
+    .admin-order-status {
+      width: 100%;
+      display: flex;
+      gap: 10px;
+      span {
+        font-size: 14px;
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    .admin-order-list {
+      width: 100%;
+      margin-top: 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      .delivery-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        .delivery-info {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          .admin-user-info,
+          .date,
+          .info-price {
+            width: 100%;
+            display: flex;
+            gap: 10px;
+            p {
+              font-size: 12px;
+              font-weight: 500;
+            }
+            span {
+              font-size: 12px;
+              font-weight: 500;
+            }
+          }
+          .info-status {
+            width: 100%;
+            select {
+              font-size: 12px;
+              font-family: $font;
+              color: black;
+              font-weight: 500;
+              outline: none;
+              border: 1px solid #999;
+              padding: 3px 12px;
+              margin-bottom: 10px;
+
+              option {
+                width: 100%;
+                padding: 0;
+              }
+            }
+            .status-number {
+              display: flex;
+              gap: 10px;
+              align-items: flex-end;
+              p {
+                font-size: 12px;
+              }
+              input {
+                font-family: $font;
+                font-size: 12px;
+                font-weight: 500;
+                outline: none;
+                border: none;
+                border-bottom: 1px solid black;
+              }
+            }
+          }
+          .message {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 5px;
+            span {
+              font-size: 12px;
+            }
+            textarea {
+              width: 350px;
+              border: 1px solid #999;
+              outline: none;
+              font-size: 12px;
+              font-family: $font;
+              letter-spacing: 2px;
+              height: 80px;
+              resize: none;
+              padding: 8px 15px;
+              margin-bottom: 10px;
+              &::-webkit-scrollbar {
+                display: none;
+              }
+            }
+            button {
+              display: block;
+              font-size: 13px;
+              font-weight: 500;
+              background: transparent;
+              border: none;
+              outline: none;
+              cursor: pointer;
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+    }
+    //
+    .delivery-list {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px 1%;
+      .delevery-item {
+        width: 19%;
+        border: 1px solid black;
+        overflow: hidden;
+        .delivery-list-image {
+          width: 100%;
+          img {
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+      .delivery-list-info {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        div {
+          span {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            color: black;
+            cursor: default;
+          }
+        }
+        .product-option,
+        .product-totalt-count {
+          display: flex;
+          gap: 5px;
+        }
+      }
     }
   }
 }

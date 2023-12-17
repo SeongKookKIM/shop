@@ -1,11 +1,57 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { LuArrowRight } from "react-icons/lu";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, handlerAdminMenu } from "../../../Store";
+import { ProductBuyListType } from "../../../type/Type";
+import axios from "axios";
 
 function AdminOrder() {
+  const [deliveryStatus, setDeliveryStatus] = useState<string>("상품준비중");
+  const [list, setList] = useState<ProductBuyListType[]>();
+
+  const [status, setStatus] = useState<string>("");
+  const [deliveryNumber, setDeliveryNumber] = useState<string>();
+
   const adminNav = useSelector((state: RootState) => state.adminNav);
   let dispatch = useDispatch();
+
+  useEffect(() => {
+    axios
+      .post("http://localhost:8080/admin/delivery", {
+        status: deliveryStatus,
+      })
+      .then((res) => {
+        setList(res.data);
+        setStatus(res.data.status);
+        setDeliveryNumber(res.data.deliveryNumber);
+      })
+      .catch((err) => console.log(err));
+  }, [deliveryStatus]);
+
+  const hanlderDeliveryEdit = (delivery: ProductBuyListType) => {
+    if (window.confirm("배송상태를 변경하시겠습니까?")) {
+      axios
+        .post("http://localhost:8080/admin/delivery/edit", {
+          _id: delivery._id,
+          status: status,
+          deliveryNumber: deliveryNumber,
+        })
+        .then((res) => {
+          axios
+            .post("http://localhost:8080/admin/delivery", {
+              status: deliveryStatus,
+            })
+            .then((res) => {
+              setList(res.data);
+              setStatus(res.data.status);
+              setDeliveryNumber(res.data.deliveryNumber);
+            })
+            .catch((err) => console.log(err));
+        });
+    } else {
+      return;
+    }
+  };
 
   return (
     <div className={adminNav.show ? "admin-order" : "admin-order active"}>
@@ -22,38 +68,160 @@ function AdminOrder() {
       </div>
       <h6>배송관리</h6>
 
-      <div className="admin-order-list">
-        <div className="delivery-wrapper">
-          <div className="delivery-info">
-            <div className="info-name">
-              <p>이름</p>
-            </div>
-            <div className="info-status">
-              <select>
-                <option>배송상태를 입력하세요.</option>
-                <option>배송중</option>
-                <option>배송완료</option>
-              </select>
-              <div className="status-number">
-                <p>
-                  송장번호: <span>1234</span>
-                </p>
-              </div>
-            </div>
-            <div className="info-price">
-              <p>
-                총합: <span>1234원</span>
-              </p>
-            </div>
-            <div className="date">
-              <p>
-                구매날짜: <span>1234</span>
-              </p>
-            </div>
-          </div>
+      <div className="admin-order-status">
+        <span onClick={() => setDeliveryStatus("상품준비중")}>상품준비중</span>
+        <span onClick={() => setDeliveryStatus("배송중")}>배송중</span>
+        <span onClick={() => setDeliveryStatus("배송완료")}>배송완료</span>
+      </div>
 
-          <div className="delivery-list"></div>
-        </div>
+      <div className="admin-order-list">
+        {list && list.length > 0 ? (
+          <>
+            {list.map((delivery, idx) => {
+              return (
+                <div className="delivery-wrapper" key={idx}>
+                  <div className="delivery-info">
+                    <div className="admin-user-info">
+                      <span>{delivery.userName}</span>
+                      <span>·</span>
+                      <span>{delivery.userPhone}</span>
+                    </div>
+                    <div className="date">
+                      <p>
+                        구매날짜: <span>{delivery.date}</span>
+                      </p>
+                    </div>
+                    <div className="info-status">
+                      {delivery.status === "상품준비중" && (
+                        <select
+                          name="status"
+                          value={status}
+                          onChange={(e) => setStatus(e.target.value)}
+                        >
+                          <option value={""} disabled>
+                            배송상태를 입력해주세요.
+                          </option>
+                          <option value={"상품준비중"}>상품준비중</option>
+                          <option value={"배송중"}>배송중</option>
+                        </select>
+                      )}
+                      {delivery.status === "배송중" && (
+                        <select
+                          name="status"
+                          value={status}
+                          onChange={(e) => setStatus(e.target.value)}
+                        >
+                          <option value={""} disabled>
+                            배송상태를 입력해주세요.
+                          </option>
+                          <option value={"배송중"}>배송중</option>
+                          <option value={"배송완료"}>배송완료</option>
+                        </select>
+                      )}
+                      {delivery.status === "배송완료" && (
+                        <select
+                          name="status"
+                          value={status}
+                          onChange={(e) => setStatus(e.target.value)}
+                        >
+                          <option value={""} disabled>
+                            배송상태를 입력해주세요.
+                          </option>
+                          <option value={"배송완료"}>배송완료</option>
+                        </select>
+                      )}
+                      {delivery.status === "상품준비중" ? (
+                        <>
+                          {" "}
+                          {status !== undefined && status !== "상품준비중" && (
+                            <div className="status-number">
+                              <p>송장번호:</p>
+                              <input
+                                type="text"
+                                name="deliveryNumber"
+                                autoComplete="off"
+                                value={deliveryNumber}
+                                onChange={(e) =>
+                                  setDeliveryNumber(e.target.value)
+                                }
+                              />
+                            </div>
+                          )}
+                        </>
+                      ) : (
+                        <div className="status-number">
+                          <p>송장번호:</p>
+                          <input
+                            type="text"
+                            name="deliveryNumber"
+                            autoComplete="off"
+                            value={delivery.deliveryNumber}
+                            onChange={(e) => setDeliveryNumber(e.target.value)}
+                            disabled
+                          />
+                        </div>
+                      )}
+                    </div>
+                    <div className="info-price">
+                      <p>
+                        총합:{" "}
+                        <span>{delivery.totalPrice.toLocaleString()}원</span>
+                      </p>
+                    </div>
+                    <div className="message">
+                      <span>배송 요청</span>
+                      <textarea
+                        typeof="text"
+                        autoComplete="off"
+                        disabled={true}
+                        value={delivery.userMessage}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => {
+                          hanlderDeliveryEdit(delivery);
+                        }}
+                      >
+                        저장
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="delivery-list">
+                    {delivery.item.map((item, i) => {
+                      return (
+                        <div className="delevery-item" key={i}>
+                          <div className="delivery-list-image">
+                            <img src={item.image} />
+                          </div>
+                          <div className="delivery-list-info">
+                            <div className="product-name">
+                              <span>{item.name}</span>
+                            </div>
+                            <div className="product-price">
+                              <span>{item.price.toLocaleString()} 원</span>
+                            </div>
+                            <div className="product-option">
+                              <span>{item.color}</span>
+                              <span>·</span>
+                              <span>{item.size}</span>
+                            </div>
+                            <div className="product-totalt-count">
+                              <span>갯수: </span>
+                              <span>{item.count}</span>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })}
+          </>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
