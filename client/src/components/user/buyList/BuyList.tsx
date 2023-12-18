@@ -21,8 +21,8 @@ function BuyList({ user }: UserPropsType) {
         setBuyList(res.data);
 
         // 구매상품 리스트 배열만듬
-        const items = res.data.map((obj: any) => obj.item).flat();
-        setBuyItemList(items);
+        // const items = res.data.map((obj: any) => obj.item).flat();
+        // setBuyItemList(items);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -36,8 +36,8 @@ function BuyList({ user }: UserPropsType) {
     );
   };
   // 기존 주문 리스트에서 반품리스트 빼기
-  const handleReturn = (idx: number) => {
-    const updatedBuyItemList = buyItemList?.filter(
+  const handleReturn = (idx: number, list: CartType[]) => {
+    const updatedBuyItemList = list?.filter(
       (item: any) => !selectedItems.includes(item)
     );
     setBuyItemList(updatedBuyItemList);
@@ -111,6 +111,7 @@ function BuyList({ user }: UserPropsType) {
                       const isSelected = selectedItems.some(
                         (selectedItem: any) => selectedItem._id === it._id
                       );
+
                       return (
                         <li
                           key={i}
@@ -146,7 +147,7 @@ function BuyList({ user }: UserPropsType) {
                 <div className="return">
                   <span
                     onClick={() => {
-                      handleReturn(idx);
+                      handleReturn(idx, list.item);
                     }}
                   >
                     반품하기

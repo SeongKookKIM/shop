@@ -75,7 +75,15 @@ function AdminLanding() {
           <p>신규 주문수</p>
           <span>{newOrderCount}건</span>
         </li>
-        <li>
+        <li
+          onClick={() => {
+            dispatch(
+              handlerAdminPagesChange({
+                pages: "productReturn",
+              })
+            );
+          }}
+        >
           <p>신규 반품수</p>
           <span>{newReturnCount}건</span>
         </li>
