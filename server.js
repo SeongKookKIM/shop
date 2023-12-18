@@ -52,6 +52,7 @@ app.use("/admin/user", require("./routes/admin/user/AdminUser"));
 app.use("/admin/product", require("./routes/admin/product/product"));
 app.use("/admin/delivery", require("./routes/admin/delivery/Delivery"));
 app.use("/admin/return", require("./routes/admin/delivery/Return"));
+app.use("/admin/inqury", require("./routes/admin/inqury/AdminInqury"));
 
 app.get("*", function (req, res) {
   응답.sendFile(path.join(__dirname, "client/build/index.html"));

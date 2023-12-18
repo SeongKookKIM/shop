@@ -9,6 +9,8 @@ import AdminProductAdd from "../../components/admin/product/AdminProductAdd";
 import AdminProductEdit from "../../components/admin/product/AdminProductEdit";
 import AdminOrder from "../../components/admin/delivery/AdminOrder";
 import AdminReturn from "../../components/admin/delivery/AdminReturn";
+import AdminInqury from "../../components/admin/Inqury/AdminInqury";
+import AdminInquryDetail from "../../components/admin/Inqury/AdminInquryDetail";
 
 function AdminHome() {
   const adminPage = useSelector((state: RootState) => state.adminPageChange);
@@ -23,6 +25,8 @@ function AdminHome() {
       {adminPage.pages === "productEdit" && <AdminProductEdit />}
       {adminPage.pages === "productOrder" && <AdminOrder />}
       {adminPage.pages === "productReturn" && <AdminReturn />}
+      {adminPage.pages === "userInqury" && <AdminInqury />}
+      {adminPage.pages === "userInquryDetail" && <AdminInquryDetail />}
     </div>
   );
 }

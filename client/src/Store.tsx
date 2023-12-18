@@ -27,48 +27,59 @@ const HomeBanner = createSlice({
       },
     ],
     [
-      { src: "/assets/banner/2-best.jpg", title: "BEST | 베스트", link: "/" },
-      { src: "/assets/banner/2-new.jpg", title: "NEW | 신상품", link: "/" },
+      {
+        src: "/assets/banner/2-best.jpg",
+        title: "BEST | 베스트",
+        link: "/product/men/best",
+      },
+      {
+        src: "/assets/banner/2-new.jpg",
+        title: "NEW | 신상품",
+        link: "/product/men/new",
+      },
       {
         src: "/assets/banner/2-collection.jpg",
         title: "COLLECTION | 콜렉션",
-        link: "/",
+        link: "/product/men/collection",
       },
     ],
     [
-      { src: "/assets/banner/3-best.jpg", title: "BEST | 베스트", link: "/" },
-      { src: "/assets/banner/3-new.jpg", title: "NEW | 신상품", link: "/" },
+      {
+        src: "/assets/banner/3-best.jpg",
+        title: "BEST | 베스트",
+        link: "/product/women/best",
+      },
+      {
+        src: "/assets/banner/3-new.jpg",
+        title: "NEW | 신상품",
+        link: "/product/women/new",
+      },
       {
         src: "/assets/banner/3-collection.jpg",
         title: "COLLECTION | 콜렉션",
-        link: "/",
-      },
-      {
-        src: "/assets/banner/3-cardigan.jpg",
-        title: "CARDIGAN | 가디건",
-        link: "/",
+        link: "/product/women/collection",
       },
     ],
     [
       {
         src: "/assets/banner/4-home01.jpg",
         title: "HOME | 크리스마스",
-        link: "/",
+        link: "/product/home/deco",
       },
       {
         src: "/assets/banner/4-home02.jpg",
         title: "HOME | 크리스마스",
-        link: "/",
+        link: "/product/home/deco",
       },
       {
         src: "/assets/banner/4-home03.jpg",
         title: "HOME | 크리스마스",
-        link: "/",
+        link: "/product/home/deco",
       },
       {
         src: "/assets/banner/4-home04.jpg",
         title: "HOME | 크리스마스",
-        link: "/",
+        link: "/product/home/deco",
       },
       {
         src: "/assets/banner/4-home05.jpg",
@@ -204,6 +215,32 @@ const adminUserDetailId = createSlice({
 });
 export let { handlerUserClickId } = adminUserDetailId.actions;
 
+const adminInquryDetail = createSlice({
+  name: "adminInquryDetail",
+  initialState: {
+    _id: "",
+    user: "",
+    title: "",
+    date: "",
+    detail: "",
+    imageSrc: [],
+    answer: "",
+  },
+  reducers: {
+    handlerAdmininqurtDetail(state, action) {
+      state._id = action.payload._id;
+      state.user = action.payload.user;
+      state.title = action.payload.title;
+      state.date = action.payload.date;
+      state.detail = action.payload.detail;
+      state.imageSrc = action.payload.imageSrc;
+      state.answer = action.payload.answer;
+    },
+  },
+});
+
+export let { handlerAdmininqurtDetail } = adminInquryDetail.actions;
+
 const store = configureStore({
   reducer: {
     HomeBanner: HomeBanner.reducer,
@@ -216,6 +253,7 @@ const store = configureStore({
     adminNav: adminNav.reducer,
     adminPageChange: adminPageChange.reducer,
     adminUserDetailId: adminUserDetailId.reducer,
+    adminInquryDetail: adminInquryDetail.reducer,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;

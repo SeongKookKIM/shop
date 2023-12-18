@@ -128,7 +128,17 @@ function AdminNav() {
           <Accordion.Body>
             <ul>
               <li>
-                <span>고객문의</span>
+                <span
+                  onClick={() => {
+                    dispatch(
+                      handlerAdminPagesChange({
+                        pages: "userInqury",
+                      })
+                    );
+                  }}
+                >
+                  고객문의
+                </span>
               </li>
             </ul>
           </Accordion.Body>

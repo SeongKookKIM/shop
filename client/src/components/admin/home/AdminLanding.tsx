@@ -91,7 +91,15 @@ function AdminLanding() {
           <p>정산예정 금액</p>
           <span>{totalPrice?.toLocaleString()} 원</span>
         </li>
-        <li>
+        <li
+          onClick={() => {
+            dispatch(
+              handlerAdminPagesChange({
+                pages: "userInqury",
+              })
+            );
+          }}
+        >
           <p>신규 문의글</p>
           <span>{newInquryCount}건</span>
         </li>
@@ -109,9 +117,39 @@ function AdminLanding() {
         >
           회원정보
         </span>
-        <span>상품정보</span>
-        <span>주문정보</span>
-        <span>고객문의</span>
+        <span
+          onClick={() => {
+            dispatch(
+              handlerAdminPagesChange({
+                pages: "productEdit",
+              })
+            );
+          }}
+        >
+          상품정보
+        </span>
+        <span
+          onClick={() => {
+            dispatch(
+              handlerAdminPagesChange({
+                pages: "productOrder",
+              })
+            );
+          }}
+        >
+          주문정보
+        </span>
+        <span
+          onClick={() => {
+            dispatch(
+              handlerAdminPagesChange({
+                pages: "userInqury",
+              })
+            );
+          }}
+        >
+          고객문의
+        </span>
       </div>
     </div>
   );

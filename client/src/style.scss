@@ -2976,4 +2976,241 @@ body.active {
       }
     }
   }
+
+  // Admin Inqury
+  .admin-inqury.active {
+    width: 100%;
+    transition: 0.5s;
+  }
+  .admin-inqury {
+    width: calc(100% - 300px);
+    overflow-y: scroll;
+    transition: 0.5s;
+    padding: 20px;
+    padding-bottom: 100px;
+    .nav-show {
+      width: 100%;
+      margin-bottom: 50px;
+      svg {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+      }
+    }
+    h6 {
+      font-size: 21px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      pointer-events: none;
+    }
+    .inqury-status {
+      width: 100%;
+      display: flex;
+      gap: 10px;
+      span {
+        font-size: 14px;
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    .inqury-table {
+      width: 100%;
+      margin-top: 50px;
+      .dropdown {
+        button {
+          border-radius: 0;
+          background-color: white;
+          color: black;
+          font-family: $font;
+          font-size: 13px;
+          font-weight: 500;
+          border: none;
+          padding: 0;
+        }
+        .dropdown-menu {
+          border-radius: 0;
+          padding: 0;
+          a {
+            font-size: 13px;
+            padding: 0;
+            padding: 3px 0 3px 2px;
+          }
+        }
+      }
+      ul {
+        width: 452px;
+        margin-top: 30px;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        li {
+          width: 100%;
+          padding: 5px;
+          border-bottom: 1px solid black;
+          display: flex;
+          cursor: pointer;
+          span {
+            display: block;
+            text-align: center;
+            font-size: 12px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            &:nth-child(1) {
+              width: 152px;
+            }
+            &:nth-child(2) {
+              width: 300px;
+            }
+          }
+          &:last-child {
+            border: none;
+          }
+        }
+        li.inqury-title {
+          background-color: #d3d3d3;
+          cursor: default;
+        }
+      }
+    }
+  }
+
+  // Admin Inqury Detail
+  .admin-inqury-detail.active {
+    width: 100%;
+    transition: 0.5s;
+  }
+  .admin-inqury-detail {
+    width: calc(100% - 300px);
+    overflow-y: scroll;
+    transition: 0.5s;
+    padding: 20px;
+    padding-bottom: 100px;
+    .nav-show {
+      width: 100%;
+      margin-bottom: 50px;
+      svg {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+      }
+    }
+    h6 {
+      font-size: 21px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      pointer-events: none;
+    }
+    .back {
+      span {
+        font-size: 13px;
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    .inqury-detail {
+      width: 602px;
+      border: 1px solid black;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 50px;
+      div {
+        margin: 0;
+        padding: 0;
+        p {
+          font-size: 14px;
+          color: #999;
+          cursor: default;
+        }
+        span {
+          display: block;
+          font-size: 13px;
+          margin-top: 5px;
+          cursor: default;
+        }
+        ul {
+          width: 100%;
+          margin-top: 10px;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px 2%;
+          li {
+            width: 23%;
+            cursor: pointer;
+            @include flexCenter();
+            img {
+              width: 100%;
+              object-fit: cover;
+            }
+          }
+        }
+        textarea {
+          margin-top: 10px;
+          width: 100%;
+          border: 1px solid #999;
+          outline: none;
+          font-size: 12px;
+          font-family: $font;
+          letter-spacing: 2px;
+          padding: 0 15px;
+          height: 80px;
+          resize: none;
+          padding: 8px 15px;
+          &::-webkit-scrollbar {
+            display: none;
+          }
+        }
+      }
+      .submit-btn {
+        margin: 20px auto;
+        span {
+          cursor: pointer;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Image Click
+.modal {
+  height: 100vh;
+  overflow: hidden;
+  .modal-dialog {
+    height: 100%;
+    margin: 0 auto;
+    @include flexCenter();
+
+    .modal-content {
+      width: 100%;
+      height: auto;
+      border-radius: 0;
+      .modal-body {
+        img {
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+      .modal-footer {
+        button {
+          font-size: 13px;
+          font-family: $font;
+          color: black;
+          background-color: transparent;
+          border: none;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
 }
