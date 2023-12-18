@@ -2783,11 +2783,13 @@ body.active {
   }
 
   // Product - Order
-  .admin-order.active {
+  .admin-order.active,
+  .admin-return.acitve {
     width: 100%;
     transition: 0.5s;
   }
-  .admin-order {
+  .admin-order,
+  .admin-return {
     width: calc(100% - 300px);
     overflow-y: scroll;
     transition: 0.5s;
@@ -2808,7 +2810,8 @@ body.active {
       margin-bottom: 20px;
       pointer-events: none;
     }
-    .admin-order-status {
+    .admin-order-status,
+    .admin-return-status {
       width: 100%;
       display: flex;
       gap: 10px;
@@ -2820,7 +2823,8 @@ body.active {
         }
       }
     }
-    .admin-order-list {
+    .admin-order-list,
+    .admin-return-list {
       width: 100%;
       margin-top: 50px;
       display: flex;
@@ -2924,6 +2928,9 @@ body.active {
               &:hover {
                 text-decoration: underline;
               }
+            }
+            .return-btn {
+              margin-top: 20px;
             }
           }
         }

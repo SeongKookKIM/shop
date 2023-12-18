@@ -81,6 +81,7 @@ export type ReturnItemType = {
     _id: string;
     count: number;
   }[];
+  _id: string;
 };
 
 export type InquryType = {

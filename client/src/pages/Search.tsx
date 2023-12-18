@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useDeferredValue, useEffect, useState } from "react";
 import SubMenu from "../components/menu/SubMenu";
 import { ProductType } from "../type/Type";
 import axios from "axios";
@@ -10,7 +10,8 @@ function Search() {
 
   const [searchItem, setSearchItem] = useState<ProductType[]>();
 
-  const [searchText, setSearchText] = useState<string>("");
+  const [search, setSearch] = useState<string>("");
+  let searchText = useDeferredValue(search);
 
   let navigate = useNavigate();
 
@@ -44,7 +45,7 @@ function Search() {
           placeholder="상품, 색상, 컬렉션 등을 검색하세요."
           autoComplete="off"
           onChange={(e) => {
-            setSearchText(e.target.value);
+            setSearch(e.target.value);
           }}
         />
       </div>

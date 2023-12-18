@@ -108,7 +108,17 @@ function AdminNav() {
                 </span>
               </li>
               <li>
-                <span>반품정보</span>
+                <span
+                  onClick={() => {
+                    dispatch(
+                      handlerAdminPagesChange({
+                        pages: "productReturn",
+                      })
+                    );
+                  }}
+                >
+                  반품정보
+                </span>
               </li>
             </ul>
           </Accordion.Body>

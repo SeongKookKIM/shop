@@ -271,7 +271,9 @@ function AdminOrder() {
             })}
           </>
         ) : (
-          ""
+          <div>
+            <span style={{ fontSize: "13px" }}>목록이 존재하지 않습니다.</span>
+          </div>
         )}
       </div>
     </div>
