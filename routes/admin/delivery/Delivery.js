@@ -44,4 +44,21 @@ router.post("/edit", (req, res) => {
     }
   );
 });
+
+router.post("/confirm", (req, res) => {
+  db.collection("order").updateOne(
+    { _id: ObjectId(req.body._id) },
+    {
+      $set: {
+        status: req.body.status,
+      },
+    },
+    (err, result) => {
+      if (err) console.log(err);
+
+      return res.status(200).send("상품 정보를 수정하셨습니다.");
+    }
+  );
+});
+
 module.exports = router;

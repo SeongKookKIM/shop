@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState, handlerAdminMenu } from "../../../Store";
 import { ProductBuyListType } from "../../../type/Type";
 import axios from "axios";
+import { flushSync } from "react-dom";
 
 function AdminOrder() {
   const [deliveryStatus, setDeliveryStatus] = useState<string>("상품준비중");
   const [list, setList] = useState<ProductBuyListType[]>();
 
   const [status, setStatus] = useState<string>("");
-  const [deliveryNumber, setDeliveryNumber] = useState<string>();
+  const [deliveryNumber, setDeliveryNumber] = useState<string>("");
 
   const adminNav = useSelector((state: RootState) => state.adminNav);
   let dispatch = useDispatch();
@@ -22,34 +23,76 @@ function AdminOrder() {
       })
       .then((res) => {
         setList(res.data);
-        setStatus(res.data.status);
-        setDeliveryNumber(res.data.deliveryNumber);
+        flushSync(() => {
+          setStatus(res.data.status);
+          setDeliveryNumber(res.data.deliveryNumber);
+        });
       })
       .catch((err) => console.log(err));
   }, [deliveryStatus]);
 
+  // 상품준비중
   const hanlderDeliveryEdit = (delivery: ProductBuyListType) => {
-    if (window.confirm("배송상태를 변경하시겠습니까?")) {
-      axios
-        .post("http://localhost:8080/admin/delivery/edit", {
-          _id: delivery._id,
-          status: status,
-          deliveryNumber: deliveryNumber,
-        })
-        .then((res) => {
+    if (status === "배송중") {
+      if (deliveryNumber !== undefined) {
+        if (window.confirm("배송상태를 변경하시겠습니까?")) {
           axios
-            .post("http://localhost:8080/admin/delivery", {
-              status: deliveryStatus,
+            .post("http://localhost:8080/admin/delivery/edit", {
+              _id: delivery._id,
+              status: status,
+              deliveryNumber: deliveryNumber,
             })
             .then((res) => {
-              setList(res.data);
-              setStatus(res.data.status);
-              setDeliveryNumber(res.data.deliveryNumber);
-            })
-            .catch((err) => console.log(err));
-        });
+              axios
+                .post("http://localhost:8080/admin/delivery", {
+                  status: deliveryStatus,
+                })
+                .then((res) => {
+                  setList(res.data);
+                  setStatus(res.data.status);
+                  setDeliveryNumber(res.data.deliveryNumber);
+                })
+                .catch((err) => console.log(err));
+            });
+        } else {
+          return;
+        }
+      } else {
+        alert("송장번호를 확인해주세요.");
+      }
     } else {
-      return;
+      alert("배송상태를 확인해주세요.");
+    }
+  };
+
+  // 배송중
+  const hanlderDelivery = (delivery: ProductBuyListType) => {
+    if (status === "배송완료") {
+      if (window.confirm("배송상태를 변경하시겠습니까?")) {
+        axios
+          .post("http://localhost:8080/admin/delivery/confirm", {
+            _id: delivery._id,
+            status: status,
+          })
+          .then((res) => {
+            axios
+              .post("http://localhost:8080/admin/delivery", {
+                status: deliveryStatus,
+              })
+              .then((res) => {
+                setList(res.data);
+                flushSync(() => {
+                  setStatus(res.data.status);
+                  setDeliveryNumber(res.data.deliveryNumber);
+                });
+              })
+              .catch((err) => console.log(err));
+          });
+      } else {
+        return;
+      }
+    } else {
+      alert("배송상태를 확인해주세요.");
     }
   };
 
@@ -86,6 +129,10 @@ function AdminOrder() {
                       <span>·</span>
                       <span>{delivery.userPhone}</span>
                     </div>
+                    <div className="order-address">
+                      <span>{delivery.userAddress}</span>
+                      <span>{delivery.userAddressDetail}</span>
+                    </div>
                     <div className="date">
                       <p>
                         구매날짜: <span>{delivery.date}</span>
@@ -95,7 +142,6 @@ function AdminOrder() {
                       {delivery.status === "상품준비중" && (
                         <select
                           name="status"
-                          value={status}
                           onChange={(e) => setStatus(e.target.value)}
                         >
                           <option value={""} disabled>
@@ -108,7 +154,6 @@ function AdminOrder() {
                       {delivery.status === "배송중" && (
                         <select
                           name="status"
-                          value={status}
                           onChange={(e) => setStatus(e.target.value)}
                         >
                           <option value={""} disabled>
@@ -121,7 +166,6 @@ function AdminOrder() {
                       {delivery.status === "배송완료" && (
                         <select
                           name="status"
-                          value={status}
                           onChange={(e) => setStatus(e.target.value)}
                         >
                           <option value={""} disabled>
@@ -140,7 +184,7 @@ function AdminOrder() {
                                 type="text"
                                 name="deliveryNumber"
                                 autoComplete="off"
-                                value={deliveryNumber}
+                                value={deliveryNumber || ""}
                                 onChange={(e) =>
                                   setDeliveryNumber(e.target.value)
                                 }
@@ -156,7 +200,6 @@ function AdminOrder() {
                             name="deliveryNumber"
                             autoComplete="off"
                             value={delivery.deliveryNumber}
-                            onChange={(e) => setDeliveryNumber(e.target.value)}
                             disabled
                           />
                         </div>
@@ -176,14 +219,22 @@ function AdminOrder() {
                         disabled={true}
                         value={delivery.userMessage}
                       />
-                      <button
-                        type="button"
-                        onClick={() => {
-                          hanlderDeliveryEdit(delivery);
-                        }}
-                      >
-                        저장
-                      </button>
+                      {deliveryStatus === "배송완료" ? (
+                        ""
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            if (deliveryStatus === "상품준비중") {
+                              hanlderDeliveryEdit(delivery);
+                            } else {
+                              hanlderDelivery(delivery);
+                            }
+                          }}
+                        >
+                          저장
+                        </button>
+                      )}
                     </div>
                   </div>
 

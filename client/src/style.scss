@@ -2838,7 +2838,8 @@ body.active {
           gap: 10px;
           .admin-user-info,
           .date,
-          .info-price {
+          .info-price,
+          .order-address {
             width: 100%;
             display: flex;
             gap: 10px;
@@ -2850,6 +2851,10 @@ body.active {
               font-size: 12px;
               font-weight: 500;
             }
+          }
+          .order-address {
+            flex-direction: column;
+            gap: 3px;
           }
           .info-status {
             width: 100%;

@@ -63,7 +63,15 @@ function AdminLanding() {
 
       <h6>최신요약 확인하기</h6>
       <ul>
-        <li>
+        <li
+          onClick={() => {
+            dispatch(
+              handlerAdminPagesChange({
+                pages: "productOrder",
+              })
+            );
+          }}
+        >
           <p>신규 주문수</p>
           <span>{newOrderCount}건</span>
         </li>
