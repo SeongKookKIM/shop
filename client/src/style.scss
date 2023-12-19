@@ -807,6 +807,61 @@ body.active {
       }
     }
   }
+  // Recommend
+  .recommend {
+    margin-top: 50px;
+    strong {
+      display: block;
+      width: 100%;
+      padding: 20px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    ul {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(calc(100% / 6), auto));
+      li {
+        border: 1px solid black;
+        border-left: none;
+        border-top: none;
+        cursor: pointer;
+        @for $i from 1 through 6 {
+          &:nth-child(#{$i}) {
+            border-top: 1px solid black;
+          }
+        }
+        &:nth-child(6n) {
+          border-right: none;
+        }
+        .recommend-image {
+          width: 100%;
+          border-bottom: 1px solid black;
+          img {
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+        .recommend-info-wrapper {
+          width: 100%;
+          padding: 8px 8px 24px 8px;
+          .recommend-info {
+            width: 100%;
+            p {
+              width: 100%;
+              font-size: 12px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+            }
+            span {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 // Cart

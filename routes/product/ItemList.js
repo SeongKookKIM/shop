@@ -150,4 +150,23 @@ router.post("/return", (req, res) => {
     });
 });
 
+// 추천상품
+router.post("/recommend", (req, res) => {
+  db.collection("product")
+    .find()
+    .toArray((err, result) => {
+      if (err) console.log(err);
+
+      if (result) {
+        for (let i = result.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+
+          [result[i], result[j]] = [result[j], result[i]];
+        }
+
+        return res.status(200).json(result);
+      }
+    });
+});
+
 module.exports = router;

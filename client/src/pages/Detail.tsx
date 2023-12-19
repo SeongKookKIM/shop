@@ -6,6 +6,7 @@ import ItemOrder from "../components/detail/ItemOrder";
 import { ProductType } from "../type/Type";
 import SubMenu from "../components/menu/SubMenu";
 import Footer from "../components/footer/Footer";
+import Recommend from "../components/detail/Recommend";
 
 function Detail() {
   const [item, setItem] = useState<ProductType>();
@@ -23,6 +24,7 @@ function Detail() {
         <DetailImage detailItem={item} />
         <ItemOrder detailItem={item} />
       </div>
+      <Recommend />
       <Footer classPadding={""} />
     </div>
   );
