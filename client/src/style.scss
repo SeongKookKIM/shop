@@ -386,7 +386,10 @@ body.active {
   width: 100%;
   padding-top: 230px;
   padding-left: 169px;
-
+  @include tablet() {
+    padding-top: 180px;
+    padding-left: 50px;
+  }
   .login-wrapper,
   .sign-wrapper {
     width: 100%;
@@ -785,6 +788,9 @@ body.active {
     .item-order {
       width: 25%;
       height: 100%;
+      @include tablet() {
+        min-width: 180px;
+      }
       .item-order-inner {
         width: 100%;
         border: 1px solid black;
@@ -1371,11 +1377,18 @@ body.active {
   padding-top: 230px;
   padding-left: 169px;
   position: relative;
+  @include tablet() {
+    padding-top: 180px;
+    padding-left: 0;
+  }
   .user-inner {
     width: 100%;
     .user-tab {
       display: flex;
       gap: 30px;
+      @include tablet() {
+        padding-left: 50px;
+      }
       span {
         display: block;
         font-size: 14px;
@@ -1388,7 +1401,9 @@ body.active {
     .profile {
       width: 100%;
       margin-top: 50px;
-
+      @include tablet() {
+        padding-left: 50px;
+      }
       .profile-inner {
         width: 602px;
         border: 1px solid black;
@@ -1549,14 +1564,19 @@ body.active {
             }
             li {
               width: calc(100% / 5);
-              aspect-ratio: 1/2;
               overflow: hidden;
               cursor: pointer;
               border-top: 1px solid black;
               border-bottom: 1px solid black;
               border-right: 1px solid black;
-              &:nth-child(8) {
+              &:nth-child(5n) {
                 border-right: none;
+              }
+              @include tablet() {
+                width: calc(100% / 4);
+                &:nth-child(4n) {
+                  border-right: none;
+                }
               }
               .item-image {
                 width: 100%;
@@ -1587,6 +1607,9 @@ body.active {
                 p {
                   font-size: 13px;
                   font-weight: 500;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
                 }
                 .item-info-detail {
                   width: 100%;
@@ -1595,11 +1618,17 @@ body.active {
                   span {
                     font-size: 12px;
                     font-weight: 500;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
                   }
                 }
                 span {
                   font-size: 12px;
                   font-weight: 500;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
                 }
               }
             }
@@ -1617,8 +1646,12 @@ body.active {
           }
         }
       }
+      @include tablet() {
+        .footer {
+          padding-left: 50px;
+        }
+      }
     }
-    //
   }
 }
 
@@ -1626,6 +1659,9 @@ body.active {
 .contact {
   width: 100%;
   padding: 230px 0 0px 169px;
+  @include tablet() {
+    padding: 180px 0 0 50px;
+  }
   .contact-table {
     width: 602px;
     p {
@@ -1679,6 +1715,9 @@ body.active {
 .inqury {
   width: 100%;
   padding: 230px 0 0px 169px;
+  @include tablet() {
+    padding: 180px 0 0 50px;
+  }
   .back {
     margin-bottom: 20px;
     width: 20px;
@@ -1806,6 +1845,9 @@ body.active {
 .inqury-detail {
   width: 100%;
   padding: 230px 0 0px 169px;
+  @include tablet() {
+    padding: 180px 0 0 50px;
+  }
   .back {
     margin-bottom: 20px;
     width: 20px;
