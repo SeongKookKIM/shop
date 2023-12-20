@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { useDispatch } from "react-redux";
-import { handlerMenu, handlerMenuActive } from "../../Store";
+import { handlerMenuActive } from "../../Store";
+
+import { LuX } from "react-icons/lu";
 
 function ActiveMenu() {
   const [menuSelect, setMenuSelect] = useState<string>("ALL");
@@ -12,9 +13,25 @@ function ActiveMenu() {
     setMenuSelect(selectedMenu);
   };
 
+  let navigate = useNavigate();
+  let dispatch = useDispatch();
+
   return (
     <div className="show-menu">
-      <h1>SHOP</h1>
+      <LuX
+        className="close"
+        onClick={() => {
+          dispatch(handlerMenuActive(false));
+        }}
+      />
+      <h1
+        onClick={() => {
+          navigate("/");
+          dispatch(handlerMenuActive(false));
+        }}
+      >
+        SHOP
+      </h1>
       <ul className="show-menu-list">
         <li>
           <p

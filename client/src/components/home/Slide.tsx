@@ -44,9 +44,6 @@ function Slide({ banner, num }: bannerProps) {
     } else if (num === 1 && slideNum === 1) {
       dispatch(handlerMenu("menu-active"));
       dispatch(handlerSwiperText("active"));
-    } else if (num === 2 && slideNum === 3) {
-      dispatch(handlerMenu("menu-active"));
-      dispatch(handlerSwiperText("active"));
     } else if (num === 3 && slideNum === 0) {
       dispatch(handlerMenu("menu-active"));
       dispatch(handlerSwiperText("active"));

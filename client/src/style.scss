@@ -12,6 +12,12 @@ $font: "S-CoreDream-3Light";
   justify-content: center;
   align-items: center;
 }
+@mixin tablet {
+  @media (max-width: 950px) {
+    @content;
+  }
+}
+
 p,
 h1,
 h2,
@@ -49,6 +55,14 @@ body.active {
   .sub-menu {
     background-color: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(3px);
+    @include tablet() {
+      background-color: white;
+      border-bottom: 1px solid #999;
+      backdrop-filter: none;
+      .main-menu {
+        width: 300px;
+      }
+    }
   }
   // MENU-NAV
   .menu,
@@ -68,6 +82,10 @@ body.active {
     }
     .main-menu {
       margin-left: 100px;
+      z-index: 11;
+      @include tablet() {
+        width: 0;
+      }
       h1 {
         width: 100%;
         font-size: 86px;
@@ -75,10 +93,16 @@ body.active {
         cursor: pointer;
         color: black;
         padding: 0 0 0px 10px;
+        @include tablet() {
+          display: none;
+        }
       }
       .menu-list {
         width: 100%;
         margin-top: 20px;
+        @include tablet() {
+          display: none;
+        }
         .gnb {
           width: 100%;
           display: flex;
@@ -100,10 +124,36 @@ body.active {
         background-color: white;
         border: 1px solid #333;
         padding-bottom: 80px;
+        @include tablet() {
+          position: fixed;
+          left: 0;
+          top: 0;
+          width: 300px;
+          height: 100%;
+          border-right: 1px solid #333;
+          h1 {
+            display: block;
+          }
+          .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            z-index: 100;
+          }
+        }
         h1 {
           color: black;
           padding: 0 120px 40px 10px;
           border-bottom: 1px solid #333;
+          @include tablet() {
+            padding: 0;
+            padding: 40px 0;
+            font-size: 36px;
+            text-align: center;
+          }
         }
         .show-menu-list {
           display: flex;
@@ -111,6 +161,7 @@ body.active {
           padding: 15px 10px;
           align-items: center;
           gap: 20px;
+
           li {
             p {
               font-size: 14px;
@@ -153,6 +204,10 @@ body.active {
       right: 300px;
       cursor: pointer;
       background-color: white;
+      @include tablet() {
+        right: auto;
+        left: 100px;
+      }
       input {
         width: 200px;
         border: 1px solid #333;
@@ -224,6 +279,9 @@ body.active {
   }
   // subpage-menu
   .menu-subpage {
+    @include tablet() {
+      display: none;
+    }
     .main-menu {
       .menu-list {
         display: none;
@@ -281,6 +339,9 @@ body.active {
           width: 100%;
           @include flexCenter();
           gap: 50px;
+          @include tablet() {
+            gap: 30px;
+          }
           li {
             span {
               position: relative;
@@ -290,6 +351,9 @@ body.active {
               font-weight: 500;
               &:hover {
                 text-decoration: underline;
+              }
+              @include tablet() {
+                font-size: 14px;
               }
             }
           }
@@ -501,9 +565,23 @@ body.active {
       width: 80%;
       margin: 0 auto;
       @include flexCenter();
+
       gap: 50px;
       flex-wrap: wrap;
       padding: 48px 0 0;
+      @include tablet() {
+        width: 100%;
+        justify-content: space-between;
+        padding: 48px 10px 0;
+        gap: 0px 50px;
+
+        .item {
+          width: 45%;
+          img {
+            width: 100%;
+          }
+        }
+      }
       .item {
         margin-bottom: 50px;
       }
@@ -518,11 +596,13 @@ body.active {
       width: 100%;
       padding: 30px 0 0;
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: repeat(auto-fill, minmax(calc(100% / 6), auto));
+      @include tablet() {
+        grid-template-columns: repeat(auto-fill, minmax(calc(100% / 4), auto));
+      }
       .item {
         width: 100%;
         cursor: pointer;
-
         img {
           width: 100%;
           object-fit: cover;
@@ -536,6 +616,9 @@ body.active {
           p {
             font-size: 12px;
             font-weight: 700;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
           }
           span {
             font-size: 11px;
@@ -553,8 +636,10 @@ body.active {
       width: 100%;
       padding: 30px 0 0;
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
-
+      grid-template-columns: repeat(auto-fill, minmax(calc(100% / 12), auto));
+      @include tablet() {
+        grid-template-columns: repeat(auto-fill, minmax(calc(100% / 8), auto));
+      }
       .item {
         width: 100%;
         cursor: pointer;
@@ -585,6 +670,9 @@ body.active {
     justify-content: space-between;
     align-items: flex-end;
     padding-bottom: 40px;
+    @include tablet() {
+      max-width: 90%;
+    }
     // Info
     .detail-info.active {
       height: 100%;
@@ -595,6 +683,9 @@ body.active {
       border: 1px solid black;
       padding: 0 10px 20px 20px;
       position: relative;
+      @include tablet() {
+        display: none;
+      }
       .detail-info-inner {
         width: 100%;
         height: 100%;
@@ -643,6 +734,9 @@ body.active {
       overflow: hidden;
       padding-left: 50px;
       @include flexCenter();
+      @include tablet() {
+        padding: 0;
+      }
       .mySwiper2 {
         width: 490px;
         height: 100%;
@@ -700,6 +794,9 @@ body.active {
           display: flex;
           flex-direction: column;
           gap: 20px;
+          @include tablet() {
+            padding: 10px;
+          }
           p,
           span {
             margin: 0;
@@ -736,10 +833,14 @@ body.active {
           flex-direction: column;
           gap: 30px;
           border-bottom: 1px solid black;
+          @include tablet() {
+            padding: 10px;
+          }
           .color {
             width: 100%;
             display: flex;
             gap: 10px;
+            flex-wrap: wrap;
             span {
               display: block;
               font-size: 12px;
@@ -747,6 +848,9 @@ body.active {
               border: 1px solid black;
               padding: 4px 16px;
               cursor: pointer;
+              @include tablet() {
+                padding: 2px 10px;
+              }
             }
             span.select {
               background-color: black;
@@ -766,6 +870,9 @@ body.active {
               padding: 4px 16px;
               cursor: pointer;
               margin-bottom: 5px;
+              @include tablet() {
+                padding: 2px 10px;
+              }
             }
             span.select {
               background-color: black;
@@ -789,6 +896,11 @@ body.active {
                 border-left: none;
                 cursor: pointer;
               }
+              @include tablet() {
+                width: 25px;
+                height: 25px;
+                font-size: 12px;
+              }
             }
           }
         }
@@ -802,6 +914,9 @@ body.active {
             text-align: center;
             padding: 10px 0;
             cursor: pointer;
+            @include tablet() {
+              font-size: 12px;
+            }
           }
         }
       }
@@ -922,18 +1037,35 @@ body.active {
           position: relative;
           .delete-btn {
             position: absolute;
+            top: 5px;
             right: 8px;
             font-size: 16px;
+            @include tablet() {
+              font-size: 13px;
+              top: 8px;
+            }
           }
           .name {
             font-size: 14px;
             font-weight: 500;
             pointer-events: none;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            @include tablet() {
+              font-size: 12px;
+            }
           }
           .price {
             font-size: 14px;
             font-weight: 500;
             pointer-events: none;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            @include tablet() {
+              font-size: 12px;
+            }
           }
           .item-detail {
             margin: 10px 0;
@@ -943,6 +1075,9 @@ body.active {
               font-size: 14px;
               font-weight: 500;
               pointer-events: none;
+              @include tablet() {
+                font-size: 12px;
+              }
             }
           }
           .count {
@@ -963,6 +1098,11 @@ body.active {
                 border-left: none;
                 opacity: 0.5;
                 pointer-events: none;
+              }
+              @include tablet() {
+                font-size: 12px;
+                width: 25px;
+                height: 25px;
               }
             }
           }
@@ -1010,6 +1150,9 @@ body.active {
   width: 100%;
   padding: 230px 0 80px;
   position: relative;
+  @include tablet() {
+    padding: 130px 0 80px;
+  }
   .pay-inner {
     width: 100%;
     padding: 0 30px;
@@ -1758,6 +1901,9 @@ body.active {
 .search {
   width: 100%;
   padding: 230px 0 0px;
+  @include tablet() {
+    padding: 130px 0 0;
+  }
   .search-box {
     width: 100%;
     padding: 20px 0;
@@ -1803,7 +1949,7 @@ body.active {
             border-top: 1px solid black;
           }
         }
-        &:nth-child(6) {
+        &:nth-child(6n) {
           border-right: none;
         }
 
@@ -1840,6 +1986,7 @@ body.active {
 // Footer
 .footer.active {
   padding: 150px 0 50px;
+
   .copy {
     position: relative;
     padding: 0;
@@ -1851,11 +1998,17 @@ body.active {
   width: 100%;
   padding: 150px 0 100px 169px;
   position: relative;
+  @include tablet() {
+    padding: 150px 0 100px 10px;
+  }
   .footer-sns {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 30px;
+    @include tablet() {
+      gap: 10px;
+    }
     p {
       font-size: 22px;
       font-weight: 500;
@@ -1866,6 +2019,9 @@ body.active {
       width: 100%;
       display: flex;
       gap: 30px;
+      @include tablet() {
+        gap: 10px;
+      }
       li {
         span {
           position: relative;
@@ -1874,6 +2030,9 @@ body.active {
           font-size: 14px;
           font-weight: 500;
           cursor: pointer;
+          @include tablet() {
+            font-size: 12px;
+          }
           &:hover {
             text-decoration: underline;
           }
@@ -1892,12 +2051,19 @@ body.active {
       color: black;
       pointer-events: none;
       margin-bottom: 30px;
+      @include tablet() {
+        margin-bottom: 10px;
+      }
     }
     span {
       display: block;
       font-size: 14px;
       font-weight: 500;
       margin-bottom: 5px;
+      @include tablet() {
+        font-size: 12px;
+        margin-bottom: 0;
+      }
     }
   }
   .lang {
@@ -1923,6 +2089,9 @@ body.active {
       font-size: 13px;
       color: black;
       cursor: default;
+      @include tablet() {
+        font-size: 12px;
+      }
     }
   }
 }

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { ProductType, UserType } from "../../type/Type";
+import { useNavigate } from "react-router-dom";
 
 interface itemType {
   detailItem: ProductType | undefined;
@@ -20,29 +21,36 @@ function ItemOrder({ detailItem }: itemType) {
     }
   }, []);
 
+  let navigate = useNavigate();
+
   // 추가하기 버튼
   const handlerAddItem = () => {
-    if (selectColor === "") {
-      alert("색상옵션을 선택해주세요");
-    } else if (selectSize === "") {
-      alert("사이즈옵션을 선택해주세요.");
-    } else if (detailItem && user) {
-      let addPost = {
-        user: user._id,
-        name: detailItem.name,
-        price: detailItem.price,
-        image: detailItem.thumbnail,
-        color: selectColor,
-        size: selectSize,
-        count: itemCount,
-      };
+    if (user) {
+      if (selectColor === "") {
+        alert("색상옵션을 선택해주세요");
+      } else if (selectSize === "") {
+        alert("사이즈옵션을 선택해주세요.");
+      } else if (detailItem && user) {
+        let addPost = {
+          user: user._id,
+          name: detailItem.name,
+          price: detailItem.price,
+          image: detailItem.thumbnail,
+          color: selectColor,
+          size: selectSize,
+          count: itemCount,
+        };
 
-      axios
-        .post("http://localhost:8080/product/add", addPost)
-        .then((res) => {
-          window.location.reload();
-        })
-        .catch((err) => console.log(err));
+        axios
+          .post("http://localhost:8080/product/add", addPost)
+          .then((res) => {
+            window.location.reload();
+          })
+          .catch((err) => console.log(err));
+      }
+    } else {
+      alert("로그인 후 사용해주세요.");
+      navigate("/login");
     }
   };
 
