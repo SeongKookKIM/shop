@@ -13,7 +13,7 @@ function ReturnList({ user }: UserPropsType) {
   useEffect(() => {
     if (user) {
       axios
-        .post("http://localhost:8080/product/return", { _id: user._id })
+        .post("/product/return", { _id: user._id })
         .then((res) => {
           setReturnList(res.data);
         })

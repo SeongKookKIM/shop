@@ -42,7 +42,7 @@ function ItemOrder({ detailItem }: itemType) {
         };
 
         axios
-          .post("http://localhost:8080/product/add", addPost)
+          .post("/product/add", addPost)
           .then((res) => {
             window.location.reload();
           })

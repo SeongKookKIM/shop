@@ -16,7 +16,7 @@ function BuyList({ user }: UserPropsType) {
 
   useEffect(() => {
     axios
-      .post("http://localhost:8080/product/buylist", { _id: user?._id })
+      .post("/product/buylist", { _id: user?._id })
       .then((res) => {
         setBuyList(res.data);
 
@@ -61,7 +61,7 @@ function BuyList({ user }: UserPropsType) {
         if (window.confirm("반품을 신청하시겠습니까?")) {
           if (buyList) {
             axios
-              .post("http://localhost:8080/product/order/edit", {
+              .post("/product/order/edit", {
                 user: user,
                 findItem: buyList[idx].item,
                 totalPrice: totalPrice,

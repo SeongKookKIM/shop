@@ -23,7 +23,7 @@ function ProfilePhone({ userInfo, setProfileEdit }: UserPropsType) {
     } else {
       if (window.confirm("연락처를 변경하시겠습니까?")) {
         axios
-          .post("http://localhost:8080/profile/edit/phone", {
+          .post("/profile/edit/phone", {
             _id: userInfo?._id,
             phone: phoneEdit,
           })
@@ -31,7 +31,7 @@ function ProfilePhone({ userInfo, setProfileEdit }: UserPropsType) {
             alert(res.data);
 
             axios
-              .post("http://localhost:8080/profile", { _id: userInfo?._id })
+              .post("/profile", { _id: userInfo?._id })
               .then((res) => {
                 localStorage.removeItem("user");
 

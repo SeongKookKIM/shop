@@ -13,7 +13,7 @@ function Product() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:8080/product", {
+      .post("/product", {
         mainCategory: category,
         subCategory: item,
       })

@@ -20,7 +20,7 @@ function InquryDetail() {
   const handlerInquryDelete = () => {
     if (window.confirm("해당 문의를 삭제하시겠습니까?")) {
       axios
-        .post("http://localhost:8080/inqury/delete", inquryList)
+        .post("/inqury/delete", inquryList)
         .then((res) => {
           alert(res.data);
           navigate("/contact");

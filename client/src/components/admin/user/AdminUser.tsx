@@ -19,7 +19,7 @@ function AdminUser() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:8080/admin/user")
+      .post("/admin/user")
       .then((res) => {
         setUserList(res.data);
       })
@@ -30,7 +30,7 @@ function AdminUser() {
   const handlerUserDeleteBtn = (user: UserType) => {
     if (window.confirm("유저의 정보를 삭제 하시겠습니까?")) {
       axios
-        .post("http://localhost:8080/admin/user/delete", user)
+        .post("/admin/user/delete", user)
         .then((res) => {
           alert(res.data);
           window.location.reload();

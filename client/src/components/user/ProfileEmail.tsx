@@ -46,7 +46,7 @@ function ProfileEmail({ userInfo, setProfileEdit }: UserPropsType) {
     } else {
       if (window.confirm("이메일을 변경하시겠습니까?")) {
         axios
-          .post("http://localhost:8080/profile/edit/email", {
+          .post("/profile/edit/email", {
             _id: userInfo?._id,
             email: emailEdit,
           })
@@ -54,7 +54,7 @@ function ProfileEmail({ userInfo, setProfileEdit }: UserPropsType) {
             alert(res.data);
 
             axios
-              .post("http://localhost:8080/profile", { _id: userInfo?._id })
+              .post("/profile", { _id: userInfo?._id })
               .then((res) => {
                 localStorage.removeItem("user");
 

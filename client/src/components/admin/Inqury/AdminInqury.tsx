@@ -21,7 +21,7 @@ function AdminInqury() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:8080/admin/inqury", { status: inquryStatus })
+      .post("/admin/inqury", { status: inquryStatus })
       .then((res) => {
         if (inqurtDate === "old") {
           const sortDate = res.data.sort(

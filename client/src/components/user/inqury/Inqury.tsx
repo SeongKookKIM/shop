@@ -65,7 +65,7 @@ function Inqury() {
     } else {
       if (window.confirm("문의하시겠습니까?")) {
         axios
-          .post("http://localhost:8080/inqury/image", formDataSrc, {
+          .post("/inqury/image", formDataSrc, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
@@ -84,7 +84,7 @@ function Inqury() {
             console.log(res.data);
 
             axios
-              .post("http://localhost:8080/inqury/add", inquryData)
+              .post("/inqury/add", inquryData)
               .then((res) => {
                 alert(res.data);
                 navigate("/contact");

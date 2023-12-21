@@ -18,7 +18,7 @@ function AdminOrder() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:8080/admin/delivery", {
+      .post("/admin/delivery", {
         status: deliveryStatus,
       })
       .then((res) => {
@@ -37,14 +37,14 @@ function AdminOrder() {
       if (deliveryNumber !== undefined) {
         if (window.confirm("배송상태를 변경하시겠습니까?")) {
           axios
-            .post("http://localhost:8080/admin/delivery/edit", {
+            .post("/admin/delivery/edit", {
               _id: delivery._id,
               status: status,
               deliveryNumber: deliveryNumber,
             })
             .then((res) => {
               axios
-                .post("http://localhost:8080/admin/delivery", {
+                .post("/admin/delivery", {
                   status: deliveryStatus,
                 })
                 .then((res) => {
@@ -70,13 +70,13 @@ function AdminOrder() {
     if (status === "배송완료") {
       if (window.confirm("배송상태를 변경하시겠습니까?")) {
         axios
-          .post("http://localhost:8080/admin/delivery/confirm", {
+          .post("/admin/delivery/confirm", {
             _id: delivery._id,
             status: status,
           })
           .then((res) => {
             axios
-              .post("http://localhost:8080/admin/delivery", {
+              .post("/admin/delivery", {
                 status: deliveryStatus,
               })
               .then((res) => {

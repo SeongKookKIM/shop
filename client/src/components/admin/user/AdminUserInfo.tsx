@@ -11,7 +11,7 @@ function AdminUserInfo({ id }: IdPropsType) {
 
   useEffect(() => {
     axios
-      .post("http://localhost:8080/admin/user/info", { _id: id })
+      .post("/admin/user/info", { _id: id })
       .then((res) => {
         setUserInfo(res.data);
       })

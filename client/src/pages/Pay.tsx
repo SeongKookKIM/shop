@@ -80,10 +80,10 @@ function Pay() {
     };
     if (success) {
       axios
-        .post("http://localhost:8080/order", data)
+        .post("/order", data)
         .then((res) => {
           axios
-            .post("http://localhost:8080/cart/delete", { user: userInfo?._id })
+            .post("/cart/delete", { user: userInfo?._id })
             .then((res) => {
               alert("구매해주셔서 감사합니다.");
               navigate("/");

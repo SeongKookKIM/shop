@@ -29,7 +29,7 @@ function Cart({ user }: userPropsType) {
       );
 
       axios
-        .post("http://localhost:8080/cart/list", { _id: user._id })
+        .post("/cart/list", { _id: user._id })
         .then((res) => {
           setCartList(res.data);
           setCartListLength(res.data.length);
@@ -50,13 +50,13 @@ function Cart({ user }: userPropsType) {
   const handlerDeleteItem = (item: CartType) => {
     if (window.confirm("해당 상품을 카트에서 삭제할까요?")) {
       axios
-        .post("http://localhost:8080/cart/list/delete", item)
+        .post("/cart/list/delete", item)
         .then((res) => {
           alert(res.data);
 
           if (user) {
             axios
-              .post("http://localhost:8080/cart/list", { _id: user._id })
+              .post("/cart/list", { _id: user._id })
               .then((res) => {
                 setCartList(res.data);
 
@@ -91,7 +91,7 @@ function Cart({ user }: userPropsType) {
 
     if (item) {
       axios
-        .post("http://localhost:8080/product/link", findLink)
+        .post("/product/link", findLink)
         .then((res) => {
           let it = res.data;
           navigate(`/detail/${it._id}`, { state: { it } });

@@ -20,7 +20,7 @@ function Contact() {
   useEffect(() => {
     if (userInfo) {
       axios
-        .post("http://localhost:8080/inqury", { user: userInfo._id })
+        .post("/inqury", { user: userInfo._id })
         .then((res) => {
           setInquryList(res.data);
         })

@@ -36,7 +36,7 @@ function SubMenu() {
   useEffect(() => {
     if (userLogin) {
       axios
-        .post("http://localhost:8080/cart", { _id: userLogin._id })
+        .post("/cart", { _id: userLogin._id })
         .then((res) => {
           setUserCartNum(res.data);
         })

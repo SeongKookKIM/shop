@@ -23,7 +23,7 @@ function Profile({ user }: userPropsType) {
   useEffect(() => {
     if (user) {
       axios
-        .post("http://localhost:8080/profile", { _id: user._id })
+        .post("/profile", { _id: user._id })
         .then((res) => {
           setUserInfo(res.data);
         })
@@ -40,7 +40,7 @@ function Profile({ user }: userPropsType) {
   const handelrAccountDelete = () => {
     if (window.confirm("귀하의 계정을 삭제하시겠습니까?")) {
       axios
-        .post("http://localhost:8080/profile/delete", { _id: userInfo?._id })
+        .post("/profile/delete", { _id: userInfo?._id })
         .then((res) => {
           alert(res.data);
           localStorage.removeItem("user");

@@ -39,7 +39,7 @@ router.post("/", (req, res) => {
       db.collection("user").insertOne(sign, (err, result) => {
         if (err) console.log(err);
 
-        return res.status(200).redirect("http://localhost:3000/login");
+        return res.status(200).redirect("/login");
       });
     } else {
       return res.status(403).json("이미 존재하는 계정입니다.");

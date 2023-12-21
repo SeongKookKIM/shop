@@ -16,21 +16,21 @@ function AdminLanding() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:8080/admin/home/newOrder")
+      .post("/admin/home/newOrder")
       .then((res) => {
         setNewOrderCount(res.data);
         axios
-          .post("http://localhost:8080/admin/home/newReturn")
+          .post("/admin/home/newReturn")
           .then((res) => {
             setNewReturnCount(res.data);
 
             axios
-              .post("http://localhost:8080/admin/home/newInqury")
+              .post("/admin/home/newInqury")
               .then((res) => {
                 setNewInquryCount(res.data);
 
                 axios
-                  .post("http://localhost:8080/admin/home/totalPrice")
+                  .post("/admin/home/totalPrice")
                   .then((res) => {
                     setTotalPrice(res.data);
                   })

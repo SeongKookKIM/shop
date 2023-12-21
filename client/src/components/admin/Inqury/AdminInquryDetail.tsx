@@ -33,7 +33,7 @@ function AdminInquryDetail() {
       alert("답변을 적어주세요.");
     } else {
       axios
-        .post("http://localhost:8080/admin/inqury/answer", {
+        .post("/admin/inqury/answer", {
           _id: adminInquryDetail._id,
           answer: inquryAnswer,
         })

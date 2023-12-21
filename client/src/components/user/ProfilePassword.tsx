@@ -22,7 +22,7 @@ function ProfilePassword({ userInfo, setProfileEdit }: UserPropsType) {
 
   const handlerPasswordConfirm = () => {
     axios
-      .post("http://localhost:8080/profile/edit/password/confirm", {
+      .post("/profile/edit/password/confirm", {
         _id: userInfo?._id,
         password: passwordEdit,
       })
@@ -54,7 +54,7 @@ function ProfilePassword({ userInfo, setProfileEdit }: UserPropsType) {
     if (newPassword === confirmPassword) {
       if (window.confirm("비밀번호를 변경하시겠습니까?")) {
         axios
-          .post("http://localhost:8080/profile/edit/password", {
+          .post("/profile/edit/password", {
             _id: userInfo?._id,
             password: newPassword,
           })
@@ -62,7 +62,7 @@ function ProfilePassword({ userInfo, setProfileEdit }: UserPropsType) {
             alert(res.data);
 
             axios
-              .post("http://localhost:8080/profile", { _id: userInfo?._id })
+              .post("/profile", { _id: userInfo?._id })
               .then((res) => {
                 localStorage.removeItem("user");
 

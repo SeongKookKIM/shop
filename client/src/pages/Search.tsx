@@ -17,7 +17,7 @@ function Search() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:8080/search")
+      .post("/search")
       .then((res) => {
         setAllItem(res.data);
       })
@@ -28,7 +28,7 @@ function Search() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:8080/search/item", { value: searchText })
+      .post("/search/item", { value: searchText })
       .then((res) => {
         setSearchItem(res.data);
       })

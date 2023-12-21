@@ -10,7 +10,7 @@ function Recommend() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:8080/product/recommend")
+      .post("/product/recommend")
       .then((res) => {
         setRecommendList(res.data);
       })

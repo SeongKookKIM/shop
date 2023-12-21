@@ -17,7 +17,7 @@ function AdminUserOrder({ id, status }: IdPropsType) {
 
   useEffect(() => {
     axios
-      .post(`http://localhost:8080/admin/user/${status}`, { _id: id })
+      .post(`/admin/user/${status}`, { _id: id })
       .then((res) => {
         setUserOrderList(res.data);
         setUserReturnList(res.data);

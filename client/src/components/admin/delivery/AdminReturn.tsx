@@ -16,7 +16,7 @@ function AdminReturn() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:8080/admin/return", {
+      .post("/admin/return", {
         status: deliveryStatus,
       })
       .then((res) => {
@@ -33,7 +33,7 @@ function AdminReturn() {
       } else {
         if (window.confirm("반품진행 상태를 변경하시겠습니까?")) {
           axios
-            .post("http://localhost:8080/admin/return/number", {
+            .post("/admin/return/number", {
               _id: returnList._id,
               status: returnStatus,
               returnNumber: returnNumber,
@@ -41,7 +41,7 @@ function AdminReturn() {
             .then((res) => {
               alert(res.data);
               axios
-                .post("http://localhost:8080/admin/return", {
+                .post("/admin/return", {
                   status: returnStatus,
                 })
                 .then((res) => {
@@ -65,14 +65,14 @@ function AdminReturn() {
     if (returnStatus === "반품완료") {
       if (window.confirm("반품진행 상태를 변경하시겠습니까?")) {
         axios
-          .post("http://localhost:8080/admin/return/confirm", {
+          .post("/admin/return/confirm", {
             _id: returnList._id,
             status: returnStatus,
           })
           .then((res) => {
             alert(res.data);
             axios
-              .post("http://localhost:8080/admin/return", {
+              .post("/admin/return", {
                 status: returnStatus,
               })
               .then((res) => {

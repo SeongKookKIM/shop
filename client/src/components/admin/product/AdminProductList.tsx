@@ -14,7 +14,7 @@ function AdminProductList({ setProductStatus, setItem }: ProductStatusType) {
 
   useEffect(() => {
     axios
-      .post("http://localhost:8080/admin/product/list", {
+      .post("/admin/product/list", {
         main: itemMainSort,
         sub: itemSubSort,
       })
@@ -27,7 +27,7 @@ function AdminProductList({ setProductStatus, setItem }: ProductStatusType) {
   const handelrAdminProductDelete = (item: ProductType) => {
     if (window.confirm("해당 상품을 삭제하시겠습니까?")) {
       axios
-        .post("http://localhost:8080/admin/product/delete", item)
+        .post("/admin/product/delete", item)
         .then((res) => {
           alert(res.data);
           window.location.reload();

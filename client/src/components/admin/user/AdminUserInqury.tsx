@@ -16,7 +16,7 @@ function AdminUserInqury({ id }: IdPropsType) {
 
   useEffect(() => {
     axios
-      .post("http://localhost:8080/admin/user/inqury", { _id: id })
+      .post("/admin/user/inqury", { _id: id })
       .then((res) => {
         setUserInquryList(res.data);
       })

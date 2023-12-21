@@ -146,7 +146,7 @@ function Sign() {
         <span>회원가입</span>
         <span className="alert">*모든 항목은 필수 입력란입니다.</span>
         <form
-          action="http://localhost:8080/sign"
+          action="/sign"
           method="POST"
           onSubmit={(e) => {
             hanldlerSignSubmit(e);

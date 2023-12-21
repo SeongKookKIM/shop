@@ -23,7 +23,7 @@ function ProfileName({ userInfo, setProfileEdit }: UserPropsType) {
     } else {
       if (window.confirm("이름을 변경하시겠습니까?")) {
         axios
-          .post("http://localhost:8080/profile/edit/name", {
+          .post("/profile/edit/name", {
             _id: userInfo?._id,
             name: nameEdit,
           })
@@ -31,7 +31,7 @@ function ProfileName({ userInfo, setProfileEdit }: UserPropsType) {
             alert(res.data);
 
             axios
-              .post("http://localhost:8080/profile", { _id: userInfo?._id })
+              .post("/profile", { _id: userInfo?._id })
               .then((res) => {
                 localStorage.removeItem("user");
 

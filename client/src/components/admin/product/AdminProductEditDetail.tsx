@@ -32,7 +32,7 @@ function AdminProductEditDetail({ setProductStatus, item }: ProductStatusType) {
         description: description,
       };
       axios
-        .post("http://localhost:8080/admin/product/edit", itemEdit)
+        .post("/admin/product/edit", itemEdit)
         .then((res) => {
           alert(res.data);
           setProductStatus(false);
