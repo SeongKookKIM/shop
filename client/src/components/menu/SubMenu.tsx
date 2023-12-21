@@ -88,6 +88,11 @@ function SubMenu() {
       <div className="client-menu">
         <ul>
           <li>
+            <div className="m-menu-search" onClick={() => navigate("/search")}>
+              <span>상품찾기</span>
+            </div>
+          </li>
+          <li>
             {userLogin ? (
               <span
                 onClick={() => {

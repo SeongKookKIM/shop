@@ -34,6 +34,10 @@ function AdminNav() {
         }}
       >
         관리자 페이지
+        <span>
+          * 관리자페이지는 데스크탑(1024px이상)에 최적화 되어있습니다.
+        </span>
+        <span>* 상품등록은 pc에서만 진행해주세요.</span>
       </h6>
 
       <Accordion defaultActiveKey="0">

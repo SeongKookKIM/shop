@@ -127,8 +127,14 @@ function Menu() {
       <div className="menu-search" onClick={() => navigate("/search")}>
         <input type="text" name="search" placeholder="검색" />
       </div>
+
       <div className="client-menu">
         <ul>
+          <li>
+            <div className="m-menu-search" onClick={() => navigate("/search")}>
+              <span>상품찾기</span>
+            </div>
+          </li>
           <li>
             {userLogin ? (
               <span

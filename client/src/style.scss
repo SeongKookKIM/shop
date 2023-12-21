@@ -17,6 +17,11 @@ $font: "S-CoreDream-3Light";
     @content;
   }
 }
+@mixin mobile {
+  @media (max-width: 750px) {
+    @content;
+  }
+}
 
 p,
 h1,
@@ -75,10 +80,18 @@ body.active {
     z-index: 100;
     display: flex;
     padding: 20px 30px;
+    @include mobile() {
+      padding: 20px 15px;
+      align-items: center;
+    }
+
     .menu-bar {
       color: #333;
       cursor: pointer;
       font-size: 25px;
+      @include mobile() {
+        font-size: 17px;
+      }
     }
     .main-menu {
       margin-left: 100px;
@@ -130,6 +143,7 @@ body.active {
           top: 0;
           width: 300px;
           height: 100%;
+          border: none;
           border-right: 1px solid #333;
           h1 {
             display: block;
@@ -144,6 +158,9 @@ body.active {
             z-index: 100;
           }
         }
+        @include mobile() {
+          width: 50%;
+        }
         h1 {
           color: black;
           padding: 0 120px 40px 10px;
@@ -154,6 +171,10 @@ body.active {
             font-size: 36px;
             text-align: center;
           }
+          @include mobile() {
+            font-size: 22px;
+            padding: 30px 0;
+          }
         }
         .show-menu-list {
           display: flex;
@@ -161,6 +182,11 @@ body.active {
           padding: 15px 10px;
           align-items: center;
           gap: 20px;
+          @include mobile() {
+            width: 100%;
+            flex-wrap: wrap;
+            gap: 10px;
+          }
 
           li {
             p {
@@ -168,6 +194,9 @@ body.active {
               font-weight: 400;
               color: #333;
               cursor: pointer;
+              @include mobile() {
+                font-size: 12px;
+              }
             }
             p.select {
               color: black;
@@ -185,6 +214,10 @@ body.active {
           justify-content: flex-end;
           align-items: center;
           gap: 10px;
+          @include mobile() {
+            flex-wrap: wrap;
+            gap: 15px;
+          }
           li {
             border: 1px solid black;
             padding: 2px 5px;
@@ -199,6 +232,7 @@ body.active {
         }
       }
     }
+
     .menu-search {
       position: absolute;
       right: 300px;
@@ -207,6 +241,9 @@ body.active {
       @include tablet() {
         right: auto;
         left: 100px;
+      }
+      @include mobile() {
+        display: none;
       }
       input {
         width: 200px;
@@ -233,9 +270,15 @@ body.active {
     .client-menu {
       position: absolute;
       right: 30px;
+      @include mobile() {
+        right: 15px;
+      }
       ul {
         width: 100%;
         display: flex;
+        @include mobile() {
+          gap: 10px;
+        }
         li {
           margin: 0 10px;
           span {
@@ -243,6 +286,18 @@ body.active {
             font-weight: 700;
             color: black;
             cursor: pointer;
+            @include mobile() {
+              font-size: 11px;
+            }
+          }
+          @include mobile() {
+            margin: 0;
+          }
+        }
+        .m-menu-search {
+          display: none;
+          @include mobile() {
+            display: block;
           }
         }
       }
@@ -297,6 +352,7 @@ body.active {
   .swiper {
     width: 100%;
     height: 100%;
+
     img {
       width: 100%;
       height: 100%;
@@ -306,6 +362,9 @@ body.active {
     .swiper-button-prev {
       color: #d3d3d3;
       transform: scale(0.4);
+      @include mobile() {
+        transform: scale(0.3);
+      }
     }
     .swiper-slide {
       position: relative;
@@ -317,6 +376,11 @@ body.active {
         font-weight: bold;
         cursor: pointer;
         color: #333;
+        @include mobile() {
+          right: 30px;
+          bottom: 50px;
+          font-size: 12px;
+        }
       }
       span.active {
         color: white;
@@ -334,6 +398,9 @@ body.active {
         p {
           font-size: 25px;
           font-weight: 500;
+          @include mobile() {
+            font-size: 20px;
+          }
         }
         ul {
           width: 100%;
@@ -341,6 +408,9 @@ body.active {
           gap: 50px;
           @include tablet() {
             gap: 30px;
+          }
+          @include mobile() {
+            gap: 10px;
           }
           li {
             span {
@@ -355,6 +425,9 @@ body.active {
               @include tablet() {
                 font-size: 14px;
               }
+              @include mobile() {
+                font-size: 11px;
+              }
             }
           }
         }
@@ -366,6 +439,9 @@ body.active {
         left: 0;
         @include flexCenter();
         padding: 50px 0;
+        @include mobile() {
+          padding: 30px 0;
+        }
         span {
           position: relative;
           right: 0;
@@ -374,6 +450,9 @@ body.active {
           font-weight: 500;
           color: #999;
           pointer-events: none;
+          @include mobile() {
+            font-size: 10px;
+          }
         }
       }
     }
@@ -390,6 +469,9 @@ body.active {
     padding-top: 180px;
     padding-left: 50px;
   }
+  @include mobile() {
+    padding: 100px 10px 0;
+  }
   .login-wrapper,
   .sign-wrapper {
     width: 100%;
@@ -401,11 +483,16 @@ body.active {
       pointer-events: none;
     }
     form {
+      width: 100%;
       margin-top: 50px;
       max-width: 400px;
       display: flex;
       flex-direction: column;
       gap: 40px;
+      @include mobile() {
+        width: 100%;
+        max-width: none;
+      }
       div {
         position: relative;
         display: flex;
@@ -425,6 +512,9 @@ body.active {
           font-weight: 700;
           font-size: 13px;
           letter-spacing: 1px;
+          @include mobile() {
+            font-size: 12px;
+          }
         }
         span {
           position: absolute;
@@ -451,6 +541,9 @@ body.active {
       &:hover {
         color: #999;
       }
+      @include mobile() {
+        font-size: 12px;
+      }
     }
     .find-account {
       max-width: 400px;
@@ -462,6 +555,9 @@ body.active {
         font-size: 14px;
         font-weight: 500;
         cursor: pointer;
+        @include mobile() {
+          font-size: 12px;
+        }
       }
     }
   }
@@ -525,6 +621,9 @@ body.active {
 .product {
   width: 100%;
   padding: 200px 0 0;
+  @include mobile() {
+    padding: 100px 0 0;
+  }
   .product-wrapper {
     width: 100%;
     .product-layout {
@@ -556,10 +655,16 @@ body.active {
         p {
           font-size: 12px;
           font-weight: 700;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
         }
         span {
           font-size: 11px;
           font-weight: 500;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
         }
       }
     }
@@ -568,7 +673,6 @@ body.active {
       width: 80%;
       margin: 0 auto;
       @include flexCenter();
-
       gap: 50px;
       flex-wrap: wrap;
       padding: 48px 0 0;
@@ -585,8 +689,17 @@ body.active {
           }
         }
       }
+      @include mobile() {
+        justify-content: center;
+        gap: 0px 20px;
+      }
+
       .item {
         margin-bottom: 50px;
+        @include mobile() {
+          width: 42%;
+          margin-bottom: 30px;
+        }
       }
       .item-none {
         width: 100%;
@@ -602,6 +715,9 @@ body.active {
       grid-template-columns: repeat(auto-fill, minmax(calc(100% / 6), auto));
       @include tablet() {
         grid-template-columns: repeat(auto-fill, minmax(calc(100% / 4), auto));
+      }
+      @include mobile() {
+        padding: 30px 10px 0;
       }
       .item {
         width: 100%;
@@ -643,6 +759,10 @@ body.active {
       @include tablet() {
         grid-template-columns: repeat(auto-fill, minmax(calc(100% / 8), auto));
       }
+      @include mobile() {
+        padding: 30px 10px 0;
+        grid-template-columns: repeat(auto-fill, minmax(calc(100% / 6), auto));
+      }
       .item {
         width: 100%;
         cursor: pointer;
@@ -663,6 +783,9 @@ body.active {
 .detail {
   width: 100%;
   padding: 200px 0 0;
+  @include mobile() {
+    padding: 100px 0 0;
+  }
   .detail-inner {
     width: 100%;
     max-width: 80%;
@@ -675,6 +798,14 @@ body.active {
     padding-bottom: 40px;
     @include tablet() {
       max-width: 90%;
+    }
+    @include mobile() {
+      max-width: calc(100% - 20px);
+      height: auto;
+      min-height: auto;
+      @include flexCenter();
+      justify-content: flex-start;
+      flex-direction: column;
     }
     // Info
     .detail-info.active {
@@ -740,10 +871,20 @@ body.active {
       @include tablet() {
         padding: 0;
       }
+      @include mobile() {
+        width: 100%;
+        height: 80vh;
+        margin-bottom: 50px;
+        display: flex;
+        flex-direction: column;
+      }
       .mySwiper2 {
         width: 490px;
         height: 100%;
         overflow: visible;
+        @include mobile() {
+          width: 100%;
+        }
         img {
           width: 100%;
           height: 100%;
@@ -755,11 +896,17 @@ body.active {
           .swiper-scrollbar-drag {
             background-color: black;
           }
+          @include mobile() {
+            right: 0;
+          }
         }
       }
       .mySwiper {
         height: 100%;
         padding: 0 23px;
+        @include mobile() {
+          display: none;
+        }
         .swiper-wrapper {
           width: 100%;
           height: 100%;
@@ -767,6 +914,9 @@ body.active {
           flex-direction: column;
           justify-content: flex-end;
           align-items: center;
+          @include mobile() {
+            flex-direction: row;
+          }
           .swiper-slide {
             width: 30px !important;
             min-width: 40px;
@@ -790,6 +940,10 @@ body.active {
       height: 100%;
       @include tablet() {
         min-width: 180px;
+      }
+      @include mobile() {
+        width: 100%;
+        min-width: auto;
       }
       .item-order-inner {
         width: 100%;
@@ -841,6 +995,9 @@ body.active {
           border-bottom: 1px solid black;
           @include tablet() {
             padding: 10px;
+          }
+          @include mobile() {
+            padding: 20px 10px;
           }
           .color {
             width: 100%;
@@ -931,17 +1088,26 @@ body.active {
   // Recommend
   .recommend {
     margin-top: 50px;
+    @include mobile() {
+      margin-top: 30px;
+    }
     strong {
       display: block;
       width: 100%;
       padding: 20px;
       font-size: 14px;
       font-weight: 500;
+      @include mobile() {
+        padding: 10px;
+      }
     }
     ul {
       width: 100%;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(calc(100% / 6), auto));
+      @include mobile() {
+        grid-template-columns: repeat(auto-fill, minmax(calc(100% / 4), auto));
+      }
       li {
         border: 1px solid black;
         border-left: none;
@@ -954,6 +1120,24 @@ body.active {
         }
         &:nth-child(6n) {
           border-right: none;
+        }
+        @include mobile() {
+          @for $i from 1 through 6 {
+            &:nth-child(#{$i}) {
+              border-top: none;
+            }
+          }
+          @for $i from 1 through 4 {
+            &:nth-child(#{$i}) {
+              border-top: 1px solid black;
+            }
+          }
+          &:nth-child(6n) {
+            border-right: 1px solid black;
+          }
+          &:nth-child(4n) {
+            border-right: none;
+          }
         }
         .recommend-image {
           width: 100%;
@@ -993,8 +1177,12 @@ body.active {
   top: 0;
   left: 0;
   background-color: rgba(255, 255, 255, 0.9);
+  z-index: 100;
+  padding: 150px 0 0;
   overflow-y: scroll;
-  padding: 180px 0 100px;
+  @include mobile() {
+    padding: 100px 0 0;
+  }
   .close-btn {
     position: absolute;
     top: 20px;
@@ -1006,41 +1194,65 @@ body.active {
   }
   .cart-inner {
     width: 100%;
+    min-height: 77vh;
+    margin-bottom: 50px;
     .cart-list {
       width: 100%;
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(calc(100% / 5), auto));
       border-left: 1px solid black;
+      @include mobile() {
+        grid-template-columns: repeat(auto-fill, minmax(calc(100% / 3), auto));
+      }
       .item {
-        width: 20%;
-        aspect-ratio: 1/2;
+        height: auto;
         border-right: 1px solid black;
         border-bottom: 1px solid black;
-        &:nth-child(1),
-        &:nth-child(2),
-        &:nth-child(3),
-        &:nth-child(4),
-        &:nth-child(5) {
-          border-top: 1px solid black;
+        @for $i from 1 through 5 {
+          &:nth-child(#{$i}) {
+            border-top: 1px solid black;
+          }
+        }
+        &:nth-child(5n) {
+          border-right: none;
+        }
+
+        @include mobile() {
+          @for $i from 1 through 5 {
+            &:nth-child(#{$i}) {
+              border-top: none;
+            }
+          }
+          @for $i from 1 through 3 {
+            &:nth-child(#{$i}) {
+              border-top: 1px solid black;
+            }
+          }
+          &:nth-child(5n) {
+            border-right: 1px solid black;
+          }
+          &:nth-child(3n) {
+            border-right: none;
+          }
         }
 
         .item-img {
           width: 100%;
-          height: 80%;
           overflow: hidden;
           @include flexCenter();
           border-bottom: 1px solid black;
           cursor: pointer;
           img {
             width: 100%;
-            height: 100%;
             object-fit: cover;
           }
         }
         .item-info {
           padding: 8px;
           position: relative;
+          @include mobile() {
+            padding: 8px 15px 8px 8px;
+          }
           .delete-btn {
             position: absolute;
             top: 5px;
@@ -1088,6 +1300,7 @@ body.active {
           }
           .count {
             display: flex;
+
             span {
               width: 40px;
               height: 40px;
@@ -1117,9 +1330,6 @@ body.active {
     }
   }
   .total {
-    position: absolute;
-    bottom: 0;
-    left: 0;
     width: 100%;
     height: 70px;
     display: flex;
@@ -1127,14 +1337,25 @@ body.active {
     justify-content: flex-end;
     border-top: 1px solid black;
     background-color: white;
+    @include mobile() {
+      height: 50px;
+    }
+
     .total-price {
       margin-right: 50px;
       display: flex;
       gap: 20px;
+      @include mobile() {
+        gap: 10px;
+        margin-right: 40px;
+      }
       span {
         font-size: 14px !important;
         font-weight: 400 !important;
         pointer-events: none;
+        @include mobile() {
+          font-size: 12px !important;
+        }
       }
     }
     button {
@@ -1147,6 +1368,9 @@ body.active {
       font-family: $font;
       font-weight: 600;
       cursor: pointer;
+      @include mobile() {
+        font-size: 12px;
+      }
     }
   }
 }
@@ -1159,13 +1383,22 @@ body.active {
   @include tablet() {
     padding: 130px 0 80px;
   }
+  @include mobile() {
+    padding: 100px 0 80px;
+  }
   .pay-inner {
     width: 100%;
     padding: 0 30px;
+    @include mobile() {
+      padding: 0 10px;
+    }
     .back {
       svg {
         transform: scale(1.5);
         cursor: pointer;
+        @include mobile() {
+          transform: scale(1.1);
+        }
       }
     }
     .delivery-title {
@@ -1174,6 +1407,9 @@ body.active {
       margin: 30px 0;
       letter-spacing: 1px;
       pointer-events: none;
+      @include mobile() {
+        font-size: 14px;
+      }
     }
     .delivery-info {
       width: 602px;
@@ -1182,6 +1418,10 @@ body.active {
       display: flex;
       flex-direction: column;
       gap: 10px;
+      @include mobile() {
+        width: 100%;
+        padding: 20px 10px;
+      }
       span {
         display: block;
         font-size: 12px;
@@ -1210,6 +1450,10 @@ body.active {
       width: 602px;
       padding: 20px;
       margin-top: 40px;
+      @include mobile() {
+        width: 100%;
+        padding: 20px 10px;
+      }
       span {
         display: block;
         font-size: 12px;
@@ -1244,6 +1488,9 @@ body.active {
       margin-top: 40px;
       border: 1px solid black;
       box-sizing: border-box;
+      @include mobile() {
+        width: 100%;
+      }
       p {
         font-size: 12px;
         font-weight: 500;
@@ -1255,6 +1502,13 @@ body.active {
         width: 100%;
         display: flex;
         flex-wrap: wrap;
+        @include mobile() {
+          display: grid;
+          grid-template-columns: repeat(
+            auto-fill,
+            minmax(calc(100% / 3), auto)
+          );
+        }
         li {
           width: 10%;
           min-width: 120px;
@@ -1264,6 +1518,16 @@ body.active {
           border-bottom: 1px solid black;
           margin-bottom: 10px;
           box-sizing: border-box;
+          @include mobile() {
+            width: auto;
+            min-width: auto;
+            &:nth-child(5n) {
+              border-right: 1px solid black;
+            }
+            &:nth-child(3n) {
+              border-right: none;
+            }
+          }
           &:nth-child(5n) {
             border-right: none;
           }
@@ -1282,6 +1546,9 @@ body.active {
           font-size: 14px;
           letter-spacing: 2px;
           pointer-events: none;
+          @include mobile() {
+            font-size: 12px;
+          }
         }
       }
     }
@@ -1298,6 +1565,10 @@ body.active {
     border-top: 1px solid black;
     background-color: white;
     z-index: 10;
+    @include mobile() {
+      height: 50px;
+      gap: 20px;
+    }
     span {
       display: block;
       font-size: 12px;
@@ -1314,6 +1585,10 @@ body.active {
       font-family: $font;
       font-weight: 600;
       cursor: pointer;
+      @include mobile() {
+        width: 130px;
+        font-size: 12px;
+      }
     }
   }
 }
@@ -1381,6 +1656,9 @@ body.active {
     padding-top: 180px;
     padding-left: 0;
   }
+  @include mobile() {
+    padding-top: 100px;
+  }
   .user-inner {
     width: 100%;
     .user-tab {
@@ -1389,6 +1667,10 @@ body.active {
       @include tablet() {
         padding-left: 50px;
       }
+      @include mobile() {
+        padding: 0 10px;
+        gap: 20px;
+      }
       span {
         display: block;
         font-size: 14px;
@@ -1396,6 +1678,10 @@ body.active {
         border: 1px solid black;
         cursor: pointer;
         padding: 6px 20px;
+        @include mobile() {
+          font-size: 12px;
+          padding: 3px 14px;
+        }
       }
     }
     .profile {
@@ -1403,6 +1689,9 @@ body.active {
       margin-top: 50px;
       @include tablet() {
         padding-left: 50px;
+      }
+      @include mobile() {
+        padding: 0 10px;
       }
       .profile-inner {
         width: 602px;
@@ -1412,6 +1701,11 @@ body.active {
         gap: 40px;
         padding: 20px;
         box-sizing: border-box;
+        @include mobile() {
+          width: 100%;
+          padding: 20px 10px;
+          gap: 20px;
+        }
         div {
           width: 100%;
           p {
@@ -1462,6 +1756,11 @@ body.active {
             height: 30px;
             margin-bottom: 40px;
             cursor: pointer;
+            @include mobile() {
+              width: 20px;
+              height: 20px;
+              margin-bottom: 20px;
+            }
           }
           p {
             cursor: default;
@@ -1557,13 +1856,27 @@ body.active {
           width: 100%;
           ul {
             width: 100%;
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(
+              auto-fill,
+              minmax(calc(100% / 5), auto)
+            );
+            @include tablet() {
+              grid-template-columns: repeat(
+                auto-fill,
+                minmax(calc(100% / 4), auto)
+              );
+            }
+            @include mobile() {
+              grid-template-columns: repeat(
+                auto-fill,
+                minmax(calc(100% / 3), auto)
+              );
+            }
             li.selected {
               opacity: 0.5;
             }
             li {
-              width: calc(100% / 5);
               overflow: hidden;
               cursor: pointer;
               border-top: 1px solid black;
@@ -1573,8 +1886,18 @@ body.active {
                 border-right: none;
               }
               @include tablet() {
-                width: calc(100% / 4);
+                &:nth-child(5n) {
+                  border-right: 1px solid black;
+                }
                 &:nth-child(4n) {
+                  border-right: none;
+                }
+              }
+              @include mobile() {
+                &:nth-child(4n) {
+                  border-right: 1px solid black;
+                }
+                &:nth-child(3n) {
                   border-right: none;
                 }
               }
@@ -1651,6 +1974,11 @@ body.active {
           padding-left: 50px;
         }
       }
+      @include mobile() {
+        .footer {
+          padding: 100px 10px;
+        }
+      }
     }
   }
 }
@@ -1662,8 +1990,14 @@ body.active {
   @include tablet() {
     padding: 180px 0 0 50px;
   }
+  @include mobile() {
+    padding: 100px 10px 0;
+  }
   .contact-table {
     width: 602px;
+    @include mobile() {
+      width: 100%;
+    }
     p {
       font-size: 14px;
       font-weight: 500;
@@ -1718,6 +2052,9 @@ body.active {
   @include tablet() {
     padding: 180px 0 0 50px;
   }
+  @include mobile() {
+    padding: 100px 10px 0;
+  }
   .back {
     margin-bottom: 20px;
     width: 20px;
@@ -1732,6 +2069,9 @@ body.active {
     align-items: flex-start;
     gap: 50px;
     padding: 30px 10px;
+    @include mobile() {
+      width: 100%;
+    }
     .title {
       width: 100%;
       display: flex;
@@ -1848,6 +2188,9 @@ body.active {
   @include tablet() {
     padding: 180px 0 0 50px;
   }
+  @include mobile() {
+    padding: 100px 10px 0;
+  }
   .back {
     margin-bottom: 20px;
     width: 20px;
@@ -1859,6 +2202,9 @@ body.active {
     border: 1px solid black;
     overflow: hidden;
     padding: 10px;
+    @include mobile() {
+      width: 100%;
+    }
     p.title {
       font-size: 15px;
       font-weight: 500;
@@ -1946,6 +2292,9 @@ body.active {
   @include tablet() {
     padding: 130px 0 0;
   }
+  @include mobile() {
+    padding: 100px 0 0;
+  }
   .search-box {
     width: 100%;
     padding: 20px 0;
@@ -1953,6 +2302,9 @@ body.active {
     border: 1px solid black;
     border-left: none;
     border-right: none;
+    @include mobile() {
+      padding: 10px 0;
+    }
     input {
       width: 90%;
       background-color: transparent;
@@ -1962,24 +2314,35 @@ body.active {
       color: black;
       font-family: $font;
       font-weight: 500;
+      @include mobile() {
+        font-size: 12px;
+      }
       &::placeholder {
         font-size: 14px;
         font-family: $font;
         color: #999;
         font-weight: 500;
+        @include mobile() {
+          font-size: 12px;
+        }
       }
     }
   }
   .search-item-list {
     width: 100%;
     margin-top: 100px;
+    @include mobile() {
+      margin-top: 50px;
+    }
     ul {
       width: 100%;
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
       box-sizing: border-box;
+      grid-template-columns: repeat(auto-fill, minmax(calc(100% / 6), auto));
+      @include mobile() {
+        grid-template-columns: repeat(auto-fill, minmax(calc(100% / 4), auto));
+      }
       li {
-        width: calc(100% / 6);
         overflow: hidden;
         box-sizing: border-box;
         cursor: pointer;
@@ -1993,6 +2356,24 @@ body.active {
         }
         &:nth-child(6n) {
           border-right: none;
+        }
+        @include mobile() {
+          @for $i from 1 through 6 {
+            &:nth-child(#{$i}) {
+              border-top: none;
+            }
+          }
+          @for $i from 1 through 4 {
+            &:nth-child(#{$i}) {
+              border-top: 1px solid black;
+            }
+          }
+          &:nth-child(4n) {
+            border-right: none;
+          }
+          &:nth-child(6n) {
+            border-right: 1px solid black;
+          }
         }
 
         .item-image {
@@ -2043,6 +2424,9 @@ body.active {
   @include tablet() {
     padding: 150px 0 100px 10px;
   }
+  @include mobile() {
+    padding: 100px 10px 100px;
+  }
   .footer-sns {
     width: 100%;
     display: flex;
@@ -2056,6 +2440,9 @@ body.active {
       font-weight: 500;
       color: black;
       pointer-events: none;
+      @include mobile() {
+        font-size: 18px;
+      }
     }
     ul {
       width: 100%;
@@ -2074,6 +2461,9 @@ body.active {
           cursor: pointer;
           @include tablet() {
             font-size: 12px;
+          }
+          @include mobile() {
+            font-size: 11px;
           }
           &:hover {
             text-decoration: underline;
@@ -2096,6 +2486,9 @@ body.active {
       @include tablet() {
         margin-bottom: 10px;
       }
+      @include mobile() {
+        font-size: 18px;
+      }
     }
     span {
       display: block;
@@ -2105,6 +2498,9 @@ body.active {
       @include tablet() {
         font-size: 12px;
         margin-bottom: 0;
+      }
+      @include mobile() {
+        font-size: 11px;
       }
     }
   }
@@ -2118,6 +2514,9 @@ body.active {
       color: #999;
       font-weight: 400;
       cursor: default;
+      @include mobile() {
+        font-size: 11px;
+      }
     }
   }
   .copy {
@@ -2133,6 +2532,9 @@ body.active {
       cursor: default;
       @include tablet() {
         font-size: 12px;
+      }
+      @include mobile() {
+        font-size: 10px;
       }
     }
   }
@@ -2180,6 +2582,12 @@ body.active {
       margin-bottom: 50px;
       padding: 20px;
       cursor: pointer;
+      span {
+        display: block;
+        font-size: 10px;
+        margin-top: 5px;
+        color: #999;
+      }
     }
     .accordion-item {
       .accordion-header {
