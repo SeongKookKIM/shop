@@ -220,11 +220,10 @@ function AdminReturn() {
                       )}
                     </div>
                   </div>
-
-                  {returnList.item.map((item, i) => {
-                    return (
-                      <div className="delivery-list" key={i}>
-                        <div className="delevery-item">
+                  <div className="delivery-list">
+                    {returnList.item.map((item, i) => {
+                      return (
+                        <div className="delevery-item" key={i}>
                           <div className="delivery-list-image">
                             <img src={item.image} />
                           </div>
@@ -246,9 +245,9 @@ function AdminReturn() {
                             </div>
                           </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
               );
             })}
