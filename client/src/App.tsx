@@ -12,6 +12,7 @@ import Inqury from "./components/user/inqury/Inqury";
 import InquryDetail from "./components/user/inqury/InquryDetail";
 import Search from "./pages/Search";
 import AdminHome from "./pages/admin/AdminHome";
+import NotFound from "./NotFound";
 
 function App() {
   function setScreenSize() {
@@ -40,6 +41,9 @@ function App() {
 
           {/* Admin */}
           <Route path="/admin/home" element={<AdminHome />} />
+
+          {/* 404 */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </div>

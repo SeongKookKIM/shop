@@ -55,7 +55,7 @@ function BuyList({ user }: UserPropsType) {
         (acc, item) => acc + item.price * item.count,
         0
       );
-      if (updatedBuyItemList.length === 0) {
+      if (selectedItems.length === 0) {
         alert("반품하실 상품이 없습니다.");
       } else {
         if (window.confirm("반품을 신청하시겠습니까?")) {
