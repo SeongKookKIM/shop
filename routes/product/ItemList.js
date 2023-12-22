@@ -50,14 +50,14 @@ router.post("/add", (req, res) => {
         (err, result) => {
           if (err) console.log(err);
 
-          return res.status(200).send("cart저장완료");
+          return res.status(200).send("바스켓백 저장완료");
         }
       );
     } else {
       db.collection("cart").insertOne(req.body, (err, result) => {
         if (err) console.log(err);
 
-        return res.status(200).send("cart저장완료");
+        return res.status(200).send("바스켓백 저장완료");
       });
     }
   });

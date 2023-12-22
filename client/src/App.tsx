@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -14,6 +14,14 @@ import Search from "./pages/Search";
 import AdminHome from "./pages/admin/AdminHome";
 
 function App() {
+  function setScreenSize() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  }
+  useEffect(() => {
+    setScreenSize();
+  });
+
   return (
     <div className="App">
       <Suspense fallback={<div>LOADING...</div>}>

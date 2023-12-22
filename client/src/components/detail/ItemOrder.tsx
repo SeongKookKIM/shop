@@ -44,6 +44,7 @@ function ItemOrder({ detailItem }: itemType) {
         axios
           .post("/product/add", addPost)
           .then((res) => {
+            alert(res.data);
             window.location.reload();
           })
           .catch((err) => console.log(err));

@@ -29,7 +29,9 @@ function Cart({ user }: userPropsType) {
       );
 
       axios
-        .post("/cart/list", { _id: user._id })
+        .post("/cart/list", {
+          _id: user._id,
+        })
         .then((res) => {
           setCartList(res.data);
           setCartListLength(res.data.length);

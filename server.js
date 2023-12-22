@@ -55,5 +55,5 @@ app.use("/admin/return", require("./routes/admin/delivery/Return"));
 app.use("/admin/inqury", require("./routes/admin/inqury/AdminInqury"));
 
 app.get("*", function (req, res) {
-  응답.sendFile(path.join(__dirname, "client/build/index.html"));
+  res.sendFile(path.join(__dirname, "client/build/index.html"));
 });
