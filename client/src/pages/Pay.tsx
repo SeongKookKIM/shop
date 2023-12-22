@@ -56,6 +56,7 @@ function Pay() {
       buyer_name: userInfo?.name,
       buyer_tel: userInfo?.phone,
       buyer_addr: `${payAddress.address} ${payAddress.addressDetail}`,
+      m_redirect_url: "http://localhost:8080/order/payments",
     };
     IMP.request_pay(data, callback);
   }
