@@ -1,18 +1,33 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useEffect, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Sign from "./pages/Sign";
-import Product from "./pages/Product";
-import Detail from "./pages/Detail";
-import Pay from "./pages/Pay";
-import User from "./pages/User";
-import Contact from "./pages/Contact";
-import Inqury from "./components/user/inqury/Inqury";
-import InquryDetail from "./components/user/inqury/InquryDetail";
-import Search from "./pages/Search";
-import AdminHome from "./pages/admin/AdminHome";
-import NotFound from "./NotFound";
+
+const Home = lazy(() => import("./pages/Home"));
+
+const Login = lazy(() => import("./pages/Login"));
+
+const Sign = lazy(() => import("./pages/Sign"));
+
+const Product = lazy(() => import("./pages/Product"));
+
+const Detail = lazy(() => import("./pages/Detail"));
+
+const Pay = lazy(() => import("./pages/Pay"));
+
+const User = lazy(() => import("./pages/User"));
+
+const Contact = lazy(() => import("./pages/Contact"));
+
+const Search = lazy(() => import("./pages/Search"));
+
+const Inqury = lazy(() => import("./components/user/inqury/Inqury"));
+
+const InquryDetail = lazy(
+  () => import("./components/user/inqury/InquryDetail")
+);
+
+const AdminHome = lazy(() => import("./pages/admin/AdminHome"));
+
+const NotFound = lazy(() => import("./NotFound"));
 
 function App() {
   function setScreenSize() {
@@ -25,7 +40,21 @@ function App() {
 
   return (
     <div className="App">
-      <Suspense fallback={<div>LOADING...</div>}>
+      <Suspense
+        fallback={
+          <div
+            style={{
+              width: "100%",
+              height: "100vh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <span>페이지 로딩중입니다....</span>
+          </div>
+        }
+      >
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
