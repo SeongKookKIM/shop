@@ -5,7 +5,7 @@ import { LuArrowLeft } from "react-icons/lu";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import PayDelivery from "../components/pay/PayDelivery";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../Store";
 import axios from "axios";
 import SubMenu from "../components/menu/SubMenu";
@@ -43,6 +43,25 @@ function Pay() {
 
   // 결제버튼
   function handlePayment() {
+    let mobileData = {
+      user: userInfo?._id,
+      userName: userInfo?.name,
+      userEmail: userInfo?.email,
+      userPhone: userInfo?.phone,
+      userAddress: payAddress.address,
+      userAddressDetail: payAddress.addressDetail,
+      userMessage: message,
+      totalPrice: totalPrice,
+      status: "상품준비중",
+      deliveryNumber: "",
+      date: `${new Date().getFullYear()}-${
+        new Date().getMonth() + 1
+      }-${new Date().getDate()}`,
+      item: itemList,
+    };
+
+    localStorage.setItem("pay", JSON.stringify(mobileData));
+
     const { IMP }: any = window;
     IMP.init("imp64877406");
 
@@ -56,8 +75,9 @@ function Pay() {
       buyer_name: userInfo?.name,
       buyer_tel: userInfo?.phone,
       buyer_addr: `${payAddress.address} ${payAddress.addressDetail}`,
-      m_redirect_url: "http://localhost:8080/order/payments",
+      m_redirect_url: "https://shop-406211.du.r.appspot.com/pay/success",
     };
+
     IMP.request_pay(data, callback);
   }
   const callback = (res: any) => {

@@ -13,6 +13,8 @@ const Detail = lazy(() => import("./pages/Detail"));
 
 const Pay = lazy(() => import("./pages/Pay"));
 
+const MobilePayment = lazy(() => import("./components/pay/MobilePayment"));
+
 const User = lazy(() => import("./pages/User"));
 
 const Contact = lazy(() => import("./pages/Contact"));
@@ -62,6 +64,7 @@ function App() {
           <Route path="/product/:category/:item" element={<Product />} />
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/pay" element={<Pay />} />
+          <Route path="/pay/success" element={<MobilePayment />} />
           <Route path="/user" element={<User />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/contact/inqury" element={<Inqury />} />

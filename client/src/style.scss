@@ -399,6 +399,7 @@ body.active {
           right: 30px;
           bottom: 50px;
           font-size: 12px;
+          font-weight: 500;
         }
       }
       span.active {
@@ -677,6 +678,9 @@ body.active {
           white-space: nowrap;
           text-overflow: ellipsis;
           overflow: hidden;
+          @include mobile() {
+            font-weight: 500;
+          }
         }
         span {
           font-size: 11px;
@@ -892,7 +896,7 @@ body.active {
       }
       @include mobile() {
         width: 100%;
-        height: 80vh;
+        height: 70vh;
         margin-bottom: 50px;
         display: flex;
         flex-direction: column;
@@ -3957,6 +3961,30 @@ body.active {
       letter-spacing: 1px;
       font-weight: 500;
       cursor: default;
+    }
+  }
+}
+
+// Mobile-Payments
+.payments-success {
+  width: 100%;
+  padding: 100px 0 0;
+  .payments-wrapper {
+    width: 100%;
+    height: 50vh;
+    @include flexCenter();
+    flex-direction: column;
+    gap: 20px;
+    p {
+      font-size: 14px;
+      cursor: default;
+    }
+    span {
+      display: block;
+      border: 1px solid black;
+      font-size: 13px;
+      padding: 5px 15px;
+      cursor: pointer;
     }
   }
 }
