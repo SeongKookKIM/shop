@@ -761,6 +761,9 @@ body.active {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            @include mobile() {
+              font-weight: 500;
+            }
           }
           span {
             font-size: 11px;
