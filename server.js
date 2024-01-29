@@ -5,7 +5,7 @@ const app = express();
 // req.body
 app.use(express.urlencoded({ extended: true }));
 
-// ENV 파일
+//ENV 파일
 require("dotenv").config();
 
 // React Server.js 연결
@@ -14,12 +14,12 @@ let cors = require("cors");
 app.use(cors());
 
 // Mongo DB
-let db: any;
+let db;
 const MongoClient = require("mongodb").MongoClient;
 MongoClient.connect(
   process.env.MONGO,
   { useUnifiedTopology: true },
-  (err: any, client: any) => {
+  (err, client) => {
     if (err) {
       return console.log(err);
     }
@@ -27,7 +27,6 @@ MongoClient.connect(
     console.log("db연결");
   }
 );
-
 app.listen(process.env.PORT, function () {
   console.log("listening on 8080");
 });
@@ -35,7 +34,7 @@ app.listen(process.env.PORT, function () {
 // server-react connect
 app.use(express.static(path.join(__dirname, "client/build")));
 
-app.get("/", function (req: any, res: any) {
+app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "client/build/index.html"));
 });
 
@@ -55,6 +54,6 @@ app.use("/admin/delivery", require("./routes/admin/delivery/Delivery"));
 app.use("/admin/return", require("./routes/admin/delivery/Return"));
 app.use("/admin/inqury", require("./routes/admin/inqury/AdminInqury"));
 
-app.get("*", function (req: any, res: any) {
+app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "client/build/index.html"));
 });
