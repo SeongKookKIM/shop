@@ -272,6 +272,8 @@ body.active {
         cursor: pointer;
         background-color: white;
         pointer-events: none;
+        -webkit-appearance: none;
+        -webkit-border-radius: 0;
         &::placeholder {
           font-family: $font;
           font-size: 13px;
@@ -532,6 +534,8 @@ body.active {
           font-weight: 700;
           font-size: 13px;
           letter-spacing: 1px;
+          -webkit-appearance: none;
+          -webkit-border-radius: 0;
           @include mobile() {
             font-size: 12px;
           }
@@ -602,6 +606,8 @@ body.active {
     form {
       input {
         border-radius: 0;
+        -webkit-appearance: none;
+        -webkit-border-radius: 0;
         &:focus {
           outline: none;
         }
@@ -1683,6 +1689,8 @@ body.active {
           font-size: 14px;
           font-family: $font;
           padding: 0 5px;
+          -webkit-appearance: none;
+          -webkit-border-radius: 0;
         }
       }
       button {
@@ -1831,6 +1839,8 @@ body.active {
             font-size: 14px;
             font-family: $font;
             padding: 2px 0px;
+            -webkit-appearance: none;
+            -webkit-border-radius: 0;
             &::placeholder {
               font-size: 12px;
               color: #999;
@@ -2144,6 +2154,8 @@ body.active {
         outline: none;
         border-bottom: 1px solid black;
         font-size: 14px;
+        -webkit-appearance: none;
+        -webkit-border-radius: 0;
       }
     }
     .detail {
@@ -2372,6 +2384,8 @@ body.active {
       color: black;
       font-family: $font;
       font-weight: 500;
+      -webkit-appearance: none;
+      -webkit-border-radius: 0;
       @include mobile() {
         font-size: 12px;
       }
@@ -3210,6 +3224,8 @@ body.active {
           font-size: 13px;
           color: black;
           font-weight: 500;
+          -webkit-appearance: none;
+          -webkit-border-radius: 0;
           &::placeholder {
             font-family: $font;
             font-size: 12px;
@@ -3480,6 +3496,8 @@ body.active {
             font-size: 13px;
             color: black;
             font-weight: 500;
+            -webkit-appearance: none;
+            -webkit-border-radius: 0;
           }
           /* Chrome, Safari, Edge, Opera */
           input::-webkit-outer-spin-button,
@@ -3626,6 +3644,8 @@ body.active {
                 outline: none;
                 border: none;
                 border-bottom: 1px solid black;
+                -webkit-appearance: none;
+                -webkit-border-radius: 0;
               }
             }
           }
