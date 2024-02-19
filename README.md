@@ -4,6 +4,8 @@
 
 <hr/>
 
+[서비스 링크](https://shop-406211.du.r.appspot.com/)
+
 ### [`Admin Account`]
 
 ```bash
@@ -18,4 +20,3 @@ PW: Admin123@
 <p>- react-daum-postcode API를 사용한 주소 검색 기능 구현</p>
 <p>- CSS 전산처리기로 SCSS를 선택하여 변수를 효과적으로 활용하고 중첩된 규칙을 생성하여 코드를 간결하게 유지하였습니다.</p>
 <p>- Git Extention을 활용하여 branch 분리작업</p>
-[`서비스 링크`](https://shop-406211.du.r.appspot.com/)
