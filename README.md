@@ -12,4 +12,5 @@
 <p>- iamport 테스트 api를 통한 실 결제 시스템 기능 구현(실제 결제가 되지 않습니다.)</p>
 <p>- react-daum-postcode API를 사용한 주소 검색 기능 구현</p>
 <p>- CSS 전산처리기로 SCSS를 선택하여 변수를 효과적으로 활용하고 중첩된 규칙을 생성하여 코드를 간결하게 유지하였습니다.</p>
+<p>- Git Extention을 활용하여 branch 분리작업</p>
 <p>- 서비스 링크: <a href="https://shop-406211.du.r.appspot.com/"  target="_blank">https://shop-406211.du.r.appspot.com/</a></p>
