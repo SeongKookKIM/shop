@@ -10,4 +10,6 @@
 <p>- Admin Account 로그인 후 상단 우측 Admin 클릭 후 관리자 페이지 클릭</p>
 <p>- Admin Page내에서 회원관리, 배송 및 반품 관리, 문의 관리, 상품 등록, 관리 기능을 구현하였습니다.</p>
 <p>- iamport 테스트 api를 통한 실 결제 시스템 기능 구현(실제 결제가 되지 않습니다.)</p>
+<p>- react-daum-postcode API를 사용한 주소 검색 기능 구현</p>
+<p>- CSS 전산처리기로 SCSS를 선택하여 변수를 효과적으로 활용하고 중첩된 규칙을 생성하여 코드를 간결하게 유지하였습니다.</p>
 <p>- 서비스 링크: <a href="https://shop-406211.du.r.appspot.com/"  target="_blank">https://shop-406211.du.r.appspot.com/</a></p>
