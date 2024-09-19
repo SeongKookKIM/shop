@@ -4,7 +4,7 @@ let router = require("express").Router();
 require("dotenv").config();
 
 // bcrypt(비밀번호 암호화)
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 // Mongo DB
 let db;

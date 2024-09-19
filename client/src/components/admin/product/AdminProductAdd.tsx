@@ -124,7 +124,7 @@ function AdminProductAdd() {
       alert("상세이미지를 한 개이상 등록해주세요.");
     } else {
       axios
-        .post("http:///admin/product/thumbnail", formDataThumbnail, {
+        .post("/admin/product/thumbnail", formDataThumbnail, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
