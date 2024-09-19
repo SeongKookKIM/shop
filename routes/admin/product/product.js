@@ -1,6 +1,7 @@
 let router = require("express").Router();
+const aws = require("aws-sdk");
 
-//ENV 파일
+// ENV 파일
 require("dotenv").config();
 
 // Mongo DB
@@ -28,80 +29,57 @@ const upload = multer({
   },
 });
 
-// GCP
-const { Storage } = require("@google-cloud/storage");
-
-const storage = new Storage({
-  projectId: "image-cloud-398905",
-  keyFilename: "./shop-406211-300b62e67fb3.json",
+// AWS S3 설정
+aws.config.update({
+  accessKeyId: process.env.AWS_ACCESS,
+  secretAccessKey: process.env.AWS_SECRET,
+  region: "ap-northeast-2",
 });
-const bucket = storage.bucket("sam-shop-image");
+const s3 = new aws.S3();
 
-const util = require("util");
-const format = util.format;
-
-// 상품추가
-router.post("/add", (req, res) => {
-  db.collection("product").insertOne(req.body, (err, result) => {
-    if (err) console.log(err);
-
-    return res.status(200).send("상품을 등록하셨습니다.");
-  });
-});
-
-// thumbnail
+// thumbnail 업로드 (AWS S3 사용)
 router.post("/thumbnail", upload.single("thumbnail"), (req, res) => {
   if (!req.file) {
     res.status(200).send("No file uploaded.");
     return;
   }
 
-  const blob = bucket.file(`thumbnail/${req.file.originalname}`);
+  const params = {
+    Bucket: process.env.AWS_BUCKET_NAME,
+    Key: `thumbnail/${req.file.originalname}`,
+    Body: req.file.buffer,
+    ContentType: req.file.mimetype,
+  };
 
-  const blobStream = blob.createWriteStream();
+  s3.upload(params, (err, data) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send(err);
+    }
 
-  blobStream.on("error", (err) => {
-    console.error(err);
-    res.status(500).send(err);
+    res.status(200).send(data.Location);
   });
-
-  blobStream.on("finish", () => {
-    const publicUrl = format(
-      `https://storage.googleapis.com/${bucket.name}/${blob.name}`
-    );
-
-    res.status(200).send(publicUrl);
-  });
-
-  blobStream.end(req.file.buffer);
 });
 
-// Src
+// 여러 이미지 업로드 (AWS S3 사용)
 router.post("/src", upload.array("src"), async (req, res) => {
   let urls = [];
 
   for (const file of req.files) {
-    const blob = bucket.file(`src/${file.originalname}`);
-    const blobStream = blob.createWriteStream();
+    const params = {
+      Bucket: process.env.AWS_BUCKET_NAME,
+      Key: `src/${file.originalname}`,
+      Body: file.buffer,
+      ContentType: file.mimetype,
+    };
 
-    await new Promise((resolve, reject) => {
-      blobStream.on("error", (err) => {
-        console.error(err);
-        reject(err);
-      });
-
-      blobStream.on("finish", () => {
-        const publicUrl = format(
-          `https://storage.googleapis.com/${bucket.name}/${blob.name}`
-        );
-
-        urls.push(publicUrl);
-
-        resolve();
-      });
-
-      blobStream.end(file.buffer);
-    });
+    try {
+      const data = await s3.upload(params).promise();
+      urls.push(data.Location);
+    } catch (err) {
+      console.error(err);
+      return res.status(500).send(err);
+    }
   }
 
   res.status(200).send(urls);
@@ -134,6 +112,15 @@ router.post("/list", (req, res) => {
         return res.status(200).json(result);
       });
   }
+});
+
+// 상품추가
+router.post("/add", (req, res) => {
+  db.collection("product").insertOne(req.body, (err, result) => {
+    if (err) console.log(err);
+
+    return res.status(200).send("상품을 등록하셨습니다.");
+  });
 });
 
 // 상품삭제하기
