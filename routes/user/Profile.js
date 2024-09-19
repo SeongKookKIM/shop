@@ -3,7 +3,7 @@ let router = require("express").Router();
 //ENV 파일
 require("dotenv").config();
 
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 // Mongo DB
 let db;
