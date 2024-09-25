@@ -7,6 +7,9 @@
 ### [`Admin Account`]
 
 - Admin Account 로그인 후 상단 우측 admin 클릭 후 관리자 페이지 클릭시 Admin Page로 이동 가능합니다.
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/193d6a99-2ff8-4798-b61d-74fde9a64a85" alt="이미지1 설명" width="90%" />
+</p>
 
 ```bash
 ID: admin@shop.com
